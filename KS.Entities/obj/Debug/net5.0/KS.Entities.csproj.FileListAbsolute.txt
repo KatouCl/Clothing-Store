@@ -1,0 +1,12 @@
+O:\KataStore\KataStore\KS.Entities\bin\Debug\net5.0\KS.Entities.deps.json
+O:\KataStore\KataStore\KS.Entities\bin\Debug\net5.0\KS.Entities.dll
+O:\KataStore\KataStore\KS.Entities\bin\Debug\net5.0\ref\KS.Entities.dll
+O:\KataStore\KataStore\KS.Entities\bin\Debug\net5.0\KS.Entities.pdb
+O:\KataStore\KataStore\KS.Entities\obj\Debug\net5.0\KS.Entities.GeneratedMSBuildEditorConfig.editorconfig
+O:\KataStore\KataStore\KS.Entities\obj\Debug\net5.0\KS.Entities.AssemblyInfoInputs.cache
+O:\KataStore\KataStore\KS.Entities\obj\Debug\net5.0\KS.Entities.AssemblyInfo.cs
+O:\KataStore\KataStore\KS.Entities\obj\Debug\net5.0\KS.Entities.csproj.CoreCompileInputs.cache
+O:\KataStore\KataStore\KS.Entities\obj\Debug\net5.0\KS.Entities.dll
+O:\KataStore\KataStore\KS.Entities\obj\Debug\net5.0\ref\KS.Entities.dll
+O:\KataStore\KataStore\KS.Entities\obj\Debug\net5.0\KS.Entities.pdb
+O:\KataStore\KataStore\KS.Entities\obj\Debug\net5.0\KS.Entities.csprojAssemblyReference.cache

@@ -1,0 +1,30 @@
+﻿@model KS.ViewModels.Brand.BrandIndexViewModel
+
+@{
+    ViewBag.Title = $"Бренд {Model.Name}";
+    Layout = "_Layout";
+}
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-7">
+            <div class="mb-3 row">
+                <label asp-for="Name" class="col-form-label col-sm-2 text-sm-end">Название</label>
+                <div class="col-sm-10">
+                    <input asp-for="Name" class="form-control" placeholder="Название" rows="3" disabled>
+                </div>
+                <span asp-validation-for="Name"></span>
+            </div>
+            <div class="mb-3 row">
+                <label asp-for="Description" class="col-form-label col-sm-2 text-sm-end">Описание</label>
+                <div class="col-sm-10">
+                    <textarea asp-for="Description" class="form-control" placeholder="" rows="3" disabled></textarea>
+                </div>
+                <span asp-validation-for="Description"></span>
+            </div>
+
+            <a asp-controller="Brand" asp-action="Index">Вернуться </a>
+        </div>
+    </div>
+</div>

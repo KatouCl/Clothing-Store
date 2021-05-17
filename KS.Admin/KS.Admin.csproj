@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>net5.0</TargetFramework>
+        <UserSecretsId>aspnet-KS.Admin-694475EC-8DE6-4BC0-B2CB-5824D4428DBA</UserSecretsId>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="5.0.2" />
+        <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="5.0.2" />
+        <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="5.0.2" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.0-preview.3.21201.2" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.2" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\KS.BusinessLogic\KS.BusinessLogic.csproj" />
+      <ProjectReference Include="..\KS.DataAccess\KS.DataAccess.csproj" />
+      <ProjectReference Include="..\KS.Interfaces\KS.Interfaces.csproj" />
+      <ProjectReference Include="..\KS.ViewModels\KS.ViewModels.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="wwwroot\js\site.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\css\site.css" />
+    </ItemGroup>
+
+</Project>

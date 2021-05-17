@@ -1,0 +1,34 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Meta -->
+    <partial name="_MetaPartial"/>
+
+    <!-- Style -->
+    <partial name="_StylePartial"/>
+</head>
+<body>
+
+<!-- Menu -->
+<partial name="_MenuPartial"/>
+
+<div class="super_container">
+
+    <!-- Header -->
+    <partial name="_HeaderPartial"/>
+
+    <div class="super_container_inner">
+        <!-- Content -->
+        @RenderBody()
+
+        <!-- Footer -->
+        <partial name="_FooterPartial"/>
+    </div>
+
+</div>
+
+<!-- Scripts -->
+<partial name="_ScriptsPartial"/>
+@await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

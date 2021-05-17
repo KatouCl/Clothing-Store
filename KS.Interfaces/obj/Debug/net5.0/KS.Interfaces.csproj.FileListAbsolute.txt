@@ -1,0 +1,17 @@
+O:\KataStore\KataStore\KS.Interfaces\bin\Debug\net5.0\KS.Interfaces.deps.json
+O:\KataStore\KataStore\KS.Interfaces\bin\Debug\net5.0\KS.Interfaces.dll
+O:\KataStore\KataStore\KS.Interfaces\bin\Debug\net5.0\ref\KS.Interfaces.dll
+O:\KataStore\KataStore\KS.Interfaces\bin\Debug\net5.0\KS.Interfaces.pdb
+O:\KataStore\KataStore\KS.Interfaces\bin\Debug\net5.0\KS.Entities.dll
+O:\KataStore\KataStore\KS.Interfaces\bin\Debug\net5.0\KS.ViewModels.dll
+O:\KataStore\KataStore\KS.Interfaces\bin\Debug\net5.0\KS.Entities.pdb
+O:\KataStore\KataStore\KS.Interfaces\bin\Debug\net5.0\KS.ViewModels.pdb
+O:\KataStore\KataStore\KS.Interfaces\obj\Debug\net5.0\KS.Interfaces.csprojAssemblyReference.cache
+O:\KataStore\KataStore\KS.Interfaces\obj\Debug\net5.0\KS.Interfaces.GeneratedMSBuildEditorConfig.editorconfig
+O:\KataStore\KataStore\KS.Interfaces\obj\Debug\net5.0\KS.Interfaces.AssemblyInfoInputs.cache
+O:\KataStore\KataStore\KS.Interfaces\obj\Debug\net5.0\KS.Interfaces.AssemblyInfo.cs
+O:\KataStore\KataStore\KS.Interfaces\obj\Debug\net5.0\KS.Interfaces.csproj.CoreCompileInputs.cache
+O:\KataStore\KataStore\KS.Interfaces\obj\Debug\net5.0\KS.Interfaces.csproj.CopyComplete
+O:\KataStore\KataStore\KS.Interfaces\obj\Debug\net5.0\KS.Interfaces.dll
+O:\KataStore\KataStore\KS.Interfaces\obj\Debug\net5.0\ref\KS.Interfaces.dll
+O:\KataStore\KataStore\KS.Interfaces\obj\Debug\net5.0\KS.Interfaces.pdb

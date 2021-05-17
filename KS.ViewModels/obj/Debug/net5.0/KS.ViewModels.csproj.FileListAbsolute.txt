@@ -1,0 +1,15 @@
+O:\KataStore\KataStore\KS.ViewModels\bin\Debug\net5.0\KS.ViewModels.deps.json
+O:\KataStore\KataStore\KS.ViewModels\bin\Debug\net5.0\KS.ViewModels.dll
+O:\KataStore\KataStore\KS.ViewModels\bin\Debug\net5.0\ref\KS.ViewModels.dll
+O:\KataStore\KataStore\KS.ViewModels\bin\Debug\net5.0\KS.ViewModels.pdb
+O:\KataStore\KataStore\KS.ViewModels\bin\Debug\net5.0\KS.Entities.dll
+O:\KataStore\KataStore\KS.ViewModels\bin\Debug\net5.0\KS.Entities.pdb
+O:\KataStore\KataStore\KS.ViewModels\obj\Debug\net5.0\KS.ViewModels.csprojAssemblyReference.cache
+O:\KataStore\KataStore\KS.ViewModels\obj\Debug\net5.0\KS.ViewModels.GeneratedMSBuildEditorConfig.editorconfig
+O:\KataStore\KataStore\KS.ViewModels\obj\Debug\net5.0\KS.ViewModels.AssemblyInfoInputs.cache
+O:\KataStore\KataStore\KS.ViewModels\obj\Debug\net5.0\KS.ViewModels.AssemblyInfo.cs
+O:\KataStore\KataStore\KS.ViewModels\obj\Debug\net5.0\KS.ViewModels.csproj.CoreCompileInputs.cache
+O:\KataStore\KataStore\KS.ViewModels\obj\Debug\net5.0\KS.ViewModels.csproj.CopyComplete
+O:\KataStore\KataStore\KS.ViewModels\obj\Debug\net5.0\KS.ViewModels.dll
+O:\KataStore\KataStore\KS.ViewModels\obj\Debug\net5.0\ref\KS.ViewModels.dll
+O:\KataStore\KataStore\KS.ViewModels\obj\Debug\net5.0\KS.ViewModels.pdb
