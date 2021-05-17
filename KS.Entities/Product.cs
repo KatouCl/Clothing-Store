@@ -38,6 +38,9 @@ namespace KS.Entities
         
         public string CoverImageUrl { get; set; }
         
+        public byte GenderTypeId { get; set; }
+        public GenderType GenderType { get; set; }
+        
         public IList<ProductCategory> Categories { get; protected set; } = new List<ProductCategory>();
     
         public void AddCategory(ProductCategory category)

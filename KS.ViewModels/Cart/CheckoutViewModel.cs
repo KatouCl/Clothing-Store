@@ -13,6 +13,5 @@ namespace KS.ViewModels.Cart
         public string Phone { get; set; }
         public string Comment { get; set; }
         public DeliveryType DeliveryType { get; set; }
-        public PaymentType PaymentType { get; set; } 
     }
 }

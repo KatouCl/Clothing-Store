@@ -55,6 +55,7 @@ namespace KS.WebAdmin
             services.AddScoped<ICategoryRepository, CategoryRepository>();
             services.AddScoped<IBrandRepository, BrandRepository>();
             services.AddScoped<ITaxClassRepository, TaxClassRepository>();
+            services.AddScoped<IWarehouseRepository, WarehouseRepository>();
             
 
             

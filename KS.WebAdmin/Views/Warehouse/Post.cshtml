@@ -12,7 +12,7 @@
                 <div class="mb-3 row">
                     <label asp-for="Name" class="col-form-label col-sm-2 text-sm-end">Название</label>
                     <div class="col-sm-10">
-                        <input asp-for="Name" class="form-control" placeholder="Название" rows="3">
+                        <input asp-for="Name" class="form-control" rows="3">
                     </div>
                     <span asp-validation-for="Name"></span>
                 </div>
@@ -21,14 +21,14 @@
                     <div class="col-sm-10">
                         <input asp-for="Address" class="form-control" rows="3">
                     </div>
-                    <span asp-validation-for="Name"></span>
+                    <span asp-validation-for="Address"></span>
                 </div>
                 <div class="mb-3 row">
-                    <label asp-for="Name" class="col-form-label col-sm-2 text-sm-end">Индекс</label>
+                    <label asp-for="Vendor" class="col-form-label col-sm-2 text-sm-end">Индекс</label>
                     <div class="col-sm-10">
-                        <input asp-for="Name" class="form-control" placeholder="Название" rows="3">
+                        <input asp-for="Vendor" class="form-control" rows="3">
                     </div>
-                    <span asp-validation-for="Name"></span>
+                    <span asp-validation-for="Vendor"></span>
                 </div>
 
                 <div asp-validation-summary="All" class="text-danger"></div>
