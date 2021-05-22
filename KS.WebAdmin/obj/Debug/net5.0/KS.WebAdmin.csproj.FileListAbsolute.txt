@@ -452,3 +452,6 @@ M:\KataStore\KS.WebAdmin\obj\Debug\net5.0\Razor\Views\Warehouse\Get.cshtml.g.cs
 M:\KataStore\KS.WebAdmin\obj\Debug\net5.0\Razor\Views\Warehouse\Index.cshtml.g.cs
 M:\KataStore\KS.WebAdmin\obj\Debug\net5.0\Razor\Views\Warehouse\Post.cshtml.g.cs
 M:\KataStore\KS.WebAdmin\obj\Debug\net5.0\Razor\Views\Warehouse\Put.cshtml.g.cs
+M:\KataStore\KS.WebAdmin\obj\Debug\net5.0\Razor\Views\WarehouseProduct\Index.cshtml.g.cs
+M:\KataStore\KS.WebAdmin\obj\Debug\net5.0\Razor\Views\WarehouseProduct\GetProducts.cshtml.g.cs
+M:\KataStore\KS.WebAdmin\obj\Debug\net5.0\Razor\Views\Warehouse\Storage.cshtml.g.cs

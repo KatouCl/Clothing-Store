@@ -16,22 +16,6 @@ namespace KS.DataAccess.Repositories
             _context = context;
         }
 
-        // public new async Task<Category> AddAsync(Category entity)
-        // {
-        //     var checkEntity = _context.Categories
-        //         .Any(x => x.Name == entity.Name);
-        //     
-        //     if (checkEntity)
-        //     {
-        //         return entity;
-        //     }
-        //
-        //     var saveEntry =  await _context.AddAsync(entity);
-        //     await _context.SaveChangesAsync();
-        //
-        //     return saveEntry.Entity;
-        // }
-        
         public async Task<List<CategoryIndexViewModel>> GetCategory()
         {
             return await _context.Categories.Select(x => new CategoryIndexViewModel()

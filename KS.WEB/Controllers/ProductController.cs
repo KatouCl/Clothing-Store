@@ -18,9 +18,9 @@ namespace KS.WEB.Controllers
         // GET
         public async Task<IActionResult> Details(int id)
         {
-            //var product = await _productService.GetProductDetailsByIdAsync(id);
+            var product = await _productService.GetProductDetailsByIdAsync(id);
 
-            return View();
+            return View(product);
         }
     }
 }

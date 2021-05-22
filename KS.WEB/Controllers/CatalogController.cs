@@ -16,12 +16,7 @@ namespace KS.WEB.Controllers
         // GET
         public IActionResult Index()
         {
-            //var product = _productService.GetProductForCatalogAsync();
-
-            //var model = new ProductListingViewModel
-            //{
-            //    Products = product
-            //};
+            var product = _productService.GetProductForCatalogAsync();
 
             return View();
         }

@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace KS.DataAccess.Repositories
 {
-    public abstract class BaseRepository<T> : IBaseRepository<T> where T : BaseEntity
+    public class BaseRepository<T> : IBaseRepository<T> where T : BaseEntity
     {
         private readonly ApplicationDbContext _context;
         private readonly DbSet<T> _dbSet;

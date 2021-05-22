@@ -258,8 +258,8 @@ namespace KS.DataAccess.Migrations
                     b.Property<byte>("GenderType")
                         .HasColumnType("tinyint");
 
-                    b.Property<byte>("GenderTypeId")
-                        .HasColumnType("tinyint");
+                    b.Property<bool>("HasOptions")
+                        .HasColumnType("bit");
 
                     b.Property<bool>("IsAllowToOrder")
                         .HasColumnType("bit");
@@ -307,6 +307,9 @@ namespace KS.DataAccess.Migrations
                         .HasColumnType("bigint");
 
                     b.Property<int?>("TaxClassId1")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UnitType")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -417,9 +420,6 @@ namespace KS.DataAccess.Migrations
                     b.Property<string>("Address")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<long>("AddressId")
-                        .HasColumnType("bigint");
-
                     b.Property<DateTime>("CreationDate")
                         .HasColumnType("datetime2");
 
@@ -430,9 +430,6 @@ namespace KS.DataAccess.Migrations
 
                     b.Property<string>("Vendor")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<long?>("VendorId")
-                        .HasColumnType("bigint");
 
                     b.HasKey("Id");
 

@@ -17,8 +17,7 @@ namespace KS.Entities
         public DateTimeOffset? SpecialPriceStart { get; set; }
 
         public DateTimeOffset? SpecialPriceEnd { get; set; }
-
-
+        public bool HasOptions { get; set; }
         public bool IsFeatured { get; set; }
 
         public bool IsCallForPricing { get; set; }
@@ -38,7 +37,7 @@ namespace KS.Entities
         
         public string CoverImageUrl { get; set; }
         
-        public byte GenderTypeId { get; set; }
+        public UnitType UnitType { get; set; }
         public GenderType GenderType { get; set; }
         
         public IList<ProductCategory> Categories { get; protected set; } = new List<ProductCategory>();

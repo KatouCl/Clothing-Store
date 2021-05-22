@@ -116,5 +116,18 @@ namespace KS.WebAdmin.Controllers
 
             return View(model);
         }
+
+        public IActionResult Storage()
+        {
+            var warehouseListing = _warehouseRepository.GetAll()
+                .Select(x => new WarehouseIndexViewModel
+                {
+                    Id = x.Id,
+                    Name = x.Name,
+                    Address = x.Address
+                });
+            
+            return View(warehouseListing);
+        }
     }
 }

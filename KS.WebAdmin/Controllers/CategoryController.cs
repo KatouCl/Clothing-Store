@@ -20,7 +20,7 @@ namespace KS.WebAdmin.Controllers
         // GET
         public IActionResult Index()
         {
-            var categoryListitng = _categoryRepository.GetAll()
+            var categoryListings = _categoryRepository.GetAll()
                 .Select(x => new CategoryIndexViewModel
                 {
                     Id = x.Id,
@@ -28,7 +28,7 @@ namespace KS.WebAdmin.Controllers
                     Slug = x.Slug
                 });
 
-            return View(categoryListitng);
+            return View(categoryListings);
         }
 
         public IActionResult Post()

@@ -1,4 +1,4 @@
-﻿@*@model KS.ViewModels.Product.ProductListingViewModel*@
+﻿@model IEnumerable<KS.ViewModels.Product.ProductIndexViewModel>
 
 @{
     ViewBag.Title = "title";
@@ -89,60 +89,53 @@
         </div>
         <div class="row products_row products_container grid">
 
-            @if (Model.Products.Any())
+            @foreach (var product in Model)
             {
-                foreach (var product in Model.Products)
-                {
-                    <!-- Product -->
-                    <div class="col-xl-4 col-md-6 grid-item new">
-                        <div class="product">
-                            <div class="product_image">
-                                <img src="/images/product_1.jpg" alt="">
-                            </div>
-                            <div class="product_content">
-                                <div class="product_info d-flex flex-row align-items-start justify-content-start">
+                <!-- Product -->
+                <div class="col-xl-4 col-md-6 grid-item new">
+                    <div class="product">
+                        <div class="product_image">
+                            <img src="/images/product_1.jpg" alt="">
+                        </div>
+                        <div class="product_content">
+                            <div class="product_info d-flex flex-row align-items-start justify-content-start">
+                                <div>
                                     <div>
-                                        <div>
-                                            <div class="product_name">
-                                                <a asp-controller="Product" asp-action="Details" asp-route-id="@product.Id">@product.Name</a>
-                                            </div>
-                                            <div class="product_category">В <a asp-controller="Catalog" asp-action="Index">категориях</a></div>
+                                        <div class="product_name">
+                                            <a asp-controller="Product" asp-action="Details" asp-route-id="@product.Id">@product.Name</a>
                                         </div>
-                                    </div>
-                                    <div class="ml-auto text-right">
-                                        <div class="product_price text-right">
-                                            @product.Price.ToString() @*<span>.00</span> *@
-                                        </div>
+                                        <div class="product_category">В <a asp-controller="Catalog" asp-action="Index">категориях</a></div>
                                     </div>
                                 </div>
-                                <div class="product_buttons">
-                                    <div class="text-right d-flex flex-row align-items-start justify-content-start">
-                                        <div class="product_button product_fav text-center d-flex flex-column align-items-center justify-content-center">
+                                <div class="ml-auto text-right">
+                                    <div class="product_price text-right">
+                                        @product.Price.ToString() @*<span>.00</span> *@
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="product_buttons">
+                                <div class="text-right d-flex flex-row align-items-start justify-content-start">
+                                    <div class="product_button product_fav text-center d-flex flex-column align-items-center justify-content-center">
+                                        <div>
                                             <div>
-                                                <div>
-                                                    <img src="/images/heart_2.svg" class="svg" alt="">
-                                                    <div>+</div>
-                                                </div>
+                                                <img src="/images/heart_2.svg" class="svg" alt="">
+                                                <div>+</div>
                                             </div>
                                         </div>
-                                        <div class="product_button product_cart text-center d-flex flex-column align-items-center justify-content-center">
-                                                <div>
-                                                    <div>
-                                                        <img src="/images/cart.svg" class="svg" alt="">
-                                                        <div>+</div>
-                                                    </div>
-                                                </div>
+                                    </div>
+                                    <div class="product_button product_cart text-center d-flex flex-column align-items-center justify-content-center">
+                                        <div>
+                                            <div>
+                                                <img src="/images/cart.svg" class="svg" alt="">
+                                                <div>+</div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                }
-            }
-            else
-            {
-                <h4>Товаров нет</h4> 
+                </div>
             }
         </div>
         <div class="row page_nav_row">
