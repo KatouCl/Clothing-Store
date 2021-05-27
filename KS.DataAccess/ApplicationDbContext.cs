@@ -23,5 +23,6 @@ namespace KS.DataAccess
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
         public DbSet<Warehouse> Warehouses { get; set; }
         public DbSet<Stock> Stocks { get; set; }
+        public DbSet<StockHistory> StockHistories { get; set; }
     }
 }

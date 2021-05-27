@@ -23,10 +23,5 @@ namespace KS.DataAccess.Repositories
                 .Include(x => x.Categories)
                 .FirstAsync();
         }
-
-        public new async Task<IEnumerable<Product>> GetAll()
-        {
-            return _context.Products;
-        }
     }
 }

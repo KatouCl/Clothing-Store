@@ -1,8 +1,11 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using KS.Entities;
+using KS.Interfaces.DataAccess.BusinessLogic.Services;
 using KS.Interfaces.DataAccess.Repositories;
 using KS.ViewModels.Brand;
+using KS.ViewModels.Stock;
 using KS.ViewModels.Warehouse;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,10 +14,13 @@ namespace KS.WebAdmin.Controllers
     public class WarehouseController : Controller
     {
         private readonly IWarehouseRepository _warehouseRepository;
+        private readonly IStockService _stockService;
 
-        public WarehouseController(IWarehouseRepository warehouseRepository)
+        public WarehouseController(IWarehouseRepository warehouseRepository,
+            IStockService stockService)
         {
             _warehouseRepository = warehouseRepository;
+            _stockService = stockService;
         }
         
         public IActionResult Index()
@@ -129,5 +135,36 @@ namespace KS.WebAdmin.Controllers
             
             return View(warehouseListing);
         }
+
+        public IActionResult Stocks(int warehouseId)
+        {
+            
+            
+            return View();
+        }
+        
+        public IActionResult StocksPut(int warehouseId, IList<StockQuantityViewModel> stockVMs)
+        {
+            foreach(var item in stockVMs)
+            {
+                if(item.AdjustedQuantity == 0)
+                {
+                    continue;
+                }
+
+                var stockUpdateRequest = new StockUpdateViewModel
+                {
+                    WarehouseId = warehouseId,
+                    ProductId = item.ProductId,
+                    AdjustedQuantity = item.AdjustedQuantity,
+                };
+
+                _stockService.UpdateStock(stockUpdateRequest);
+                return RedirectToAction("Stocks", "Warehouse", new {warehouseId});
+            }
+            
+            return RedirectToAction("Stocks", "Warehouse", new {warehouseId});
+        }
     }
+    
 }

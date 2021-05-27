@@ -9,14 +9,6 @@ namespace KS.ViewModels.Warehouse
         public string Name { get; set; }
 
         public int? Quantity { get; set; }
-        
-        // public bool IsCheck { get; set; }
-        public bool IsExistInWarehouse
-        {
-            get
-            {
-                return Quantity.HasValue;
-            }
-        }
+        public bool IsExistInWarehouse { get; set; }
     }
 }
