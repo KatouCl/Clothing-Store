@@ -19,7 +19,7 @@ namespace KS.DataAccess.Repositories
         
         public async Task<List<TaxClassIndexViewModel>> GetTaxClass()
         {
-            return await _context.TaxClasses.Select(x => new TaxClassIndexViewModel()
+            return await _context.TaxClasses.Select(x => new TaxClassIndexViewModel
             {
                 Id = x.Id,
                 Name = x.Name,

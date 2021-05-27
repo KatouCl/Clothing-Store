@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace KS.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210522111515__Changes")]
-    partial class _Changes
+    [Migration("20210526161732__InitCreate")]
+    partial class _InitCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -354,43 +354,6 @@ namespace KS.DataAccess.Migrations
                     b.ToTable("ProductCategories");
                 });
 
-            modelBuilder.Entity("KS.Entities.Stock", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("CreationDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<long>("ProductId")
-                        .HasColumnType("bigint");
-
-                    b.Property<int?>("ProductId1")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Quantity")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ReservedQuantity")
-                        .HasColumnType("int");
-
-                    b.Property<long>("WarehouseId")
-                        .HasColumnType("bigint");
-
-                    b.Property<int?>("WarehouseId1")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ProductId1");
-
-                    b.HasIndex("WarehouseId1");
-
-                    b.ToTable("Stocks");
-                });
-
             modelBuilder.Entity("KS.Entities.TaxClass", b =>
                 {
                     b.Property<int>("Id")
@@ -621,21 +584,6 @@ namespace KS.DataAccess.Migrations
                     b.Navigation("Category");
 
                     b.Navigation("Product");
-                });
-
-            modelBuilder.Entity("KS.Entities.Stock", b =>
-                {
-                    b.HasOne("KS.Entities.Product", "Product")
-                        .WithMany()
-                        .HasForeignKey("ProductId1");
-
-                    b.HasOne("KS.Entities.Warehouse", "Warehouse")
-                        .WithMany()
-                        .HasForeignKey("WarehouseId1");
-
-                    b.Navigation("Product");
-
-                    b.Navigation("Warehouse");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

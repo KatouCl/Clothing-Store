@@ -21,7 +21,7 @@ namespace KS.DataAccess
         public DbSet<ProductCategory> ProductCategories { get; set; }
         public DbSet<TaxClass> TaxClasses { get; set; }
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
-        public DbSet<Stock> Stocks { get; set; }
         public DbSet<Warehouse> Warehouses { get; set; }
+        public DbSet<Stock> Stocks { get; set; }
     }
 }

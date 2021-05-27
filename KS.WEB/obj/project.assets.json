@@ -1803,6 +1803,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v5.0",
         "dependencies": {
+          "KS.DataAccess": "1.0.0",
           "KS.Interfaces": "1.0.0"
         },
         "compile": {

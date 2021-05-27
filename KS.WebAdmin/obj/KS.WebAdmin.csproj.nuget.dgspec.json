@@ -28,6 +28,9 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
+              "M:\\KataStore\\KS.DataAccess\\KS.DataAccess.csproj": {
+                "projectPath": "M:\\KataStore\\KS.DataAccess\\KS.DataAccess.csproj"
+              },
               "M:\\KataStore\\KS.Interfaces\\KS.Interfaces.csproj": {
                 "projectPath": "M:\\KataStore\\KS.Interfaces\\KS.Interfaces.csproj"
               }

@@ -49,6 +49,7 @@ namespace KS.WebAdmin
             })
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+            
             services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
             services.AddScoped<IProductService, ProductService>();
             services.AddScoped<IProductRepository, ProductRepository>();
@@ -57,6 +58,7 @@ namespace KS.WebAdmin
             services.AddScoped<ITaxClassRepository, TaxClassRepository>();
             services.AddScoped<IWarehouseRepository, WarehouseRepository>();
             services.AddScoped<IStockRepository, StockRepository>();
+            services.AddScoped<IStockService, StockService>();
             
 
             

@@ -14,7 +14,6 @@ M:\KataStore\KS.Entities\bin\Debug\net5.0\KS.Entities.deps.json
 M:\KataStore\KS.Entities\bin\Debug\net5.0\KS.Entities.dll
 M:\KataStore\KS.Entities\bin\Debug\net5.0\ref\KS.Entities.dll
 M:\KataStore\KS.Entities\bin\Debug\net5.0\KS.Entities.pdb
-M:\KataStore\KS.Entities\obj\Debug\net5.0\KS.Entities.csprojAssemblyReference.cache
 M:\KataStore\KS.Entities\obj\Debug\net5.0\KS.Entities.GeneratedMSBuildEditorConfig.editorconfig
 M:\KataStore\KS.Entities\obj\Debug\net5.0\KS.Entities.AssemblyInfoInputs.cache
 M:\KataStore\KS.Entities\obj\Debug\net5.0\KS.Entities.AssemblyInfo.cs
@@ -22,3 +21,4 @@ M:\KataStore\KS.Entities\obj\Debug\net5.0\KS.Entities.csproj.CoreCompileInputs.c
 M:\KataStore\KS.Entities\obj\Debug\net5.0\KS.Entities.dll
 M:\KataStore\KS.Entities\obj\Debug\net5.0\ref\KS.Entities.dll
 M:\KataStore\KS.Entities\obj\Debug\net5.0\KS.Entities.pdb
+M:\KataStore\KS.Entities\obj\Debug\net5.0\KS.Entities.csprojAssemblyReference.cache

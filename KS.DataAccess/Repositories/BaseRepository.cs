@@ -19,7 +19,7 @@ namespace KS.DataAccess.Repositories
             _dbSet = context.Set<T>();
         }
 
-        public IEnumerable<T> GetAll()
+        public  IEnumerable<T> GetAll()
         {
             return _dbSet;
         }

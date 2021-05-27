@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace KS.DataAccess.Repositories
 {
-    public class StockRepository : BaseRepository<Stock>, IStockRepository
+    public class StockRepository : BaseRepository<Product>, IStockRepository
     {
         
         private readonly ApplicationDbContext _context;
@@ -18,14 +18,14 @@ namespace KS.DataAccess.Repositories
             _context = context;
         }
 
-        public async Task<List<StockIndexViewModel>> GetStock()
+        public async Task<IList<StockIndexViewModel>> GetStock()
         {
-            return await _context.Stocks.Select(x => new StockIndexViewModel
-            {
-                Id = x.Id,
-                ProductId = x.ProductId,
-                WarehouseId = x.WarehouseId
-            }).ToListAsync();
+        return await _context.Stocks.Select(x => new StockIndexViewModel
+        {
+            Id = x.Id,
+            ProductId = x.ProductId,
+            WarehouseId = x.WarehouseId
+        }).ToListAsync();
         }
     }
 }

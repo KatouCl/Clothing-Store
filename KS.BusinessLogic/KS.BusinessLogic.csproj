@@ -5,6 +5,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\KS.DataAccess\KS.DataAccess.csproj" />
       <ProjectReference Include="..\KS.Interfaces\KS.Interfaces.csproj" />
     </ItemGroup>
 

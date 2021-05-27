@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace KS.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210515192904__EditProduct")]
-    partial class _EditProduct
+    [Migration("20210526161917__AddStock")]
+    partial class _AddStock
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -75,9 +75,6 @@ namespace KS.DataAccess.Migrations
                     b.Property<string>("PasswordHash")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<byte>("PaymentType")
-                        .HasColumnType("tinyint");
-
                     b.Property<string>("Phone")
                         .HasColumnType("nvarchar(max)");
 
@@ -131,7 +128,7 @@ namespace KS.DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Brand");
+                    b.ToTable("Brands");
                 });
 
             modelBuilder.Entity("KS.Entities.Category", b =>
@@ -176,8 +173,8 @@ namespace KS.DataAccess.Migrations
                     b.Property<int>("FileSize")
                         .HasColumnType("int");
 
-                    b.Property<int>("MediaType")
-                        .HasColumnType("int");
+                    b.Property<byte>("MediaType")
+                        .HasColumnType("tinyint");
 
                     b.HasKey("Id");
 
@@ -251,14 +248,20 @@ namespace KS.DataAccess.Migrations
                     b.Property<int?>("BrandId1")
                         .HasColumnType("int");
 
-                    b.Property<int?>("CoverImageId")
-                        .HasColumnType("int");
+                    b.Property<string>("CoverImageUrl")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("CreationDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<byte>("GenderType")
+                        .HasColumnType("tinyint");
+
+                    b.Property<bool>("HasOptions")
+                        .HasColumnType("bit");
 
                     b.Property<bool>("IsAllowToOrder")
                         .HasColumnType("bit");
@@ -308,11 +311,12 @@ namespace KS.DataAccess.Migrations
                     b.Property<int?>("TaxClassId1")
                         .HasColumnType("int");
 
+                    b.Property<int>("UnitType")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("BrandId1");
-
-                    b.HasIndex("CoverImageId");
 
                     b.HasIndex("TaxClassId1");
 
@@ -350,6 +354,37 @@ namespace KS.DataAccess.Migrations
                     b.ToTable("ProductCategories");
                 });
 
+            modelBuilder.Entity("KS.Entities.Stock", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("CreationDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ReservedQuantity")
+                        .HasColumnType("int");
+
+                    b.Property<int>("WarehouseId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductId");
+
+                    b.HasIndex("WarehouseId");
+
+                    b.ToTable("Stocks");
+                });
+
             modelBuilder.Entity("KS.Entities.TaxClass", b =>
                 {
                     b.Property<int>("Id")
@@ -369,6 +404,32 @@ namespace KS.DataAccess.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("TaxClasses");
+                });
+
+            modelBuilder.Entity("KS.Entities.Warehouse", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Address")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreationDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(450)
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Vendor")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Warehouses");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -532,17 +593,11 @@ namespace KS.DataAccess.Migrations
                         .WithMany()
                         .HasForeignKey("BrandId1");
 
-                    b.HasOne("KS.Entities.Media", "CoverImage")
-                        .WithMany()
-                        .HasForeignKey("CoverImageId");
-
                     b.HasOne("KS.Entities.TaxClass", "TaxClass")
                         .WithMany()
                         .HasForeignKey("TaxClassId1");
 
                     b.Navigation("Brand");
-
-                    b.Navigation("CoverImage");
 
                     b.Navigation("TaxClass");
                 });
@@ -560,6 +615,25 @@ namespace KS.DataAccess.Migrations
                     b.Navigation("Category");
 
                     b.Navigation("Product");
+                });
+
+            modelBuilder.Entity("KS.Entities.Stock", b =>
+                {
+                    b.HasOne("KS.Entities.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("KS.Entities.Warehouse", "Warehouse")
+                        .WithMany()
+                        .HasForeignKey("WarehouseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Product");
+
+                    b.Navigation("Warehouse");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

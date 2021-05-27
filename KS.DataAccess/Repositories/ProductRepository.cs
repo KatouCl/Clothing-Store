@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using KS.Entities;
 using KS.Interfaces.DataAccess.Repositories;
 using System.Linq;
@@ -21,6 +22,11 @@ namespace KS.DataAccess.Repositories
             return await _context.Products.Where(x => x.Id == id)
                 .Include(x => x.Categories)
                 .FirstAsync();
+        }
+
+        public new async Task<IEnumerable<Product>> GetAll()
+        {
+            return _context.Products;
         }
     }
 }

@@ -5,9 +5,8 @@ using KS.ViewModels.Stock;
 
 namespace KS.Interfaces.DataAccess.Repositories
 {
-    public interface IStockRepository : IBaseRepository<Stock>
+    public interface IStockRepository : IBaseRepository<Product>
     {
-        
-        Task<List<StockIndexViewModel>> GetStock();
+        Task<IList<StockIndexViewModel>> GetStock();
     }
 }

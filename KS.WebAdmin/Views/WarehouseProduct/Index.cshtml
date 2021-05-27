@@ -26,7 +26,7 @@
         <h6 class="card-subtitle text-muted">
             Cклады
         </h6>
-        <form asp-controller="WarehouseProduct" asp-action="Index">
+        <form asp-controller="WarehouseProduct" asp-action="">
             <div class="mb-3-row">
                 
                 <select asp-items="@(new SelectList(ViewBag.Warehouses, "Id", "Name"))">
@@ -55,9 +55,9 @@
             {
                 <tr>
                     <td>@warehouse.Name</td>
-                    <td>@warehouse.IsCheck.ToString()</td>
+                    <td>@warehouse.IsExistInWarehouse.ToString()</td>
                     <td class="table-action">
-                        @Html.CheckBoxFor(x => warehouse.IsCheck, new {@class = "form-check-input"})
+                        @Html.CheckBoxFor(x => warehouse.IsExistInWarehouse, new {@class = "form-check-input"})
                     </td>
                 </tr>
             }

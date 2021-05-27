@@ -1888,6 +1888,7 @@
       },
       "KS.BusinessLogic/1.0.0": {
         "dependencies": {
+          "KS.DataAccess": "1.0.0",
           "KS.Interfaces": "1.0.0"
         },
         "runtime": {

@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace KS.DataAccess.Migrations
 {
-    public partial class _EditProduct : Migration
+    public partial class _InitCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -34,7 +34,6 @@ namespace KS.DataAccess.Migrations
                     Phone = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Comment = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     DeliveryType = table.Column<byte>(type: "tinyint", nullable: false),
-                    PaymentType = table.Column<byte>(type: "tinyint", nullable: false),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -56,7 +55,7 @@ namespace KS.DataAccess.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Brand",
+                name: "Brands",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -67,7 +66,7 @@ namespace KS.DataAccess.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Brand", x => x.Id);
+                    table.PrimaryKey("PK_Brands", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -94,7 +93,7 @@ namespace KS.DataAccess.Migrations
                     Caption = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: true),
                     FileSize = table.Column<int>(type: "int", nullable: false),
                     FileName = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: true),
-                    MediaType = table.Column<int>(type: "int", nullable: false),
+                    MediaType = table.Column<byte>(type: "tinyint", nullable: false),
                     CreationDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
@@ -115,6 +114,22 @@ namespace KS.DataAccess.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_TaxClasses", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Warehouses",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: false),
+                    Vendor = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CreationDate = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Warehouses", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -260,6 +275,7 @@ namespace KS.DataAccess.Migrations
                     SpecialPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
                     SpecialPriceStart = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
                     SpecialPriceEnd = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
+                    HasOptions = table.Column<bool>(type: "bit", nullable: false),
                     IsFeatured = table.Column<bool>(type: "bit", nullable: false),
                     IsCallForPricing = table.Column<bool>(type: "bit", nullable: false),
                     IsAllowToOrder = table.Column<bool>(type: "bit", nullable: false),
@@ -269,22 +285,18 @@ namespace KS.DataAccess.Migrations
                     BrandId1 = table.Column<int>(type: "int", nullable: true),
                     TaxClassId = table.Column<long>(type: "bigint", nullable: true),
                     TaxClassId1 = table.Column<int>(type: "int", nullable: true),
-                    CoverImageId = table.Column<int>(type: "int", nullable: true),
+                    CoverImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UnitType = table.Column<int>(type: "int", nullable: false),
+                    GenderType = table.Column<byte>(type: "tinyint", nullable: false),
                     CreationDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Products", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Products_Brand_BrandId1",
+                        name: "FK_Products_Brands_BrandId1",
                         column: x => x.BrandId1,
-                        principalTable: "Brand",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Products_Images_CoverImageId",
-                        column: x => x.CoverImageId,
-                        principalTable: "Images",
+                        principalTable: "Brands",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
@@ -423,11 +435,6 @@ namespace KS.DataAccess.Migrations
                 column: "BrandId1");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Products_CoverImageId",
-                table: "Products",
-                column: "CoverImageId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Products_TaxClassId1",
                 table: "Products",
                 column: "TaxClassId1");
@@ -451,10 +458,16 @@ namespace KS.DataAccess.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
+                name: "Images");
+
+            migrationBuilder.DropTable(
                 name: "OrderItems");
 
             migrationBuilder.DropTable(
                 name: "ProductCategories");
+
+            migrationBuilder.DropTable(
+                name: "Warehouses");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
@@ -472,10 +485,7 @@ namespace KS.DataAccess.Migrations
                 name: "AspNetUsers");
 
             migrationBuilder.DropTable(
-                name: "Brand");
-
-            migrationBuilder.DropTable(
-                name: "Images");
+                name: "Brands");
 
             migrationBuilder.DropTable(
                 name: "TaxClasses");
