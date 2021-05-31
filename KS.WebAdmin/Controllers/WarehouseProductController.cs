@@ -39,17 +39,31 @@ namespace KS.WebAdmin.Controllers
                 .GetAll()
                 .Where(x => !x.HasOptions);
 
+            var stocksList = _stockRepository.GetAll()
+                .Where(x => x.WarehouseId == warehouseId)
+                .Select(x => new Stock
+                {
+                    Id = x.Id,
+                    Product = _productRepository.GetByIdAsync(x.ProductId).Result,
+                    Warehouse = _warehouseRepository.GetByIdAsync(x.WarehouseId).Result,
+                    WarehouseId = x.WarehouseId,
+                    ProductId = x.ProductId,
+                    Quantity = x.Quantity,
+                    ReservedQuantity = x.ReservedQuantity
+                });
+            
             var joinedQuery = query.GroupJoin
                 (
-                    _stockRepository.GetAll().Where(x => x.WarehouseId == warehouseId),
+                    stocksList,
                     product => product.Id, stock => stock.ProductId,
                     (product, stock) => new {product, stock}
                 )
-                .SelectMany(x => x.stock.DefaultIfEmpty(), (x, stock) => new MangeWarehouseProductItemViewModel
+                .SelectMany(x => x.stock.DefaultIfEmpty(), 
+                    (x, stock) => new MangeWarehouseProductItemViewModel
                 {
                     Id = x.product.Id,
-                    Name = x.product.Name
-                    // Quantity = stock.Quantity
+                    Name = x.product.Name,
+                    Quantity = stock?.Quantity ?? 0
                 }).ToList();
 
             return View(joinedQuery);
@@ -60,7 +74,7 @@ namespace KS.WebAdmin.Controllers
         {
             try
             {
-                var productIdsArray = productIds.Where(x => x.IsExistInWarehouse == true)
+                var productIdsArray = productIds.Where(x => x.isChech == true)
                     .Select(x => x.Id).ToArray();
 
                 var existedProductIds = _stockRepository.GetAll()
@@ -76,7 +90,7 @@ namespace KS.WebAdmin.Controllers
                 {
                     ProductId = x,
                     WarehouseId = warehouseId,
-                    Quantity = 0
+                    Quantity = 1
                 });
 
                 await _stockRepository.AddRangeAsync(stocks);

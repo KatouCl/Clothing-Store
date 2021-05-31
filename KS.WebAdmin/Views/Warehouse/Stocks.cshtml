@@ -1,7 +1,8 @@
-﻿@model TModel
+﻿@model IList<KS.ViewModels.Warehouse.MangeWarehouseProductItemViewModel>
 
 @{
-    ViewBag.Title = "title";
+    int warehouseId = ViewBag.warehouseId;
+    ViewBag.Title = $"Склад {warehouseId.ToString()}";
     Layout = "_Layout";
 }
 
@@ -14,6 +15,8 @@
         </div>
         <div class="alert-message">
             @TempData["SM"]
+            <div class="ajaxdivtd">
+            </div>
         </div>
     </div>
 }
@@ -44,8 +47,16 @@
             @foreach (var warehouse in Model)
             {
                 <tr>
-                    <td></td>
-                    <td></td>
+                    <td>
+                        <input type="hidden" asp-for="@warehouseId" id="ajaxWarehouseId">
+                        <label id="ajaxProductId">
+                            @warehouse.Name
+                        </label>
+                    </td>
+                    <td>
+                        <label>@warehouse.Quantity</label>
+                        <input type="text" class="form-control" id="ajaxQuantity">
+                    </td>
                     <td class="table-action">
                         <a asp-controller="Warehouse" asp-action="Put" asp-route-id="@warehouse.Id">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-2 align-middle">
@@ -59,3 +70,56 @@
         </table>
     }
 </div>
+
+
+<script>
+
+/* changes qual product */
+
+            var originalTextBoxValue;
+            var ajaxProductId = $("#ajaxProductId");
+            var ajaxQuantityInput = $("#ajaxQuantity");
+            var ajaxWarehouseIdInput = $("#ajaxWarehouseId");
+
+            $("table#pages input.text-box").dblclick(function () {
+                originalTextBoxValue = $(this).val();
+                $(this).attr("readonly", false);
+            });
+
+            $("table#pages input.text-box").keyup(function (e) {
+                if (e.keyCode == 13) {
+                    $(this).blur();
+                }
+            });
+
+            $("table#pages input.text-box").blur(function () {
+                var $this = $(this);
+                // var ajaxdiv = $this.parent().parent().parent().find(".ajaxdivtd");
+                // var changeQuantity = $this.val();
+                // var warehouseId = $this.product parent().parent().parent().parent().parent().attr("warehouseId").substring(3);
+                
+                var productId = $this.parent().parent().parent().parent().parent().attr("productId").substring(3);
+                var url = "/Warehouse/StocksPut";
+
+                if (changeQuantity <= 0) {
+                    alert("");
+                    $this.attr("readonly", true);
+                    return false;
+                }
+
+                $.post(url, { changeQuantity: ajaxQuantityInput, warehouseId: ajaxWarehouseIdInput, productId: ajaxProductId}, function (data) {
+                    ajaxdiv.html("<div class='alert alert-success'>Количество изменено</div>").show();
+
+                    setTimeout(function () {
+                        ajaxdiv.fadeOut("fast", function () {
+                            ajaxdiv.html("");
+                        });
+                    }, 3000);
+                }).done(function () {
+                    $this.attr("readonly", true);
+                });
+            });
+
+            /*-----------------------------------------------------------*/
+
+</script>

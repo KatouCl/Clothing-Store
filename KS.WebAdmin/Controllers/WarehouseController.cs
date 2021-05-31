@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Xml.Xsl;
 using KS.Entities;
 using KS.Interfaces.DataAccess.BusinessLogic.Services;
 using KS.Interfaces.DataAccess.Repositories;
@@ -15,14 +16,21 @@ namespace KS.WebAdmin.Controllers
     {
         private readonly IWarehouseRepository _warehouseRepository;
         private readonly IStockService _stockService;
+        private readonly IBaseRepository<Product> _productRepository;
+        private readonly IBaseRepository<Stock> _stockRepository;
 
-        public WarehouseController(IWarehouseRepository warehouseRepository,
-            IStockService stockService)
+        public WarehouseController(
+            IWarehouseRepository warehouseRepository,
+            IStockService stockService,
+            IBaseRepository<Product> productRepository,
+            IBaseRepository<Stock> stockRepository)
         {
             _warehouseRepository = warehouseRepository;
             _stockService = stockService;
+            _productRepository = productRepository;
+            _stockRepository = stockRepository;
         }
-        
+
         public IActionResult Index()
         {
             var warehouseListitng = _warehouseRepository.GetAll()
@@ -132,39 +140,61 @@ namespace KS.WebAdmin.Controllers
                     Name = x.Name,
                     Address = x.Address
                 });
-            
+
             return View(warehouseListing);
         }
 
         public IActionResult Stocks(int warehouseId)
         {
-            
-            
-            return View();
-        }
-        
-        public IActionResult StocksPut(int warehouseId, IList<StockQuantityViewModel> stockVMs)
-        {
-            foreach(var item in stockVMs)
+            ViewBag.warehouseId = warehouseId;
+
+            var stocksList = _stockRepository.GetAll().Where(x => x.WarehouseId == warehouseId)
+                .Select(x => new Stock
             {
-                if(item.AdjustedQuantity == 0)
+                Id = x.Id,
+                Product = _productRepository.GetByIdAsync(x.ProductId).Result,
+                Warehouse = _warehouseRepository.GetByIdAsync(x.WarehouseId).Result,
+                WarehouseId = x.WarehouseId,
+                ProductId = x.ProductId,
+                Quantity = x.Quantity,
+                ReservedQuantity = x.ReservedQuantity
+            });
+
+            var query = _productRepository.GetAll().Join(stocksList,
+                product => product.Id,
+                stock => stock.ProductId,
+                (product, stock) => new MangeWarehouseProductItemViewModel
                 {
-                    continue;
+                    Id = product.Id,
+                    Name = product.Name,
+                    Quantity = stock.Quantity
                 }
-
-                var stockUpdateRequest = new StockUpdateViewModel
-                {
-                    WarehouseId = warehouseId,
-                    ProductId = item.ProductId,
-                    AdjustedQuantity = item.AdjustedQuantity,
-                };
-
-                _stockService.UpdateStock(stockUpdateRequest);
-                return RedirectToAction("Stocks", "Warehouse", new {warehouseId});
-            }
+            ).ToList();
             
+            return View(query);
+        }
+
+        [HttpPost]
+        public IActionResult StocksPut(int warehouseId, int productId, int changeQuantity)
+        {
+            var product = _productRepository.GetByIdAsync(productId);
+
+            // if (changeQuantity == 0)
+            // {
+            //     continue;
+            // }
+
+            var stockUpdateRequest = new StockUpdateViewModel
+            {
+                WarehouseId = warehouseId,
+                ProductId = productId,
+                AdjustedQuantity = changeQuantity,
+            };
+
+            _stockService.UpdateStock(stockUpdateRequest);
             return RedirectToAction("Stocks", "Warehouse", new {warehouseId});
+
+            // return RedirectToAction("Stocks", "Warehouse", new {warehouseId});
         }
     }
-    
 }
