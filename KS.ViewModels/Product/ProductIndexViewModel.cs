@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using KS.Entities.Enums;
 using Microsoft.AspNetCore.Http;
 
 namespace KS.ViewModels.Product
@@ -66,8 +67,9 @@ namespace KS.ViewModels.Product
         public string CoverImageUrl { get; set; }
 
         public long? BrandId { get; set; }
-
         public long? TaxClassId { get; set; }
+        public GenderType GenderType { get; set; }
+        public UnitType UnitType { get; set; }
 
     }
 }

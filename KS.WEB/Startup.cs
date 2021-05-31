@@ -52,11 +52,16 @@ namespace KS.WEB
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
             
-            services.AddScoped<UserManager<ApplicationUser>>();
+            services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
             services.AddScoped<IProductService, ProductService>();
             services.AddScoped<IProductRepository, ProductRepository>();
-            //services.AddScoped<ICategoryService, CategoryService>();
             services.AddScoped<ICategoryRepository, CategoryRepository>();
+            services.AddScoped<IBrandRepository, BrandRepository>();
+            services.AddScoped<ITaxClassRepository, TaxClassRepository>();
+            services.AddScoped<IWarehouseRepository, WarehouseRepository>();
+            services.AddScoped<IStockRepository, StockRepository>();
+            services.AddScoped<IStockService, StockService>();
+            services.AddScoped<ICategoryService, CategoryService >();
             
             services.AddControllersWithViews();
             services.AddRazorPages();

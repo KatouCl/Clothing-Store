@@ -52,7 +52,9 @@ namespace KS.WebAdmin.Controllers
                 BrandId = product.BrandId,
                 TaxClassId = product.TaxClassId,
                 StockTrackingIsEnabled = product.StockTrackingIsEnabled,
-                CoverImageUrl = product.CoverImageUrl
+                CoverImageUrl = product.CoverImageUrl,
+                GenderType = product.GenderType,
+                UnitType = product.UnitType
             };
 
             return View(model);
@@ -80,7 +82,9 @@ namespace KS.WebAdmin.Controllers
                     CategoryIds = x.Categories.Select(c => c.CategoryId).ToList(),
                     BrandId = x.BrandId,
                     TaxClassId = x.TaxClassId,
-                    StockTrackingIsEnabled = x.StockTrackingIsEnabled
+                    StockTrackingIsEnabled = x.StockTrackingIsEnabled,
+                    GenderType = x.GenderType,
+                    UnitType = x.UnitType
                 });
 
             return View(productListitng);
@@ -98,7 +102,7 @@ namespace KS.WebAdmin.Controllers
             {
                 if (model.CoverImage != null)
                 {
-                    var folder = "img/products/";
+                    var folder = "c:\\img\\";
                     model.CoverImageUrl = await UploadImage(folder, model.CoverImage);
                 }
 
@@ -121,7 +125,9 @@ namespace KS.WebAdmin.Controllers
                     BrandId = model.BrandId,
                     TaxClassId = model.TaxClassId,
                     StockTrackingIsEnabled = model.StockTrackingIsEnabled,
-                    CoverImageUrl = model.CoverImageUrl
+                    CoverImageUrl = model.CoverImageUrl,
+                    GenderType = model.GenderType,
+                    UnitType = model.UnitType
                 };
 
 
@@ -169,6 +175,8 @@ namespace KS.WebAdmin.Controllers
             model.TaxClassId = product.TaxClassId;
             model.StockTrackingIsEnabled = product.StockTrackingIsEnabled;
             model.CoverImageUrl = product.CoverImageUrl;
+            model.GenderType = product.GenderType;
+            model.UnitType = product.UnitType;
         
             return View(model);
         }
@@ -180,7 +188,7 @@ namespace KS.WebAdmin.Controllers
             {
                 if (model.CoverImage != null)
                 {
-                    var folder = "img/products/";
+                    var folder = "c:\\img\\";
                     model.CoverImageUrl = await UploadImage(folder, model.CoverImage);
                 }
 
@@ -203,7 +211,9 @@ namespace KS.WebAdmin.Controllers
                     BrandId = model.BrandId,
                     TaxClassId = model.TaxClassId,
                     StockTrackingIsEnabled = model.StockTrackingIsEnabled,
-                    CoverImageUrl = model.CoverImageUrl
+                    CoverImageUrl = model.CoverImageUrl,
+                    GenderType = model.GenderType,
+                    UnitType = model.UnitType
                 };
 
                 foreach (var categoryId in model.CategoryIds)
@@ -247,7 +257,7 @@ namespace KS.WebAdmin.Controllers
 
             await file.CopyToAsync(new FileStream(serverFolder, FileMode.Create));
 
-            return "/" + folderPath;
+            return  folderPath;
         }
     }
 }

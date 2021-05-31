@@ -59,8 +59,7 @@ namespace KS.WebAdmin
             services.AddScoped<IWarehouseRepository, WarehouseRepository>();
             services.AddScoped<IStockRepository, StockRepository>();
             services.AddScoped<IStockService, StockService>();
-            
-
+            services.AddScoped<ICategoryService, CategoryService >();
             
             services.AddControllersWithViews();
         }

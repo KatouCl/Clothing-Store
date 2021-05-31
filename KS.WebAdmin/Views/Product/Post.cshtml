@@ -1,4 +1,5 @@
-﻿@model KS.ViewModels.Product.ProductIndexViewModel
+﻿@using KS.Entities.Enums
+@model KS.ViewModels.Product.ProductIndexViewModel
 @inject KS.Interfaces.DataAccess.Repositories.IBrandRepository _brandRepository
 @inject KS.Interfaces.DataAccess.Repositories.ICategoryRepository _categoryRepository
 @inject KS.Interfaces.DataAccess.Repositories.ITaxClassRepository _taxClassRepository
@@ -163,6 +164,18 @@
                                     <option value="">Выберите налоговый класс</option>
                                 </select>
                                 <span asp-validation-for="TaxClassId"></span>
+                            </div>
+                            <div class="mb-3-row">
+                                <select asp-for="GenderType" class="form-select flex-grow-1" asp-items="@Html.GetEnumSelectList<GenderType>()">
+                                    <option value="">Выберите гендер</option>
+                                </select>
+                                <span asp-validation-for="GenderType"></span>
+                            </div>
+                            <div class="mb-3-row">
+                                <select asp-for="UnitType" class="form-select flex-grow-1" asp-items="@Html.GetEnumSelectList<UnitType>()">
+                                    <option value="">Выберите тип продукции</option>
+                                </select>
+                                <span asp-validation-for="UnitType"></span>
                             </div>
                             <hr>
                             <div class="mb-3-row">

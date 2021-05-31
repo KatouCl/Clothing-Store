@@ -7,18 +7,30 @@ namespace KS.WEB.Controllers
 {
     public class CatalogController : Controller
     {
-        private readonly IProductService _productService;
+        private readonly ICategoryService _categoryServiceervice;
 
-        public CatalogController(IProductService productService)
+        public CatalogController(ICategoryService categoryService)
         {
-            _productService = productService;
+            _categoryServiceervice = categoryService;
         }
         // GET
         public IActionResult Index()
         {
-            var product = _productService.GetProductForCatalogAsync();
+            var catalogListing = _categoryServiceervice.GetProductForCatalog();
 
-            return View();
+            return View(catalogListing);
+        }
+        public IActionResult Woman()
+        {
+            var catalogListing = _categoryServiceervice.GetProductForFemale();
+
+            return View(catalogListing);
+        }
+        public IActionResult Men()
+        {
+            var catalogListing = _categoryServiceervice.GetProductForMale();
+
+            return View(catalogListing);
         }
     }
 }

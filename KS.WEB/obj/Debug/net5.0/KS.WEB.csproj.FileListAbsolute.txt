@@ -428,3 +428,5 @@ M:\KataStore\KS.WEB\obj\Debug\net5.0\KS.WEB.RazorTargetAssemblyInfo.cs
 M:\KataStore\KS.WEB\obj\Debug\net5.0\KS.WEB.Views.pdb
 M:\KataStore\KS.WEB\obj\Debug\net5.0\KS.WEB.csproj.CopyComplete
 M:\KataStore\KS.WEB\obj\Debug\net5.0\KS.WEB.genruntimeconfig.cache
+M:\KataStore\KS.WEB\obj\Debug\net5.0\Razor\Views\Catalog\Men.cshtml.g.cs
+M:\KataStore\KS.WEB\obj\Debug\net5.0\Razor\Views\Catalog\Woman.cshtml.g.cs
