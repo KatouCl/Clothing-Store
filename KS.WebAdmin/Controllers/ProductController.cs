@@ -103,6 +103,7 @@ namespace KS.WebAdmin.Controllers
                 if (model.CoverImage != null)
                 {
                     var folder = "c:\\img\\";
+                    // var folder = @"\SharedImages\product";
                     model.CoverImageUrl = await UploadImage(folder, model.CoverImage);
                 }
 

@@ -48,7 +48,7 @@
             @foreach (var product in Model)
             {
                 <tr>
-                    <td>
+                    <td>    
                         <img src="@product.CoverImageUrl" width="48" height="48" class="rounded-circle me-2" alt="Avatar">
                     </td>
                     <td><a asp-controller="Product" asp-action="Get" asp-route-id="@product.Id">@product.Name</a></td>

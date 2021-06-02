@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using KS.BusinessLogic.Services;
@@ -16,6 +17,7 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 
 namespace KS.WebAdmin
@@ -80,8 +82,16 @@ namespace KS.WebAdmin
             }
 
             app.UseHttpsRedirection();
+            
+            // StaticFileOptions staticFileOptions = new StaticFileOptions
+            // {
+            //     FileProvider = new PhysicalFileProvider(Path.Combine
+            //         (env.ContentRootPath, "StaticFiles")),RequestPath = "/StaticFiles"
+            // };
+            //
+            // app.UseStaticFiles(staticFileOptions); //this is for new Static Folder
             app.UseStaticFiles();
-
+            
             app.UseRouting();
 
             app.UseAuthentication();

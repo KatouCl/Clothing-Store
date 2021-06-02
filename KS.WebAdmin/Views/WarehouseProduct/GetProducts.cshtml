@@ -1,7 +1,7 @@
-﻿@model IList<KS.ViewModels.Warehouse.MangeWarehouseProductItemViewModel>
+﻿@model List<KS.ViewModels.Warehouse.MangeWarehouseProductItemViewModel>
 
 @{
-    ViewBag.Title = "Склад";
+    ViewBag.Title = "title";
     Layout = "_Layout";
     int warehouseId = ViewBag.warehouseId;
 }
@@ -31,7 +31,7 @@
         <div class="tab-content">
             <div class="tab-pane active" id="tab-1" role="tabpanel">
                 <form asp-controller="WarehouseProduct" asp-action="AddProducts" asp-route-warehouseId="@warehouseId">
-                    
+
                     <h4 class="tab-title mt-5">Все товары</h4>
                     @if (!Model.Any())
                     {
@@ -43,8 +43,8 @@
                             <thead>
                             <tr>
                                 <th style="width:65%;">Наименование товара</th>
-                                <th style="width: 10%">Выберите, чтобы добавить</th>
                                 <th style="width: 10%">Количество товаров</th>
+                                <th style="width: 10%">Выберите, чтобы добавить</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -52,33 +52,41 @@
                             {
                                 <tr>
                                     <td>
-                                        <input asp-for="@Model[i].Id" type="hidden" /> 
+                                        <input asp-for="@Model[i].Id" type="hidden"/>
                                         <label asp-for="@Model[i].Id">@Model[i].Name</label>
                                     </td>
                                     <td>
-                                        <a asp-controller="WarehouseProduct">
-                                            кол-во
-                                        </a>
+                                        @if (Model[i].Quantity > 0)
+                                        {
+                                            <a asp-controller="Warehouse" asp-action="Stocks" asp-route-warehouseId="@warehouseId">
+                                                @Model[i].Quantity.ToString()
+                                            </a>
+                                        }
+                                        else
+                                        {
+                                            <label>
+                                                Товаров нет
+                                            </label>
+                                        }
                                     </td>
                                     <td>
-                                        <td>
-                                            @if (@Model[i].IsExistInWarehouse == true)
-                                            {
-                                                <input asp-for="@Model[i].IsExistInWarehouse" type="checkbox" value="true" disabled>
-                                            }
-                                            else
-                                            {
-                                                <input asp-for="@Model[i].IsExistInWarehouse" type="checkbox" value="true">
-                                            }
-                                        </td>
+                                        @if (Model[i].IsExistInWarehouse == true)
+                                        {
+                                            <input asp-for="@Model[i].IsExistInWarehouse" type="checkbox" disabled>
+                                        }
+                                        else
+                                        {
+                                            <input asp-for="@Model[i].isChech" type="checkbox" value="true">
+                                        }
+
                                     </td>
                                 </tr>
                             }
                             <tr>
-                                    <td colspan="3"></td>
-                                    <td>
-                                        <button type="submit" class="btn btn-primary">Добавить выбранные товары</button>
-                                    </td>
+                                <td colspan="3"></td>
+                                <td>
+                                    <button type="submit" class="btn btn-primary">Добавить выбранные товары</button>
+                                </td>
                             </tr>
                             </tbody>
                         </table>

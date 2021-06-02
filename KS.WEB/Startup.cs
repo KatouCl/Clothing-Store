@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using KS.BusinessLogic.Services;
@@ -18,6 +19,7 @@ using KS.Entities;
 using KS.Interfaces.DataAccess.BusinessLogic.Services;
 using KS.Interfaces.DataAccess.Repositories;
 using Microsoft.AspNetCore.Identity.UI.Services;
+using Microsoft.Extensions.FileProviders;
 
 namespace KS.WEB
 {
@@ -83,7 +85,12 @@ namespace KS.WEB
             }
 
             app.UseHttpsRedirection();
-            app.UseStaticFiles();
+            app.UseStaticFiles();            // app.UseStaticFiles(new StaticFileOptions   
+                                             // {  
+                                             //     FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "SharedImages")),  
+                                             //     RequestPath = "/SharedImages"  
+                                             // }); 
+
 
             app.UseRouting();
 

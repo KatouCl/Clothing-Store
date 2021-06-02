@@ -1,4 +1,5 @@
-﻿@model System.Collections.Generic.IEnumerable<KS.ViewModels.Category.CategoryMaleViewModel>
+﻿@using X.PagedList.Web.Common
+@model IPagedList<KS.ViewModels.Category.CategoryMaleViewModel>
 
 @{
     ViewBag.Title = "Одежда для мужчин";
@@ -97,7 +98,8 @@
                 <div class="col-xl-4 col-md-6 grid-item new">
                     <div class="product">
                         <div class="product_image">
-                            <img src="@Url.Content($"{product.CoverImageUrl}")" alt="@product.Name">
+                            <img src="images/product_1.jpg" alt="">
+                            @* <img src="@Url.Content($"{product.CoverImageUrl}")" alt="@product.Name"> *@
                         </div>
                         <div class="product_content">
                             <div class="product_info d-flex flex-row align-items-start justify-content-start">
@@ -143,20 +145,16 @@
         <div class="row page_nav_row">
             <div class="col">
                 <div class="page_nav">
-                    <ul class="d-flex flex-row align-items-start justify-content-center">
-                        <li class="active">
-                            <a href="#">01</a>
-                        </li>
-                        <li>
-                            <a href="#">02</a>
-                        </li>
-                        <li>
-                            <a href="#">03</a>
-                        </li>
-                        <li>
-                            <a href="#">04</a>
-                        </li>
-                    </ul>
+                    @Html.PagedListPager((IPagedList) Model, page => Url.Action("Men", new {page, categoryId = ViewBag.SelectedCategory}),
+                        new PagedListRenderOptions
+                        {
+                            DisplayLinkToIndividualPages = true,
+                            DisplayPageCountAndCurrentLocation = false,
+                            MaximumPageNumbersToDisplay = 10,
+                            UlElementClasses = new string[] {"d-flex flex-row align-items-start justify-content-center"},
+                            LiElementClasses = new string[] {""},
+                            PageClasses = new string[] {"active"},
+                        })
                 </div>
             </div>
         </div>

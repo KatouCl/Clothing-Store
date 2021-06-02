@@ -430,3 +430,6 @@ M:\KataStore\KS.WEB\obj\Debug\net5.0\KS.WEB.csproj.CopyComplete
 M:\KataStore\KS.WEB\obj\Debug\net5.0\KS.WEB.genruntimeconfig.cache
 M:\KataStore\KS.WEB\obj\Debug\net5.0\Razor\Views\Catalog\Men.cshtml.g.cs
 M:\KataStore\KS.WEB\obj\Debug\net5.0\Razor\Views\Catalog\Woman.cshtml.g.cs
+M:\KataStore\KS.WEB\bin\Debug\net5.0\JetBrains.Annotations.dll
+M:\KataStore\KS.WEB\bin\Debug\net5.0\X.PagedList.dll
+M:\KataStore\KS.WEB\bin\Debug\net5.0\X.PagedList.Mvc.Core.dll
