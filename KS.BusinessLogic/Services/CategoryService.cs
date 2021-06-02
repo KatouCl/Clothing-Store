@@ -25,7 +25,8 @@ namespace KS.BusinessLogic.Services
             if (categoryId.HasValue)
             {
                 //check 
-                var checkCategory = _categoryRepository.GetAll().Where(x => x.CategoryId == categoryId)
+                var checkCategory = _categoryRepository.GetAll()
+                    .Where(x => x.CategoryId == categoryId)
                     .Select(x => new ProductCategory
                     {
                         Id = x.Id,
@@ -35,40 +36,43 @@ namespace KS.BusinessLogic.Services
                         Category = x.Category
                     });
 
-                var products = _productRepository.GetAll().Join(
-                    checkCategory,
-                    product => product.Id,
-                    category => category.Id,
-                    (product, category) => new CatalogViewModel
-                    {
-                        Id = product.Id,
-                        Name = product.Name,
-                        Slug = product.Slug,
-                        ShortDescription = product.ShortDescription,
-                        Description = product.Description,
-                        Specification = product.Specification,
-                        OldPrice = product.OldPrice,
-                        Price = product.Price,
-                        SpecialPrice = product.SpecialPrice,
-                        SpecialPriceStart = product.SpecialPriceStart,
-                        SpecialPriceEnd = product.SpecialPriceEnd,
-                        IsFeatured = product.IsFeatured,
-                        IsCallForPricing = product.IsCallForPricing,
-                        IsAllowToOrder = product.IsAllowToOrder,
-                        CategoryIds = product.Categories.Select(x => x.CategoryId).ToList(),
-                        BrandId = product.BrandId,
-                        TaxClassId = product.TaxClassId,
-                        StockTrackingIsEnabled = product.StockTrackingIsEnabled,
-                        GenderType = product.GenderType,
-                        UnitType = product.UnitType,
-                        CategoryId = category.CategoryId
-                    }
-                );
+                var products = _productRepository.GetAll()
+                    .OrderBy(x => x.CreationDate)
+                    .Join(
+                        checkCategory,
+                        product => product.Id,
+                        category => category.Id,
+                        (product, category) => new CatalogViewModel
+                        {
+                            Id = product.Id,
+                            Name = product.Name,
+                            Slug = product.Slug,
+                            ShortDescription = product.ShortDescription,
+                            Description = product.Description,
+                            Specification = product.Specification,
+                            OldPrice = product.OldPrice,
+                            Price = product.Price,
+                            SpecialPrice = product.SpecialPrice,
+                            SpecialPriceStart = product.SpecialPriceStart,
+                            SpecialPriceEnd = product.SpecialPriceEnd,
+                            IsFeatured = product.IsFeatured,
+                            IsCallForPricing = product.IsCallForPricing,
+                            IsAllowToOrder = product.IsAllowToOrder,
+                            CategoryIds = product.Categories.Select(x => x.CategoryId).ToList(),
+                            BrandId = product.BrandId,
+                            TaxClassId = product.TaxClassId,
+                            StockTrackingIsEnabled = product.StockTrackingIsEnabled,
+                            GenderType = product.GenderType,
+                            UnitType = product.UnitType,
+                            CategoryId = category.CategoryId
+                        }
+                    );
                 return products;
             }
             else
             {
                 var products = _productRepository.GetAll()
+                    .OrderBy(x => x.CreationDate)
                     .Select(x => new CatalogViewModel
                     {
                         Id = x.Id,
