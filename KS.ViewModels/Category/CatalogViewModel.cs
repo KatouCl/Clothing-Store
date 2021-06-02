@@ -9,7 +9,7 @@ namespace KS.ViewModels.Category
 {
     public class CatalogViewModel
     {
-        public int Id { get; set; }
+        public long Id { get; set; }
 
         [Required(ErrorMessage = "Цена")]
         [Range(1, 2000000)]
@@ -55,7 +55,7 @@ namespace KS.ViewModels.Category
         public long? TaxClassId { get; set; }
         public GenderType GenderType { get; set; }
         public UnitType UnitType { get; set; }
-
+        public long CategoryId { get; set; }
         public IList<long> CategoryIds { get; set; } = new List<long>();
     }
 }

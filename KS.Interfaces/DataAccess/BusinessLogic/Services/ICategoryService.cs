@@ -5,8 +5,8 @@ namespace KS.Interfaces.DataAccess.BusinessLogic.Services
 {
     public interface ICategoryService
     {
-        IEnumerable<CatalogViewModel> GetProductForCatalog();
-        IEnumerable<CategoryMaleViewModel> GetProductForMale();
-        IEnumerable<CategoryFemaleViewModel> GetProductForFemale();
+        IEnumerable<CatalogViewModel> GetProductForCatalog(long? categoryId);
+        IEnumerable<CategoryMaleViewModel> GetProductForMale(long? categoryId);
+        IEnumerable<CategoryFemaleViewModel> GetProductForFemale(long? categoryId);
     }
 }

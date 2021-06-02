@@ -20,15 +20,8 @@ namespace KS.WEB.Controllers
         public IActionResult Index(int? page, long? categoryId)
         {
             var pageNumber = page ?? 1;
-            
-            var catalogListing = _categoryService.GetProductForCatalog()
-                .Where(x => categoryId is null or 0 || x.CategoryIds.Contains(categoryId ?? 0));
 
-            ViewBag.Categories = new SelectList(_categoryService.GetProductForCatalog()
-                .Select(x => x.CategoryIds)
-                .ToList(), "Id", "Name");
-            
-            ViewBag.SelectedCategory = categoryId.ToString();
+            var catalogListing = _categoryService.GetProductForCatalog(categoryId);
 
             var onePageOfCatalogs = catalogListing.ToPagedList(pageNumber, 9);
             ViewBag.onePageOfCatalogs = onePageOfCatalogs;
@@ -37,15 +30,9 @@ namespace KS.WEB.Controllers
         }
         public IActionResult Woman(int? page, long? categoryId)
         {
-            var catalogListing = _categoryService.GetProductForFemale();
+            var catalogListing = _categoryService.GetProductForFemale(categoryId);
 
             var pageNumber = page ?? 1;
-
-            ViewBag.Categories = new SelectList(_categoryService.GetProductForFemale()
-                .Select(x => x.CategoryIds)
-                .ToList(), "Id", "Name");
-            
-            ViewBag.SelectedCategory = categoryId.ToString();
 
             var onePageOfCatalogWoman = catalogListing.ToPagedList(pageNumber, 9);
             ViewBag.onePageOfCatalogs = onePageOfCatalogWoman;
@@ -54,16 +41,10 @@ namespace KS.WEB.Controllers
         }
         public IActionResult Men(int? page, long? categoryId)
         {
-            var catalogListing = _categoryService.GetProductForMale();
+            var catalogListing = _categoryService.GetProductForMale(categoryId);
 
             var pageNumber = page ?? 1;
             
-            ViewBag.Categories = new SelectList(_categoryService.GetProductForMale()
-                .Select(x => x.CategoryIds)
-                .ToList(), "Id", "Name");
-            
-            ViewBag.SelectedCategory = categoryId.ToString();
-
             var onePageOfCatalogMen = catalogListing.ToPagedList(pageNumber, 9);
             ViewBag.onePageOfCatalogs = onePageOfCatalogMen;
             
