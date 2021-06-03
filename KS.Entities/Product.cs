@@ -53,5 +53,4 @@ namespace KS.Entities
             Categories.Remove(category);
         }
     }
-
 }

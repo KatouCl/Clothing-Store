@@ -10,7 +10,7 @@
                             <a href="#">
                                 <div class="d-flex flex-row align-items-center justify-content-start">
                                     <div class="footer_logo_icon">
-                                        <img src="/images/logo_2.png" alt="">
+                                        <img src="~/images/logo_2.png" alt="">
                                     </div>
                                     <div>Kata Store</div>
                                 </div>
@@ -29,19 +29,14 @@
                     <div class="footer_menu">
                         <div class="footer_title">Помощь</div>
                         <ul class="footer_list">
-                            <li>
-                                <a href="#">
-                                    <div>
-                                        Центр поддержки
-                                        <div class="footer_tag_1"></div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <div>Политика возвратов</div>
-                                </a>
-                            </li>
+                            @* <li> *@
+                            @*     <a href="#"> *@
+                            @*         <div> *@
+                            @*             Центр поддержки *@
+                            @*             <div class="footer_tag_1"></div> *@
+                            @*         </div> *@
+                            @*     </a> *@
+                            @* </li> *@
                             <li>
                                 <a href="#">
                                     <div>
@@ -104,7 +99,7 @@
             <div class="row">
                 <div class="col">
                     <div class="footer_bar_content d-flex flex-md-row flex-column align-items-center justify-content-start">
-                        <div class="copyright order-md-1 order-2">©2021 Kata Store.</div>
+                        <div class="copyright order-md-1 order-2">©2021 Kata Store</div>
                         <nav class="footer_nav ml-md-auto order-md-2 order-1">
                             <ul class="d-flex flex-row align-items-center justify-content-start">
                                 <li>
@@ -114,10 +109,10 @@
                                     <a asp-controller="Catalog" asp-action="Index">Каталог</a>
                                 </li>
                                 <li>
-                                    <a asp-controller="Catalog" asp-action="Women">Женщинам</a>
+                                    <a asp-controller="Catalog" asp-action="Woman">Женщинам</a>
                                 </li>
                                 <li>
-                                    <a asp-controller="Catalog" asp-action="Man">Мужчинам</a>
+                                    <a asp-controller="Catalog" asp-action="Men">Мужчинам</a>
                                 </li>
                                 <li>
                                     <a href="#">Контакты</a>

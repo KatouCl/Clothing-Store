@@ -19,7 +19,7 @@ namespace KS.DataAccess.Repositories
             _dbSet = context.Set<T>();
         }
 
-        public  IEnumerable<T> GetAll()
+        public  IQueryable<T> GetAll()
         {
             return _dbSet;
         }
@@ -66,6 +66,11 @@ namespace KS.DataAccess.Repositories
         {
             _dbSet.RemoveRange(entities);
             await _context.SaveChangesAsync();
+        }
+
+        public Task SaveChangesAsync()
+        { 
+            return _context.SaveChangesAsync();
         }
     }
 }

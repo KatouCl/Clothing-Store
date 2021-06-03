@@ -2,7 +2,7 @@
 
 namespace KS.ViewModels.Cart
 {
-    public class CheckoutViewModel
+    public class CheckoutVm
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }

@@ -1058,7 +1058,7 @@ section
 .rating_r_5 i:nth-child(5)::before{content: "\f005";}
 .product_price
 {
-	font-size: 30px;
+	font-size: 24px;
 	color: #4a4a4a;
 	font-weight: 500;
 	margin-top: 19px;
