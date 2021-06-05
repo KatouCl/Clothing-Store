@@ -1,9 +1,11 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
+using KS.BusinessLogic.Services;
 using KS.Entities;
 using KS.Interfaces.DataAccess.BusinessLogic.Services;
 using KS.Interfaces.DataAccess.Repositories;
 using KS.ViewModels.Cart;
+using KS.ViewModels.Category;
 using KS.ViewModels.Product;
 using Microsoft.AspNetCore.Mvc;
 
@@ -13,18 +15,25 @@ namespace KS.WEB.Controllers
     {
         private readonly IProductService _productService;
         private readonly IBaseRepository<Product> _productRepository;
-            
-        public ProductController(IProductService productService, IBaseRepository<Product> productRepository)
+        private readonly ICategoryService _categoryService;
+
+        public ProductController(
+            IProductService productService,
+            IBaseRepository<Product> productRepository,
+            ICategoryService categoryService)
         {
             _productService = productService;
             _productRepository = productRepository;
+            _categoryService = categoryService;
         }
-        // GET
-        public async Task<IActionResult> Details(int id)
-        {
-            var product = await _productRepository.GetByIdAsync(id);
 
-            var model = new ProductIndexViewModel
+        // GET
+        public IActionResult Details(int id, long? categoryId)
+        {
+            var product = _categoryService.GetProductForCatalog(categoryId)
+                .FirstOrDefault(x => x.Id == id);
+                
+            var model = new GoodsInStockVm
             {
                 Id = product.Id,
                 Name = product.Name,
@@ -40,13 +49,14 @@ namespace KS.WEB.Controllers
                 IsFeatured = product.IsFeatured,
                 IsCallForPricing = product.IsCallForPricing,
                 IsAllowToOrder = product.IsAllowToOrder,
-                CategoryIds = product.Categories.Select(x => x.CategoryId).ToList(),
+                CategoryIds = product.CategoryIds,
                 BrandId = product.BrandId,
                 TaxClassId = product.TaxClassId,
                 StockTrackingIsEnabled = product.StockTrackingIsEnabled,
                 CoverImageUrl = product.CoverImageUrl,
                 GenderType = product.GenderType,
-                UnitType = product.UnitType
+                UnitType = product.UnitType,
+                QuantityStock = product.QuantityStock
             };
 
             return View(model);

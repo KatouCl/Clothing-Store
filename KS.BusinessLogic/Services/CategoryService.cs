@@ -5,6 +5,7 @@ using KS.Entities.Enums;
 using KS.Interfaces.DataAccess.BusinessLogic.Services;
 using KS.Interfaces.DataAccess.Repositories;
 using KS.ViewModels.Category;
+using KS.ViewModels.Warehouse;
 
 namespace KS.BusinessLogic.Services
 {
@@ -12,15 +13,17 @@ namespace KS.BusinessLogic.Services
     {
         private readonly IBaseRepository<Product> _productRepository;
         private readonly IBaseRepository<ProductCategory> _categoryRepository;
+        private readonly IBaseRepository<Stock> _stockRepository;
 
         public CategoryService(IBaseRepository<Product> productRepository,
-            IBaseRepository<ProductCategory> categoryRepository)
+            IBaseRepository<ProductCategory> categoryRepository, IBaseRepository<Stock> stockRepository)
         {
             _productRepository = productRepository;
             _categoryRepository = categoryRepository;
+            _stockRepository = stockRepository;
         }
 
-        public IEnumerable<CatalogViewModel> GetProductForCatalog(long? categoryId)
+        public IEnumerable<GoodsInStockVm> GetProductForCatalog(long? categoryId)
         {
             if (categoryId.HasValue)
             {
@@ -67,7 +70,39 @@ namespace KS.BusinessLogic.Services
                             CategoryId = category.CategoryId
                         }
                     );
-                return products;
+
+
+                var query = products.Join(
+                    _stockRepository.GetAllQuery(),
+                    product => product.Id,
+                    stock => stock.ProductId,
+                    (product, stock) => new GoodsInStockVm
+                    {
+                        Id = product.Id,
+                        Name = product.Name,
+                        Slug = product.Slug,
+                        ShortDescription = product.ShortDescription,
+                        Description = product.Description,
+                        Specification = product.Specification,
+                        OldPrice = product.OldPrice,
+                        Price = product.Price,
+                        SpecialPrice = product.SpecialPrice,
+                        SpecialPriceStart = product.SpecialPriceStart,
+                        SpecialPriceEnd = product.SpecialPriceEnd,
+                        IsFeatured = product.IsFeatured,
+                        IsCallForPricing = product.IsCallForPricing,
+                        IsAllowToOrder = product.IsAllowToOrder,
+                        CategoryIds = product.CategoryIds,
+                        BrandId = product.BrandId,
+                        TaxClassId = product.TaxClassId,
+                        StockTrackingIsEnabled = product.StockTrackingIsEnabled,
+                        GenderType = product.GenderType,
+                        UnitType = product.UnitType,
+                        QuantityStock = stock.Quantity
+                    }
+                );
+
+                return query;
             }
             else
             {
@@ -96,11 +131,42 @@ namespace KS.BusinessLogic.Services
                         GenderType = x.GenderType,
                         UnitType = x.UnitType
                     });
-                return products;
+
+                var query = products.Join(
+                    _stockRepository.GetAllQuery(),
+                    product => product.Id,
+                    stock => stock.ProductId,
+                    (product, stock) => new GoodsInStockVm
+                    {
+                        Id = product.Id,
+                        Name = product.Name,
+                        Slug = product.Slug,
+                        ShortDescription = product.ShortDescription,
+                        Description = product.Description,
+                        Specification = product.Specification,
+                        OldPrice = product.OldPrice,
+                        Price = product.Price,
+                        SpecialPrice = product.SpecialPrice,
+                        SpecialPriceStart = product.SpecialPriceStart,
+                        SpecialPriceEnd = product.SpecialPriceEnd,
+                        IsFeatured = product.IsFeatured,
+                        IsCallForPricing = product.IsCallForPricing,
+                        IsAllowToOrder = product.IsAllowToOrder,
+                        CategoryIds = product.CategoryIds,
+                        BrandId = product.BrandId,
+                        TaxClassId = product.TaxClassId,
+                        StockTrackingIsEnabled = product.StockTrackingIsEnabled,
+                        GenderType = product.GenderType,
+                        UnitType = product.UnitType,
+                        QuantityStock = stock.Quantity
+                    }
+                );
+
+                return query;
             }
         }
 
-        public IEnumerable<CategoryMaleViewModel> GetProductForMale(long? categoryId)
+        public IEnumerable<GoodsInStockVm> GetProductForMale(long? categoryId)
         {
             if (categoryId.HasValue)
             {
@@ -146,7 +212,39 @@ namespace KS.BusinessLogic.Services
                             CategoryId = category.CategoryId
                         }
                     );
-                return products;
+
+
+                var query = products.Join(
+                    _stockRepository.GetAllQuery(),
+                    product => product.Id,
+                    stock => stock.ProductId,
+                    (product, stock) => new GoodsInStockVm
+                    {
+                        Id = product.Id,
+                        Name = product.Name,
+                        Slug = product.Slug,
+                        ShortDescription = product.ShortDescription,
+                        Description = product.Description,
+                        Specification = product.Specification,
+                        OldPrice = product.OldPrice,
+                        Price = product.Price,
+                        SpecialPrice = product.SpecialPrice,
+                        SpecialPriceStart = product.SpecialPriceStart,
+                        SpecialPriceEnd = product.SpecialPriceEnd,
+                        IsFeatured = product.IsFeatured,
+                        IsCallForPricing = product.IsCallForPricing,
+                        IsAllowToOrder = product.IsAllowToOrder,
+                        CategoryIds = product.CategoryIds,
+                        BrandId = product.BrandId,
+                        TaxClassId = product.TaxClassId,
+                        StockTrackingIsEnabled = product.StockTrackingIsEnabled,
+                        GenderType = product.GenderType,
+                        UnitType = product.UnitType,
+                        QuantityStock = stock.Quantity
+                    }
+                );
+
+                return query;
             }
             else
             {
@@ -175,13 +273,43 @@ namespace KS.BusinessLogic.Services
                         GenderType = x.GenderType,
                         UnitType = x.UnitType
                     });
-                return products;
+
+                var query = products.Join(
+                    _stockRepository.GetAllQuery(),
+                    product => product.Id,
+                    stock => stock.ProductId,
+                    (product, stock) => new GoodsInStockVm
+                    {
+                        Id = product.Id,
+                        Name = product.Name,
+                        Slug = product.Slug,
+                        ShortDescription = product.ShortDescription,
+                        Description = product.Description,
+                        Specification = product.Specification,
+                        OldPrice = product.OldPrice,
+                        Price = product.Price,
+                        SpecialPrice = product.SpecialPrice,
+                        SpecialPriceStart = product.SpecialPriceStart,
+                        SpecialPriceEnd = product.SpecialPriceEnd,
+                        IsFeatured = product.IsFeatured,
+                        IsCallForPricing = product.IsCallForPricing,
+                        IsAllowToOrder = product.IsAllowToOrder,
+                        CategoryIds = product.CategoryIds,
+                        BrandId = product.BrandId,
+                        TaxClassId = product.TaxClassId,
+                        StockTrackingIsEnabled = product.StockTrackingIsEnabled,
+                        GenderType = product.GenderType,
+                        UnitType = product.UnitType,
+                        QuantityStock = stock.Quantity
+                    }
+                );
+
+                return query;
             }
         }
 
-        public IEnumerable<CategoryFemaleViewModel> GetProductForFemale(long? categoryId)
+        public IEnumerable<GoodsInStockVm> GetProductForFemale(long? categoryId)
         {
-            
             if (categoryId.HasValue)
             {
                 //check 
@@ -226,9 +354,41 @@ namespace KS.BusinessLogic.Services
                             CategoryId = category.CategoryId
                         }
                     );
-                return products;
-            } 
-            else{
+
+                var query = products.Join(
+                    _stockRepository.GetAllQuery(),
+                    product => product.Id,
+                    stock => stock.ProductId,
+                    (product, stock) => new GoodsInStockVm
+                    {
+                        Id = product.Id,
+                        Name = product.Name,
+                        Slug = product.Slug,
+                        ShortDescription = product.ShortDescription,
+                        Description = product.Description,
+                        Specification = product.Specification,
+                        OldPrice = product.OldPrice,
+                        Price = product.Price,
+                        SpecialPrice = product.SpecialPrice,
+                        SpecialPriceStart = product.SpecialPriceStart,
+                        SpecialPriceEnd = product.SpecialPriceEnd,
+                        IsFeatured = product.IsFeatured,
+                        IsCallForPricing = product.IsCallForPricing,
+                        IsAllowToOrder = product.IsAllowToOrder,
+                        CategoryIds = product.CategoryIds,
+                        BrandId = product.BrandId,
+                        TaxClassId = product.TaxClassId,
+                        StockTrackingIsEnabled = product.StockTrackingIsEnabled,
+                        GenderType = product.GenderType,
+                        UnitType = product.UnitType,
+                        QuantityStock = stock.Quantity
+                    }
+                );
+
+                return query;
+            }
+            else
+            {
                 var products = _productRepository.GetAll()
                     .Where(x => x.GenderType == GenderType.Female)
                     .Select(x => new CategoryFemaleViewModel
@@ -254,7 +414,38 @@ namespace KS.BusinessLogic.Services
                         GenderType = x.GenderType,
                         UnitType = x.UnitType
                     });
-                return products;
+
+                var query = products.Join(
+                    _stockRepository.GetAllQuery(),
+                    product => product.Id,
+                    stock => stock.ProductId,
+                    (product, stock) => new GoodsInStockVm
+                    {
+                        Id = product.Id,
+                        Name = product.Name,
+                        Slug = product.Slug,
+                        ShortDescription = product.ShortDescription,
+                        Description = product.Description,
+                        Specification = product.Specification,
+                        OldPrice = product.OldPrice,
+                        Price = product.Price,
+                        SpecialPrice = product.SpecialPrice,
+                        SpecialPriceStart = product.SpecialPriceStart,
+                        SpecialPriceEnd = product.SpecialPriceEnd,
+                        IsFeatured = product.IsFeatured,
+                        IsCallForPricing = product.IsCallForPricing,
+                        IsAllowToOrder = product.IsAllowToOrder,
+                        CategoryIds = product.CategoryIds,
+                        BrandId = product.BrandId,
+                        TaxClassId = product.TaxClassId,
+                        StockTrackingIsEnabled = product.StockTrackingIsEnabled,
+                        GenderType = product.GenderType,
+                        UnitType = product.UnitType,
+                        QuantityStock = stock.Quantity
+                    }
+                );
+
+                return query;
             }
         }
     }

@@ -1,5 +1,5 @@
 ﻿@using X.PagedList.Web.Common
-@model IPagedList<KS.ViewModels.Category.CategoryFemaleViewModel>
+@model IPagedList<KS.ViewModels.Category.GoodsInStockVm>
 @inject KS.Interfaces.DataAccess.Repositories.ICategoryRepository _categoryRepository
 
 @{
@@ -129,7 +129,7 @@
                                         </div>
                                         <div class="ml-auto text-right">
                                             <div class="product_price text-right">
-                                                @product.Price.ToString() @*<span>.00</span> *@
+                                                ₽ @product.Price.ToString("0") <span>.00</span>
                                             </div>
                                         </div>
                                     </div>

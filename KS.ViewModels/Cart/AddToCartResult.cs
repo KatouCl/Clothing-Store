@@ -1,6 +1,6 @@
 ﻿namespace KS.ViewModels.Cart
 {
-    public class AddToCartResultVm
+    public class AddToCartResult
     {
         public string ProductName { get; set; }
 
@@ -15,5 +15,9 @@
         public int CartItemCount { get; set; }
 
         public decimal CartAmount { get; set; }
+
+        public string ProductPriceString => ProductPrice.ToString();
+
+        public string CartAmountString => CartAmount.ToString();
     }
 }

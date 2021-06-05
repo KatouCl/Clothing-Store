@@ -51,20 +51,20 @@ namespace KS.WebAdmin.Controllers
                     Quantity = x.Quantity,
                     ReservedQuantity = x.ReservedQuantity
                 });
-            
+
             var joinedQuery = query.GroupJoin
                 (
                     stocksList,
                     product => product.Id, stock => stock.ProductId,
                     (product, stock) => new {product, stock}
                 )
-                .SelectMany(x => x.stock.DefaultIfEmpty(), 
+                .SelectMany(x => x.stock.DefaultIfEmpty(),
                     (x, stock) => new MangeWarehouseProductItemViewModel
-                {
-                    Id = x.product.Id,
-                    Name = x.product.Name,
-                    Quantity = stock?.Quantity ?? 0
-                }).ToList();
+                    {
+                        Id = x.product.Id,
+                        Name = x.product.Name,
+                        Quantity = stock?.Quantity ?? 0,
+                    }).ToList();
 
             return View(joinedQuery);
         }

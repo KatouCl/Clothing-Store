@@ -1,5 +1,6 @@
 ﻿@inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
+@using Microsoft.AspNetCore.Identity
 
 
 <header class="header">
@@ -24,7 +25,7 @@
                     <a asp-controller="Catalog" asp-action="Index">Каталог</a>
                 </li>
                 <li>
-                    <a asp-controller="Catalog" asp-action="Woman" >Женщинам</a>
+                    <a asp-controller="Catalog" asp-action="Woman">Женщинам</a>
                 </li>
                 <li>
                     <a asp-controller="Catalog" asp-action="Men">Мужчинам</a>
@@ -44,47 +45,55 @@
                     </button>
                 </form>
             </div>
+
             <!-- Cart -->
+            @if (SignInManager.IsSignedIn(User))
+            {
             <div class="cart">
-                <a asp-controller="Order" asp-action="OrderList">
+                <a asp-controller="CartApi" asp-action="List">
                     <div>
-                        <img class="svg" src="/images/cart.svg" alt="https://www.flaticon.com/authors/freepik">
+                        <img class="svg" src="~/images/cart.svg" alt="https://www.flaticon.com/authors/freepik">
                         @* <div>1</div> *@
                     </div>
                 </a>
             </div>
+            }
             <!-- User -->
             <div class="user">
                 <a type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <div>
-                    <img class="svg" src="/images/user.svg" alt="https://www.flaticon.com/authors/freepik">
-                </div>
-                
-                   @if (!SignInManager.IsSignedIn(User))
-                   {
-                       <div class="dropdown-menu">
-                           <a asp-area="Identity" asp-page="/Account/Login"
-                              class="dropdown-item">
-                               Войти
-                           </a>
-                           <a asp-area="Identity" asp-page="/Account/Register"
-                              class="dropdown-item">Создать аккаунт</a>
-                       </div>
-                   }
-                   @if (SignInManager.IsSignedIn(User))
-                   {
-                       <div class="dropdown-menu">
-                           <a asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage"
+                    <div>
+                        <img class="svg" src="~/images/user.svg" alt="https://www.flaticon.com/authors/freepik">
+                    </div>
+
+                    @if (!SignInManager.IsSignedIn(User))
+                    {
+                        <div class="dropdown-menu">
+                            <a asp-area="Identity" asp-page="/Account/Login"
                                class="dropdown-item">
-                               Профиль
-                           </a>
-                           <a class="dropdown-item" href="#">Заказы</a>
-                           <div class="dropdown-divider"></div>
-                           <a asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new {area = ""})"
-                              class="dropdown-item">Выход</a>
-                           @* <a class="dropdown-item">Выйти</a> *@
-                       </div>
-                   }
+                                Войти
+                            </a>
+                            <a asp-area="Identity" asp-page="/Account/Register"
+                               class="dropdown-item">
+                                Создать аккаунт
+                            </a>
+                        </div>
+                    }
+                    @if (SignInManager.IsSignedIn(User))
+                    {
+                        <div class="dropdown-menu">
+                            <a asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage"
+                               class="dropdown-item">
+                                Профиль
+                            </a>
+                            <a class="dropdown-item" href="#">Заказы</a>
+                            <div class="dropdown-divider"></div>
+                            <a asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new {area = ""})"
+                               class="dropdown-item">
+                                Выход
+                            </a>
+                            @* <a class="dropdown-item">Выйти</a> *@
+                        </div>
+                    }
                 </a>
             </div>
             <!-- Phone -->

@@ -1,6 +1,6 @@
 ﻿namespace KS.ViewModels.Cart
 {
-    public class CartQuantityUpdateVm
+    public class CartQuantityUpdate
     {
         public long CartItemId { get; set; }
 

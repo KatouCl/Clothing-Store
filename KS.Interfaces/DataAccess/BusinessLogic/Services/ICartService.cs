@@ -1,16 +1,26 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using KS.Entities;
 using KS.ViewModels.Cart;
-using Microsoft.AspNetCore.Http;
 
 namespace KS.Interfaces.DataAccess.BusinessLogic.Services
 {
     public interface ICartService
     {
-        Task<ProductCartViewModel> GetCartDetailsAsync(ISession session);
-        void AddProductToCart(ISession session, AddProductToCartViewModel addProductToCart);
-        void RemoveProductFromCart(ISession session, RemoveProductFromCartViewModel removeProductFromCart);
-        int GetCartQuantity(ISession session);
-        Task<int> Checkout(ISession session, CheckoutViewModel checkout);
+        Task<Cart> AddToCart(long customerId, long createdById, long productId, int quantity);
 
+        IEnumerable<Cart> Query();
+
+
+        Task<Cart> GetActiveCart(string customerId, int productId);
+
+        Task<CartVm> GetActiveCartDetails(long customerId);
+
+        Task<CartVm> GetActiveCartDetails(long customerId, long createdById);
+
+        Task MigrateCart(long fromUserId, long toUserId);
+
+        Task UnlockCart(Cart cart);
     }
 }

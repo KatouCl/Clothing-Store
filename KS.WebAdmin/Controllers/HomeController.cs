@@ -15,25 +15,16 @@ namespace KS.WebAdmin.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private readonly IBaseRepository<Order> _orderRepository;
 
         public HomeController(
-            ILogger<HomeController> logger,
-            IBaseRepository<Order> orderRepository)
+            ILogger<HomeController> logger)
         {
             _logger = logger;
-            _orderRepository = orderRepository;
         }
 
         public IActionResult Index()
         {
-            var ordersList = _orderRepository.GetAll()
-                .Select(x => new OrderHomeViewModel
-                {
-
-                });
-            
-            return View(ordersList);
+            return View();
         }
 
         public IActionResult Privacy()

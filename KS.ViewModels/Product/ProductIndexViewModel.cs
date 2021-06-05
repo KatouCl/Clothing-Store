@@ -16,7 +16,7 @@ namespace KS.ViewModels.Product
             Price = 0;
         }
 
-        public int Id { get; set; }
+        public long Id { get; set; }
         [Required(ErrorMessage = "Цена должна быть целочисленная")]
         [Range(1, 2000000)]
         public decimal Price { get; set; }
@@ -70,6 +70,7 @@ namespace KS.ViewModels.Product
         public long? TaxClassId { get; set; }
         public GenderType GenderType { get; set; }
         public UnitType UnitType { get; set; }
+        public int QuantityStock { get; set; }
 
     }
 }

@@ -1,9 +1,11 @@
 ﻿namespace KS.ViewModels.Cart
 {
-    public class AddToCartVm
+    public class AddToCartModel
     {
         public long ProductId { get; set; }
-        public string Name { get; set; }
+
+        public string VariationName { get; set; }
+
         public int Quantity { get; set; }
     }
 }

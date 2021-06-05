@@ -908,6 +908,7 @@ section
 .product_name
 {
 	font-size: 30px;
+	width: -1px;
 	line-height: 1.2;
 	color: #4a4a4a;
 	font-weight: 500;
@@ -985,7 +986,7 @@ section
 }
 .product_price
 {
-	font-size: 61.32px;
+	font-size: 45px;
 	color: #4a4a4a;
 	font-weight: 500;
 	margin-top: 37px;

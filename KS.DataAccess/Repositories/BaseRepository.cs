@@ -19,7 +19,12 @@ namespace KS.DataAccess.Repositories
             _dbSet = context.Set<T>();
         }
 
-        public  IQueryable<T> GetAll()
+        public  IEnumerable<T> GetAll()
+        {
+            return _dbSet;
+        }
+
+        public IQueryable<T> GetAllQuery()
         {
             return _dbSet;
         }
@@ -71,6 +76,11 @@ namespace KS.DataAccess.Repositories
         public Task SaveChangesAsync()
         { 
             return _context.SaveChangesAsync();
+        }
+
+        public int SaveChanges()
+        {
+            return _context.SaveChanges();
         }
     }
 }

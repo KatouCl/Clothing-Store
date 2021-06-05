@@ -8,7 +8,8 @@ namespace KS.Interfaces.DataAccess.Repositories
 {
     public interface IBaseRepository<T> where T : BaseEntity
     {
-        IQueryable<T> GetAll();
+        IEnumerable<T> GetAll();
+        IQueryable<T> GetAllQuery();
         Task<T> GetByIdAsync(int id);
         Task<T> AddAsync(T entity);
         Task AddRangeAsync(IEnumerable<T> entities);
@@ -17,5 +18,6 @@ namespace KS.Interfaces.DataAccess.Repositories
         Task DeleteAsync(T entity);
         Task DeleteRangeAsync(IEnumerable<T> entities);
         Task SaveChangesAsync();
+        int SaveChanges();
     }
 }

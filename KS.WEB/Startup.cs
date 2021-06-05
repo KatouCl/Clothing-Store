@@ -64,6 +64,7 @@ namespace KS.WEB
             services.AddScoped<IStockRepository, StockRepository>();
             services.AddScoped<IStockService, StockService>();
             services.AddScoped<ICategoryService, CategoryService >();
+            // services.AddScoped<ICartService, CartService>();
             
             services.AddControllersWithViews();
             services.AddRazorPages();

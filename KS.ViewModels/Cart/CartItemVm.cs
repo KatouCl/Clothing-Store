@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace KS.ViewModels.Cart
+﻿namespace KS.ViewModels.Cart
 {
     public class CartItemVm
     {
@@ -14,6 +12,8 @@ namespace KS.ViewModels.Cart
 
         public decimal ProductPrice { get; set; }
 
+        public string ProductPriceString => ProductPrice.ToString();
+
         public int ProductStockQuantity { get; set; }
 
         public bool ProductStockTrackingIsEnabled { get; set; }
@@ -23,5 +23,8 @@ namespace KS.ViewModels.Cart
         public int Quantity { get; set; }
 
         public decimal Total => Quantity * ProductPrice;
+
+        public string TotalString => Total.ToString();
+
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace KS.ViewModels.Cart
 {
-    public class SaveOrderNoteVm
+    public class SaveOrderNote
     {
         public string OrderNote { get; set; }
     }

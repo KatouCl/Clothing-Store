@@ -12,11 +12,11 @@ namespace KS.ViewModels.Cart
 
         public decimal SubTotal { get; set; }
 
-        public string SubTotalString => SubTotal.ToString();
+        public string SubTotalString { get { return SubTotal.ToString(); } }
 
         public decimal Discount { get; set; }
 
-        public string DiscountString => Discount.ToString();
+        public string DiscountString { get { return Discount.ToString(); } }
 
         public string CouponValidationErrorMessage { get; set; }
 
@@ -26,13 +26,28 @@ namespace KS.ViewModels.Cart
 
         public string OrderNote { get; set; }
 
-        public string TaxAmountString => TaxAmount.HasValue ? TaxAmount.ToString() : "-";
+        public string TaxAmountString
+        {
+            get
+            {
+                return TaxAmount.HasValue ? TaxAmount.ToString() : "-";
+            }
+        }
 
         public decimal? ShippingAmount { get; set; }
 
-        public string ShippingAmountString => ShippingAmount.HasValue ? ShippingAmount.ToString() : "-";
+        public string ShippingAmountString
+        {
+            get { return ShippingAmount.HasValue ? ShippingAmount.ToString() : "-"; }
+        }
 
-        public decimal SubTotalWithDiscount => SubTotal - Discount;
+        public decimal SubTotalWithDiscount
+        {
+            get
+            {
+                return SubTotal - Discount;
+            }
+        }
 
         public decimal SubTotalWithDiscountWithoutTax
         {
@@ -60,7 +75,7 @@ namespace KS.ViewModels.Cart
             }
         }
 
-        public string OrderTotalString => OrderTotal.ToString();
+        public string OrderTotalString { get { return OrderTotal.ToString(); } }
 
         public IList<CartItemVm> Items { get; set; } = new List<CartItemVm>();
 
@@ -68,14 +83,14 @@ namespace KS.ViewModels.Cart
         {
             get
             {
-                foreach (var item in Items)
+                foreach(var item in Items)
                 {
                     if (!item.IsProductAvailabeToOrder)
                     {
                         return false;
                     }
 
-                    if (item.ProductStockTrackingIsEnabled && item.ProductStockQuantity < item.Quantity)
+                    if(item.ProductStockTrackingIsEnabled && item.ProductStockQuantity < item.Quantity)
                     {
                         return false;
                     }
