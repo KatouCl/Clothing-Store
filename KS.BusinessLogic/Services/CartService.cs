@@ -28,7 +28,7 @@ namespace KS.BusinessLogic.Services
             _productRepository = productRepository;
         }
 
-        public async Task<bool> AddToCart(string customerId, int productId, int? quantity)
+        public async Task<Cart> AddToCart(string customerId, int productId, int? quantity)
         {
             var product = _productRepository.GetByIdAsync(productId).Result;
             var productInCart = _cartRepository.GetAllQuery().FirstOrDefault(x => x.ProductId == productId);
@@ -50,7 +50,7 @@ namespace KS.BusinessLogic.Services
             }
 
             await _cartRepository.SaveChangesAsync();
-            return true;
+            return productInCart;
         }
 
         public IList<CartVm> GetCartDetails(string customerId)

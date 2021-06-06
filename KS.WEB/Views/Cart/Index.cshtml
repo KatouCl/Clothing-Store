@@ -3,7 +3,6 @@
 @{
     ViewBag.Title = "Корзина";
     Layout = "_Layout";
-    var i = 1;
 }
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -15,6 +14,15 @@
     <link rel="stylesheet" type="text/css" href="~/css/cart_responsive.css">
 </head>
 
+@if (TempData["SM"] != null)
+{
+    <div id="my-alert" class="alert alert-danger alert-dismissible fade show" role="alert">
+        @TempData["SM"]
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">×</span>
+        </button>
+    </div>
+}
 
 <div class="super_container">
 
@@ -103,7 +111,7 @@
                                                     <span> </span>₽ @item.TotalPrice.ToString("0")
                                                 </div>
                                                 <div class="product_name">
-                                                    <a>Удалить</a>
+                                                    <a asp-controller="Cart" asp-action="RemoveFromCart" asp-route-id="@item.Id">Удалить</a>
                                                 </div>
                                             </li>
                                         }
@@ -203,3 +211,31 @@
     </div>
 
 </div>
+
+@section Scripts
+{
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+    <script src="~/lib/bootstrap-4.1.2/bootstrap.min.js"></script>
+
+    <script>
+        $(function(){
+            window.setTimeout(function(){
+                $('#my-alert').alert('close');
+            },5000);
+        });
+    </script>
+    
+    <script type="text/javascript">
+    
+    $(document).ready(function () {
+     
+    window.setTimeout(function() {
+        $(".alert").fadeTo(1000, 0).slideUp(1000, function(){
+            $(this).remove(); 
+        });
+    }, 5000);
+     
+    });
+    </script>
+}

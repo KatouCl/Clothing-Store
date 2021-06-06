@@ -7,7 +7,7 @@
     <div class="header_overlay"></div>
     <div class="header_content d-flex flex-row align-items-center justify-content-start">
         <div class="logo">
-            <a href="#">
+            <a asp-controller="Home" asp-action="Index">
                 <div class="d-flex flex-row align-items-center justify-content-start">
                     <div>
                         <img src="/images/logo_1.png" alt="">
@@ -49,14 +49,23 @@
             <!-- Cart -->
             @if (SignInManager.IsSignedIn(User))
             {
-            <div class="cart">
-                <a asp-controller="Cart" asp-action="Index">
-                    <div>
-                        <img class="svg" src="~/images/cart.svg" alt="https://www.flaticon.com/authors/freepik">
-                        @* <div>1</div> *@
-                    </div>
-                </a>
-            </div>
+                <div class="cart">
+                    <a asp-controller="WishList" asp-action="Index">
+                        <div>
+                            <img class="svg" src="~/images/heart_2.svg" alt="https://www.flaticon.com/authors/freepik">
+                            @* <div>1</div> *@
+                        </div>
+                    </a>
+                </div>
+
+                <div class="cart">
+                    <a asp-controller="Cart" asp-action="Index">
+                        <div>
+                            <img class="svg" src="~/images/cart.svg" alt="https://www.flaticon.com/authors/freepik">
+                            @* <div>1</div> *@
+                        </div>
+                    </a>
+                </div>
             }
             <!-- User -->
             <div class="user">
@@ -85,7 +94,8 @@
                                class="dropdown-item">
                                 Профиль
                             </a>
-                            <a class="dropdown-item" href="#">Заказы</a>
+                            <a class="dropdown-item" asp-controller="Cart" asp-action="Index">Заказы</a>
+                            <a class="dropdown-item" asp-controller="WishList" asp-action="Index">Список желаний</a>
                             <div class="dropdown-divider"></div>
                             <a asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new {area = ""})"
                                class="dropdown-item">

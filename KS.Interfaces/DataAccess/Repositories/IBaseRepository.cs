@@ -10,7 +10,7 @@ namespace KS.Interfaces.DataAccess.Repositories
     {
         IEnumerable<T> GetAll();
         IQueryable<T> GetAllQuery();
-        Task<T> GetByIdAsync(int id);
+        Task<T> GetByIdAsync(long id);
         Task<T> AddAsync(T entity);
         Task AddRangeAsync(IEnumerable<T> entities);
         Task UpdateAsync(T entity);

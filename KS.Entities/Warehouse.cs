@@ -4,13 +4,6 @@ namespace KS.Entities
 {
     public class Warehouse : BaseEntity
     {
-        public Warehouse() { }
-
-        public Warehouse(int id)
-        {
-            Id = id;
-        }
-
         [Required(ErrorMessage = "Введите название")]
         [StringLength(450)]
         public string Name { get; set; }

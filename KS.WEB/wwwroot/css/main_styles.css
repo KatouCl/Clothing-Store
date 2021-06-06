@@ -920,7 +920,7 @@ section
 	font-size: 30px;
 	color: #4a4a4a;
 	font-weight: 500;
-	margin-top: 19px;
+	margin-top: 0;
 	line-height: 0.75;
 }
 .home_item_large .product_price

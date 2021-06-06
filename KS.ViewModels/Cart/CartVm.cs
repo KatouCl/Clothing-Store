@@ -10,7 +10,7 @@ namespace KS.ViewModels.Cart
         public string CustomerId { get; set; }
         public ApplicationUser Customer { get; set; }
 
-        public int ProductId { get; set; }
+        public long ProductId { get; set; }
         public string ProductName { get; set; }
         public Entities.Product Product { get; set; }
         public string ImageUrl { get; set; }

@@ -8,7 +8,7 @@ namespace KS.Interfaces.DataAccess.BusinessLogic.Services
 {
     public interface ICartService
     {
-        Task<bool> AddToCart(string customerId, int productId, int? quantity);
+        Task<Cart> AddToCart(string customerId, int productId, int? quantity);
         IList<CartVm> GetCartDetails(string customerId);
     }
 }

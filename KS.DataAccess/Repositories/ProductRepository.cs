@@ -17,7 +17,7 @@ namespace KS.DataAccess.Repositories
         {
             _context = context;
         }
-        public new async Task<Product> GetByIdAsync(int id)
+        public new async Task<Product> GetByIdAsync(long id)
         {
             return await _context.Products.Where(x => x.Id == id)
                 .Include(x => x.Categories)

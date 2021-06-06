@@ -83,7 +83,7 @@ namespace KS.WebAdmin.Controllers
 
                 foreach (var id in existedProductIds)
                 {
-                    productIds.RemoveAt(id);
+                    productIds.RemoveAt(Convert.ToInt32(id));
                 }
 
                 var stocks = productIdsArray.Select(x => new Stock

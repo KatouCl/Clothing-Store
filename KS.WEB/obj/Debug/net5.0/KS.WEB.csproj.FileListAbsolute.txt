@@ -434,3 +434,4 @@ M:\KataStore\KS.WEB\bin\Debug\net5.0\JetBrains.Annotations.dll
 M:\KataStore\KS.WEB\bin\Debug\net5.0\X.PagedList.dll
 M:\KataStore\KS.WEB\bin\Debug\net5.0\X.PagedList.Mvc.Core.dll
 M:\KataStore\KS.WEB\obj\Debug\net5.0\Razor\Views\Cart\Index.cshtml.g.cs
+M:\KataStore\KS.WEB\obj\Debug\net5.0\Razor\Views\WishList\Index.cshtml.g.cs

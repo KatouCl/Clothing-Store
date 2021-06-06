@@ -10,24 +10,26 @@ namespace KS.WEB.Controllers
 {
     public class CartController : Controller
     {
+        private readonly IBaseRepository<Cart> _cartRepository;
         private readonly ICartService _cartService;
         private readonly UserManager<ApplicationUser> _userManager;
 
         public CartController(
             ICartService cartService, 
-            UserManager<ApplicationUser> userManager)
+            UserManager<ApplicationUser> userManager,
+            IBaseRepository<Cart> cartRepository)
         {
             _cartService = cartService;
             _userManager = userManager;
+            _cartRepository = cartRepository;
         }
 
-        // GET
         public async Task<IActionResult> Index()
         {
             var currentUser = await _userManager.GetUserAsync(HttpContext.User);
             if (currentUser == null)
             {
-                ViewBag.Message = "Вы не авторизованы";
+                ViewBag["SM"] = "Вы не авторизованы";
                 return RedirectToAction("Index", "Home");
             }
             var cartListProducts = _cartService.GetCartDetails(currentUser.Id);
@@ -39,13 +41,29 @@ namespace KS.WEB.Controllers
             var currentUser = await _userManager.GetUserAsync(HttpContext.User);
             if (currentUser == null)
             {
-                ViewBag.Message = "Вы не авторизованы";
+                TempData["SM"] = "Вы не авторизованы";
                 return RedirectToAction("Index", "Home");
             }
             await _cartService.AddToCart(currentUser.Id, productId, quantity);
 
-            ViewBag.Message = "Товар добавлен";
-            return RedirectToAction("Details", "Product", new {productId});
+            TempData["SM"] = "Товар добавлен";
+            return RedirectToAction("Details", "Product", new {id = productId});
+        }
+
+        public async Task<IActionResult> RemoveFromCart(int id)
+        {
+            var currentUser = await _userManager.GetUserAsync(HttpContext.User);
+            if (currentUser == null)
+            {
+                TempData["SM"] = "Вы не авторизованы";
+                return RedirectToAction("Index", "Home");
+            }
+            var product = await _cartRepository.GetByIdAsync(id);
+            
+            await _cartRepository.DeleteAsync(product);
+            TempData["SM"] = "Вы успешно удалили.";
+
+            return RedirectToAction("Index", "Cart");
         }
     }
 }

@@ -29,7 +29,7 @@ namespace KS.DataAccess.Repositories
             return _dbSet;
         }
 
-        public async Task<T> GetByIdAsync(int id)
+        public async Task<T> GetByIdAsync(long id)
         {
             return await _dbSet.FirstOrDefaultAsync(x => x.Id == id);
         }

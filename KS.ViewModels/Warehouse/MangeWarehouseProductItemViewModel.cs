@@ -4,7 +4,7 @@ namespace KS.ViewModels.Warehouse
 {
     public class MangeWarehouseProductItemViewModel
     {
-        public int Id { get; set; }
+        public long Id { get; set; }
 
         public string Name { get; set; }
 

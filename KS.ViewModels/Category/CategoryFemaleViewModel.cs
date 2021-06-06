@@ -8,7 +8,7 @@ namespace KS.ViewModels.Category
 {
     public class CategoryFemaleViewModel
     {
-        public int Id { get; set; }
+        public long Id { get; set; }
 
         [Required(ErrorMessage = "Цена")]
         [Range(1, 2000000)]

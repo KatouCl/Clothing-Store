@@ -4,7 +4,7 @@ namespace KS.ViewModels.Warehouse
 {
     public class WarehouseIndexViewModel
     {
-        public int Id { get; set; }
+        public long Id { get; set; }
         
         [Required(ErrorMessage = "Введите название")]
         [StringLength(450)]

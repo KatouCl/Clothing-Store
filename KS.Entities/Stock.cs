@@ -3,11 +3,11 @@
     public class Stock : BaseEntity
     {
         
-        public int ProductId { get; set; }
+        public long ProductId { get; set; }
 
         public Product Product { get; set; }
 
-        public int WarehouseId { get; set; }
+        public long WarehouseId { get; set; }
 
         public Warehouse Warehouse { get; set; }
 

@@ -2,12 +2,12 @@
 {
     public class StockIndexViewModel
     {
-        public int Id { get; set; }
-        public int ProductId { get; set; }
+        public long Id { get; set; }
+        public long ProductId { get; set; }
 
         public Entities.Product Product { get; set; }
 
-        public int WarehouseId { get; set; }
+        public long WarehouseId { get; set; }
 
         public Entities.Warehouse Warehouse { get; set; }
 
