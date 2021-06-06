@@ -134,24 +134,48 @@
                                         </div>
                                     </div>
                                     <div class="product_buttons">
-                                        <div class="text-right d-flex flex-row align-items-start justify-content-start">
-                                            <div class="product_button product_fav text-center d-flex flex-column align-items-center justify-content-center">
-                                                <div>
+                                        @if (SignInManager.IsSignedIn(User))
+                                        {
+                                            <div class="text-right d-flex flex-row align-items-start justify-content-start">
+                                                <div onclick="return wishlist_onclick(@product.Id)" class="product_button product_fav text-center d-flex flex-column align-items-center justify-content-center">
                                                     <div>
-                                                        <img src="~/images/heart_2.svg" class="svg" alt="">
-                                                        <div>+</div>
+                                                        <div>
+                                                            <img src="~/images/heart_2.svg" class="svg" alt="">
+                                                            <div>+</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div onclick="return cart_onclick(@product.Id)" class="product_button product_cart text-center d-flex flex-column align-items-center justify-content-center">
+                                                    <div>
+                                                        <div>
+                                                            <img src="~/images/cart.svg" class="svg" alt="">
+                                                            <div>+</div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="product_button product_cart text-center d-flex flex-column align-items-center justify-content-center">
-                                                <div>
+                                        }
+                                        else
+                                        {
+                                            <div class="text-right d-flex flex-row align-items-start justify-content-start">
+                                                <div onclick="alert('Вы не авторизованы')" class="product_button product_fav text-center d-flex flex-column align-items-center justify-content-center">
                                                     <div>
-                                                        <img src="~/images/cart.svg" class="svg" alt="">
-                                                        <div>+</div>
+                                                        <div>
+                                                            <img src="~/images/heart_2.svg" class="svg" alt="">
+                                                            <div>+</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div onclick="alert('Вы не авторизованы')" class="product_button product_cart text-center d-flex flex-column align-items-center justify-content-center">
+                                                    <div>
+                                                        <div>
+                                                            <img src="~/images/cart.svg" class="svg" alt="">
+                                                            <div>+</div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        }
                                     </div>
                                 </div>
                             </div>
@@ -182,4 +206,16 @@
 @section Scripts
 {
     <script src="~/js/catalog/ProductMen.js"></script>
+
+    <script>
+            function cart_onclick(productId) {
+                window.location = "/Cart/AddToCart?productId=" + productId + "&quantity=" + 1;
+                return alert("Товар добавлен в корзину");
+            }
+            
+            function wishlist_onclick(productId) {
+                window.location = "/WishList/AddToWishList?productId=" + productId;
+                return alert("Товар добавлен в список желаний");
+            }
+        </script>
 }
