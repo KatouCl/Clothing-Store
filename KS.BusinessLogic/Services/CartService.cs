@@ -16,54 +16,60 @@ namespace KS.BusinessLogic.Services
     {
         private readonly IBaseRepository<Cart> _cartRepository;
         private readonly IBaseRepository<Product> _productRepository;
-        private readonly bool _isProductPriceIncludeTax;
         private readonly UserManager<ApplicationUser> _userManager;
 
         public CartService(
             IBaseRepository<Cart> cartRepository,
-            bool isProductPriceIncludeTax,
             UserManager<ApplicationUser> userManager,
             IBaseRepository<Product> productRepository)
         {
             _cartRepository = cartRepository;
-            _isProductPriceIncludeTax = isProductPriceIncludeTax;
             _userManager = userManager;
             _productRepository = productRepository;
         }
 
-        public Task<Cart> AddToCart(long customerId, long createdById, long productId, int quantity)
+        public async Task<bool> AddToCart(string customerId, int productId, int? quantity)
         {
-            throw new NotImplementedException();
+            var product = _productRepository.GetByIdAsync(productId).Result;
+            var productInCart = _cartRepository.GetAllQuery().FirstOrDefault(x => x.ProductId == productId);
+
+            if (productInCart == null)
+            {
+                var model = new Cart
+                {
+                    CustomerId = customerId,
+                    ProductId = product.Id,
+                    Quantity = quantity ?? 1,
+                    Price = product.Price
+                };
+                await _cartRepository.AddAsync(model);
+            }
+            else
+            {
+                productInCart.Quantity++;
+            }
+
+            await _cartRepository.SaveChangesAsync();
+            return true;
         }
 
-        public IEnumerable<Cart> Query()
+        public IList<CartVm> GetCartDetails(string customerId)
         {
-            throw new NotImplementedException();
-        }
-
-        public Task<Cart> GetActiveCart(string customerId, int productId)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<CartVm> GetActiveCartDetails(long customerId)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<CartVm> GetActiveCartDetails(long customerId, long createdById)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task MigrateCart(long fromUserId, long toUserId)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task UnlockCart(Cart cart)
-        {
-            throw new NotImplementedException();
+            var cartListProducts = _cartRepository.GetAll()
+                .Where(x => x.CustomerId == customerId)
+                .Select(x => new CartVm
+                {
+                    Id = x.Id,
+                    CustomerId = x.CustomerId,
+                    ProductId = x.ProductId,
+                    Price = x.Price,
+                    Quantity = x.Quantity,
+                    
+                    ImageUrl = _productRepository.GetByIdAsync(x.ProductId).Result.CoverImageUrl,
+                    ProductName = _productRepository.GetByIdAsync(x.ProductId).Result.Name
+                }).ToList();
+            
+            return cartListProducts;
         }
     }
 }

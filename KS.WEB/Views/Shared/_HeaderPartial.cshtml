@@ -50,7 +50,7 @@
             @if (SignInManager.IsSignedIn(User))
             {
             <div class="cart">
-                <a asp-controller="CartApi" asp-action="List">
+                <a asp-controller="Cart" asp-action="Index">
                     <div>
                         <img class="svg" src="~/images/cart.svg" alt="https://www.flaticon.com/authors/freepik">
                         @* <div>1</div> *@
@@ -91,20 +91,10 @@
                                class="dropdown-item">
                                 Выход
                             </a>
-                            @* <a class="dropdown-item">Выйти</a> *@
                         </div>
                     }
                 </a>
             </div>
-            <!-- Phone -->
-            @* <div class="header_phone d-flex flex-row align-items-center justify-content-start"> *@
-            @*     <div> *@
-            @*         <div> *@
-            @*             <img src="/images/phone.svg" alt="https://www.flaticon.com/authors/freepik"> *@
-            @*         </div> *@
-            @*     </div> *@
-            @*     <div>+7 912-252-7350</div> *@
-            @* </div> *@
         </div>
     </div>
 </header>

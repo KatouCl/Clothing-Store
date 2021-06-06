@@ -8,19 +8,7 @@ namespace KS.Interfaces.DataAccess.BusinessLogic.Services
 {
     public interface ICartService
     {
-        Task<Cart> AddToCart(long customerId, long createdById, long productId, int quantity);
-
-        IEnumerable<Cart> Query();
-
-
-        Task<Cart> GetActiveCart(string customerId, int productId);
-
-        Task<CartVm> GetActiveCartDetails(long customerId);
-
-        Task<CartVm> GetActiveCartDetails(long customerId, long createdById);
-
-        Task MigrateCart(long fromUserId, long toUserId);
-
-        Task UnlockCart(Cart cart);
+        Task<bool> AddToCart(string customerId, int productId, int? quantity);
+        IList<CartVm> GetCartDetails(string customerId);
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using KS.Entities;
 
 namespace KS.ViewModels.Cart
 {
@@ -6,97 +7,20 @@ namespace KS.ViewModels.Cart
     {
         public long Id { get; set; }
 
-        public bool LockedOnCheckout { get; set; }
+        public string CustomerId { get; set; }
+        public ApplicationUser Customer { get; set; }
 
-        public string CouponCode { get; set; }
-
-        public decimal SubTotal { get; set; }
-
-        public string SubTotalString { get { return SubTotal.ToString(); } }
-
-        public decimal Discount { get; set; }
-
-        public string DiscountString { get { return Discount.ToString(); } }
-
-        public string CouponValidationErrorMessage { get; set; }
-
-        public bool IsProductPriceIncludeTax { get; set; }
-
-        public decimal? TaxAmount { get; set; }
-
-        public string OrderNote { get; set; }
-
-        public string TaxAmountString
+        public int ProductId { get; set; }
+        public string ProductName { get; set; }
+        public Entities.Product Product { get; set; }
+        public string ImageUrl { get; set; }
+        public int Quantity { get; set; }
+        public decimal Price { get; set; }
+        public decimal TotalPrice
         {
             get
             {
-                return TaxAmount.HasValue ? TaxAmount.ToString() : "-";
-            }
-        }
-
-        public decimal? ShippingAmount { get; set; }
-
-        public string ShippingAmountString
-        {
-            get { return ShippingAmount.HasValue ? ShippingAmount.ToString() : "-"; }
-        }
-
-        public decimal SubTotalWithDiscount
-        {
-            get
-            {
-                return SubTotal - Discount;
-            }
-        }
-
-        public decimal SubTotalWithDiscountWithoutTax
-        {
-            get
-            {
-                if (IsProductPriceIncludeTax)
-                {
-                    return SubTotalWithDiscount - TaxAmount ?? 0;
-                }
-
-                return SubTotalWithDiscount;
-            }
-        }
-
-        public decimal OrderTotal
-        {
-            get
-            {
-                if (IsProductPriceIncludeTax)
-                {
-                    return SubTotal + (ShippingAmount ?? 0) - Discount;
-                }
-
-                return SubTotal + (TaxAmount ?? 0) + (ShippingAmount ?? 0) - Discount;
-            }
-        }
-
-        public string OrderTotalString { get { return OrderTotal.ToString(); } }
-
-        public IList<CartItemVm> Items { get; set; } = new List<CartItemVm>();
-
-        public bool IsValid
-        {
-            get
-            {
-                foreach(var item in Items)
-                {
-                    if (!item.IsProductAvailabeToOrder)
-                    {
-                        return false;
-                    }
-
-                    if(item.ProductStockTrackingIsEnabled && item.ProductStockQuantity < item.Quantity)
-                    {
-                        return false;
-                    }
-                }
-
-                return true;
+                return Quantity * Price;
             }
         }
     }

@@ -16,109 +16,142 @@
     <link rel="stylesheet" type="text/css" href="~/css/product_responsive.css">
 </head>
 <div class="super_container">
-	<div class="super_container_inner">
-		<div class="super_overlay"></div>
+    <div class="super_container_inner">
+        <div class="super_overlay"></div>
 
-		<!-- Home -->
-		<div class="home">
-			<div class="home_container d-flex flex-column align-items-center justify-content-end">
-				<div class="home_content text-center">
-					<div class="home_title">Страница товара</div>
-					<div class="breadcrumbs d-flex flex-column align-items-center justify-content-center">
-						<ul class="d-flex flex-row align-items-start justify-content-start text-center">
-							<li><a asp-controller="Catalog" asp-action="Index">Главная</a></li>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</div>
+        <!-- Home -->
+        <div class="home">
+            <div class="home_container d-flex flex-column align-items-center justify-content-end">
+                <div class="home_content text-center">
+                    <div class="home_title">Страница товара</div>
+                    <div class="breadcrumbs d-flex flex-column align-items-center justify-content-center">
+                        <ul class="d-flex flex-row align-items-start justify-content-start text-center">
+                            <li>
+                                <a asp-controller="Catalog" asp-action="Index">Главная</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-		<!-- Product -->
+        <!-- Product -->
 
-		<div class="product">
-			<div class="container">
-				<div class="row">
-					
-					<!-- Product Image -->
-					<div class="col-lg-6">
-						<div class="product_image_slider_container">
-							<div id="slider" class="flexslider">
-								<ul class="slides">
-									<li>
-										<img src="~/images/product_image_1.jpg"  alt=""/>
-									</li>
-								</ul>
-							</div>
-						</div>
-					</div>
+        <div class="product">
+            <div class="container">
+                <div class="row">
 
-					<!-- Product Info -->
-					<div class="col-lg-6 product_col">
-						<div class="product_info">
-							<div class="product_name">@Model.Name</div>
-							<div class="product_category">В <a asp-controller="Catalog" asp-action="Index">категориях</a></div>
-							<div class="product_price">
-								₽ @Model.Price.ToString("0")<span>.00</span>
-								<p style="font-size: 22px;"> <del>   ₽ @Model.OldPrice.ToString()</del> </p>
-							</div>
-							<div class="product_text">
-								<p>@Model.Description</p>
-								<hr>
-								<p>@Model.Specification</p>
-								<hr>
-								<p>Количество товаров на складе: @Model.QuantityStock.ToString()</p>
-							</div>
-							<div class="product_buttons">
-								<div class="text-right d-flex flex-row align-items-start justify-content-start">
-									@* <div class="product_button product_fav text-center d-flex flex-column align-items-center justify-content-center"> *@
-									@* 	<div><div><img src="~/images/heart_2.svg" class="svg" alt=""><div>+</div></div></div> *@
-									@* </div> *@
-									<div class="product_button product_cart text-center d-flex flex-column align-items-center justify-content-center" id="AddToCart">
-										<div><div><img src="~/images/cart.svg" class="svg" alt=""><div>+</div></div></div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
+                    <!-- Product Image -->
+                    <div class="col-lg-6">
+                        <div class="product_image_slider_container">
+                            <div id="slider" class="flexslider">
+                                <ul class="slides">
+                                    <li>
+                                        <img src="~/images/product_image_1.jpg" alt=""/>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
 
-		<!-- Boxes -->
+                    <!-- Product Info -->
+                    <div class="col-lg-6 product_col">
+                        <div class="product_info">
+                            <div class="product_name">@Model.Name</div>
+                            <div class="product_category">В <a asp-controller="Catalog" asp-action="Index">категориях</a></div>
+                            <div class="product_price">
+                                ₽ @Model.Price.ToString("0")<span>.00</span>
+                                <p style="font-size: 22px;">
+                                    <del> ₽ @Model.OldPrice.ToString()</del>
+                                </p>
+                            </div>
+                            <div class="product_text">
+                                <p>@Model.Description</p>
+                                <hr>
+                                <p>@Model.Specification</p>
+                                <hr>
+                                <p>Количество товаров на складе: @Model.QuantityStock.ToString()</p>
+                            </div>
+                            <div class="product_buttons">
+                                <div class="text-right d-flex flex-row align-items-start justify-content-start">
+                                    <div class="product_button product_fav text-center d-flex flex-column align-items-center justify-content-center">
+                                        <div class="product_quantity ml-lg-auto mr-lg-auto text-center">
+                                            <span class="product_text product_num">0</span>
+                                            <div class="qty_sub qty_button trans_200 text-center">
+                                                <span>-</span>
+                                            </div>
+                                            <div class="qty_add qty_button trans_200 text-center">
+                                                <span>+</span>
+                                            </div>
+                                        </div>
+                                        @* 	<div><div><img src="~/images/heart_2.svg" class="svg" alt=""><div>+</div></div></div> *@
+                                    </div>
+                                    <div class="product_button product_cart text-center d-flex flex-column align-items-center justify-content-center" id="AddToCart">
+                                        <div>
+                                            <div>
+                                                <img src="~/images/cart.svg" class="svg" alt="">
+                                                <div>+</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-		<div class="boxes">
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-6">
-						<div class="box d-flex flex-row align-items-center justify-content-start">
-							<div class="mt-auto"><div class="box_image"><img src="~/images/boxes_1.png" alt=""></div></div>
-							<div class="box_content">
-								<div class="box_title">Таблица размеров</div>
-								<div class="box_text">Наши таблицы размеров помогут вам заказать правильный размер.</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-lg-6 box_col">
-						<div class="box d-flex flex-row align-items-center justify-content-start">
-							<div class="mt-auto"><div class="box_image"><img src="~/images/boxes_2.png" alt=""></div></div>
-							<div class="box_content">
-								<div class="box_title">Доставка</div>
-								<div class="box_text">Быстрая доставка до почтового отделения.</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+        <!-- Boxes -->
+
+        <div class="boxes">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="box d-flex flex-row align-items-center justify-content-start">
+                            <div class="mt-auto">
+                                <div class="box_image">
+                                    <img src="~/images/boxes_1.png" alt="">
+                                </div>
+                            </div>
+                            <div class="box_content">
+                                <div class="box_title">Таблица размеров</div>
+                                <div class="box_text">Наши таблицы размеров помогут вам заказать правильный размер.</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 box_col">
+                        <div class="box d-flex flex-row align-items-center justify-content-start">
+                            <div class="mt-auto">
+                                <div class="box_image">
+                                    <img src="~/images/boxes_2.png" alt="">
+                                </div>
+                            </div>
+                            <div class="box_content">
+                                <div class="box_title">Доставка</div>
+                                <div class="box_text">Быстрая доставка до почтового отделения.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 
 @section Scripts
 {
-	
-	
-	<script>
+    <script src="~/plugins/greensock/TweenMax.min.js"></script>
+    <script src="~/plugins/greensock/TimelineMax.min.js"></script>
+    <script src="~/plugins/scrollmagic/ScrollMagic.min.js"></script>
+    <script src="~/plugins/greensock/animation.gsap.min.js"></script>
+    <script src="~/plugins/greensock/ScrollToPlugin.min.js"></script>
+    <script src="~/plugins/easing/easing.js"></script>
+    <script src="~/plugins/parallax-js-master/parallax.min.js"></script>
+    <script src="~/js/cart.js"></script>
+
+    <script>
     /********************Add to cart*********************/
     $(function () {
         $("#AddToCart").click(function (e) {
