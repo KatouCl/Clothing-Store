@@ -93,6 +93,10 @@
                             </a>
                             <a class="dropdown-item" asp-controller="Cart" asp-action="Index">Заказы</a>
                             <a class="dropdown-item" asp-controller="WishList" asp-action="Index">Список желаний</a>
+                            @if (SignInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+                            {
+                                <a class="dropdown-item" asp-area="Admin" asp-controller="Home" asp-action="Index">Панель администратора</a>
+                            }
                             <div class="dropdown-divider"></div>
                             <a asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new {area = ""})"
                                class="dropdown-item">

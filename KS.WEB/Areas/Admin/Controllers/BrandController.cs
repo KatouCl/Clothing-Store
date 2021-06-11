@@ -3,11 +3,13 @@ using System.Threading.Tasks;
 using KS.Entities;
 using KS.Interfaces.DataAccess.Repositories;
 using KS.ViewModels.Brand;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace KS.WEB.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles="Admin")]
     public class BrandController : Controller
     {
         private readonly IBrandRepository _brandRepository;

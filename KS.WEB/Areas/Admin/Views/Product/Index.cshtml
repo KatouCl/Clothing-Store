@@ -21,14 +21,16 @@
 
 <div class="card">
     <div class="card-header">
-        <h6 class="card-subtitle text-muted">
+        <h6 class="card-subtitle text-muted mt-3">
             Все товары
         </h6>
         <a class="btn btn-primary float-end mt-n1" asp-controller="Product" asp-action="Post"><i class="fas fa-plus"></i>Добавить</a>
     </div>
     @if (!Model.Any())
     {
-        <h5>Данных нет</h5>
+        <div class="text-center">
+            <h5>Данных нет</h5>
+        </div>
     }
     else
     {

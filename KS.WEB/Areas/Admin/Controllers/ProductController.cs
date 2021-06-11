@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using KS.Entities;
 using KS.Interfaces.DataAccess.Repositories;
 using KS.ViewModels.Product;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -12,6 +13,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace KS.WEB.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles="Admin")]
     public class ProductController : Controller
     {
         private readonly IProductRepository _productRepository;

@@ -35,6 +35,7 @@ namespace KS.DataAccess
             base.OnModelCreating(modelBuilder);
 
             //Product
+
             #region Products
 
             // modelBuilder.Entity<Product>()
@@ -343,9 +344,20 @@ namespace KS.DataAccess
             };
 
             var passwordHasher = new PasswordHasher<ApplicationUser>();
-            passwordHasher.HashPassword(user, "Admin*123");
 
-            modelBuilder.Entity<ApplicationUser>().HasData(user);
+            modelBuilder.Entity<ApplicationUser>().HasData(
+                new ApplicationUser
+                {
+                    Id = "b74ddd14-6340-4840-95c2-db12554843e5",
+                    UserName = "admin",
+                    NormalizedUserName = "admin",
+                    Email = "admin@gmail.com",
+                    NormalizedEmail = "admin@gmail.com",
+                    EmailConfirmed = true,
+                    PasswordHash = passwordHasher.HashPassword(null, "Admin1234"),
+                    SecurityStamp = string.Empty
+                }
+            );
 
             //IdentityRole
             modelBuilder.Entity<IdentityRole>().HasData(

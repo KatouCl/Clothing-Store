@@ -1,11 +1,13 @@
 ﻿using System.Diagnostics;
 using KS.WEB.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
 namespace KS.WEB.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles="Admin")]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
