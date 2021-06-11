@@ -26,7 +26,7 @@ namespace KS.WEB.Controllers
             var onePageOfCatalogs = catalogListing.ToPagedList(pageNumber, 9);
             ViewBag.onePageOfCatalogs = onePageOfCatalogs;
             
-            return View(onePageOfCatalogs);
+            return PartialView(onePageOfCatalogs);
         }
         public IActionResult Woman(int? page, long? categoryId)
         {

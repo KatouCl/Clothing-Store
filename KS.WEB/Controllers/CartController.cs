@@ -1,27 +1,40 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using KS.Entities;
 using KS.Interfaces.DataAccess.BusinessLogic.Services;
 using KS.Interfaces.DataAccess.Repositories;
+using KS.ViewModels.Cart;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 
 namespace KS.WEB.Controllers
 {
     public class CartController : Controller
     {
-        private readonly IBaseRepository<Cart> _cartRepository;
+        private readonly IBaseRepository<CartItem> _cartRepository;
         private readonly ICartService _cartService;
         private readonly UserManager<ApplicationUser> _userManager;
+        private readonly ISession _session;
 
         public CartController(
-            ICartService cartService, 
+            ICartService cartService,
             UserManager<ApplicationUser> userManager,
-            IBaseRepository<Cart> cartRepository)
+            IBaseRepository<CartItem> cartRepository,
+            ISession session)
         {
             _cartService = cartService;
             _userManager = userManager;
             _cartRepository = cartRepository;
+            _session = session;
+        }
+
+        public class Reqst
+        {
+            public int ProductId { get; set; }
+            public int Quantity { get; set; }
         }
 
         public async Task<IActionResult> Index()
@@ -32,10 +45,13 @@ namespace KS.WEB.Controllers
                 ViewBag["SM"] = "Вы не авторизованы";
                 return RedirectToAction("Index", "Home");
             }
+
             var cartListProducts = _cartService.GetCartDetails(currentUser.Id);
-            
+            // var cartListProducts = _cartService.GetCartDetailsAsync(HttpContext.Session);
+
             return View(cartListProducts);
         }
+
         public async Task<IActionResult> AddToCart(int productId, int? quantity)
         {
             var currentUser = await _userManager.GetUserAsync(HttpContext.User);
@@ -44,7 +60,17 @@ namespace KS.WEB.Controllers
                 TempData["SM"] = "Вы не авторизованы";
                 return RedirectToAction("Index", "Home");
             }
-            await _cartService.AddToCart(currentUser.Id, productId, quantity);
+            
+            var cartProduct = new CartItemVm
+            {
+                ProductId = productId,
+                Quantity = quantity?? 1
+            };
+
+            var stringObject = JsonConvert.SerializeObject(cartProduct);
+            _session.SetString("cart", stringObject);
+            
+            _cartService.AddToCart(HttpContext.Session, cartProduct);
 
             TempData["SM"] = "Товар добавлен";
             return RedirectToAction("Details", "Product", new {id = productId});
@@ -58,8 +84,9 @@ namespace KS.WEB.Controllers
                 TempData["SM"] = "Вы не авторизованы";
                 return RedirectToAction("Index", "Home");
             }
+
             var product = await _cartRepository.GetByIdAsync(id);
-            
+
             await _cartRepository.DeleteAsync(product);
             TempData["SM"] = "Вы успешно удалили.";
 

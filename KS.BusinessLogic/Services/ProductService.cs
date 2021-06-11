@@ -29,10 +29,6 @@ namespace KS.BusinessLogic.Services
                 OldPrice = product.OldPrice,
                 Price = product.Price,
                 Description = product.Description,
-
-                //TODO: Сделать вывод картинок
-                //Images = product.Images.Select(x => x.Name).ToList(),
-                //Structures = product.Structures.OrderBy(x => x.Id).Select(x => x.Name).ToList()
             };
 
             return productView;

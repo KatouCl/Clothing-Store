@@ -8,6 +8,6 @@ namespace KS.Interfaces.DataAccess.BusinessLogic.Services
 {
     public interface IStockService
     {
-        Task UpdateStock(StockUpdateViewModel stockUpdateVM);
+        // Task UpdateStock(StockUpdateViewModel stockUpdateVM);
     }
 }

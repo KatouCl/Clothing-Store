@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "7HYmTU9RDjH0OJuFUjoDIRw0TGtpLpTBPAH+taKdDPwsNZq8EfaWUGuz5UQ28X9DBa71bZjJW3EtaMw6B1lsNw==",
+  "dgSpecHash": "3UOsgT6O8J+SEIKS5mlXoRwFIr5o0yzVb3wkMWq4FUZGKhwgvZ2stP2HxYjmINuSftwL2NQrXqLh7jKP1gjQ7Q==",
   "success": true,
   "projectFilePath": "M:\\KataStore\\KS.BusinessLogic\\KS.BusinessLogic.csproj",
   "expectedPackageFiles": [
@@ -36,6 +36,7 @@
     "C:\\Users\\Katou\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
     "C:\\Users\\Katou\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
     "C:\\Users\\Katou\\.nuget\\packages\\microsoft.win32.systemevents\\4.7.0\\microsoft.win32.systemevents.4.7.0.nupkg.sha512",
+    "C:\\Users\\Katou\\.nuget\\packages\\newtonsoft.json\\11.0.2\\newtonsoft.json.11.0.2.nupkg.sha512",
     "C:\\Users\\Katou\\.nuget\\packages\\system.collections.immutable\\6.0.0-preview.3.21201.4\\system.collections.immutable.6.0.0-preview.3.21201.4.nupkg.sha512",
     "C:\\Users\\Katou\\.nuget\\packages\\system.componentmodel.annotations\\6.0.0-preview.3.21201.4\\system.componentmodel.annotations.6.0.0-preview.3.21201.4.nupkg.sha512",
     "C:\\Users\\Katou\\.nuget\\packages\\system.configuration.configurationmanager\\4.7.0\\system.configuration.configurationmanager.4.7.0.nupkg.sha512",

@@ -37,7 +37,7 @@ namespace KS.BusinessLogic.Services
                         Product = x.Product,
                         CategoryId = x.CategoryId,
                         Category = x.Category
-                    });
+                        });
 
                 var products = _productRepository.GetAll()
                     .OrderBy(x => x.CreationDate)
@@ -67,7 +67,8 @@ namespace KS.BusinessLogic.Services
                             StockTrackingIsEnabled = product.StockTrackingIsEnabled,
                             GenderType = product.GenderType,
                             UnitType = product.UnitType,
-                            CategoryId = category.CategoryId
+                            CategoryId = category.CategoryId,
+                            CoverImageUrl = product.CoverImageUrl
                         }
                     );
 
@@ -98,7 +99,8 @@ namespace KS.BusinessLogic.Services
                         StockTrackingIsEnabled = product.StockTrackingIsEnabled,
                         GenderType = product.GenderType,
                         UnitType = product.UnitType,
-                        QuantityStock = stock.Quantity
+                        QuantityStock = stock.Quantity,
+                        CoverImageUrl = product.CoverImageUrl
                     }
                 );
 
@@ -129,7 +131,8 @@ namespace KS.BusinessLogic.Services
                         TaxClassId = x.TaxClassId,
                         StockTrackingIsEnabled = x.StockTrackingIsEnabled,
                         GenderType = x.GenderType,
-                        UnitType = x.UnitType
+                        UnitType = x.UnitType,
+                        CoverImageUrl = x.CoverImageUrl
                     });
 
                 var query = products.Join(
@@ -158,7 +161,8 @@ namespace KS.BusinessLogic.Services
                         StockTrackingIsEnabled = product.StockTrackingIsEnabled,
                         GenderType = product.GenderType,
                         UnitType = product.UnitType,
-                        QuantityStock = stock.Quantity
+                        QuantityStock = stock.Quantity,
+                        CoverImageUrl = product.CoverImageUrl
                     }
                 );
 
@@ -209,7 +213,8 @@ namespace KS.BusinessLogic.Services
                             StockTrackingIsEnabled = product.StockTrackingIsEnabled,
                             GenderType = product.GenderType,
                             UnitType = product.UnitType,
-                            CategoryId = category.CategoryId
+                            CategoryId = category.CategoryId,
+                            CoverImageUrl = product.CoverImageUrl
                         }
                     );
 
@@ -240,7 +245,8 @@ namespace KS.BusinessLogic.Services
                         StockTrackingIsEnabled = product.StockTrackingIsEnabled,
                         GenderType = product.GenderType,
                         UnitType = product.UnitType,
-                        QuantityStock = stock.Quantity
+                        QuantityStock = stock.Quantity,
+                        CoverImageUrl = product.CoverImageUrl
                     }
                 );
 
@@ -271,7 +277,8 @@ namespace KS.BusinessLogic.Services
                         TaxClassId = x.TaxClassId,
                         StockTrackingIsEnabled = x.StockTrackingIsEnabled,
                         GenderType = x.GenderType,
-                        UnitType = x.UnitType
+                        UnitType = x.UnitType,
+                        CoverImageUrl = x.CoverImageUrl
                     });
 
                 var query = products.Join(
@@ -300,7 +307,8 @@ namespace KS.BusinessLogic.Services
                         StockTrackingIsEnabled = product.StockTrackingIsEnabled,
                         GenderType = product.GenderType,
                         UnitType = product.UnitType,
-                        QuantityStock = stock.Quantity
+                        QuantityStock = stock.Quantity,
+                        CoverImageUrl = product.CoverImageUrl
                     }
                 );
 
@@ -351,7 +359,8 @@ namespace KS.BusinessLogic.Services
                             StockTrackingIsEnabled = product.StockTrackingIsEnabled,
                             GenderType = product.GenderType,
                             UnitType = product.UnitType,
-                            CategoryId = category.CategoryId
+                            CategoryId = category.CategoryId,
+                            CoverImageUrl = product.CoverImageUrl
                         }
                     );
 
@@ -381,7 +390,8 @@ namespace KS.BusinessLogic.Services
                         StockTrackingIsEnabled = product.StockTrackingIsEnabled,
                         GenderType = product.GenderType,
                         UnitType = product.UnitType,
-                        QuantityStock = stock.Quantity
+                        QuantityStock = stock.Quantity,
+                        CoverImageUrl = product.CoverImageUrl
                     }
                 );
 
@@ -412,7 +422,8 @@ namespace KS.BusinessLogic.Services
                         TaxClassId = x.TaxClassId,
                         StockTrackingIsEnabled = x.StockTrackingIsEnabled,
                         GenderType = x.GenderType,
-                        UnitType = x.UnitType
+                        UnitType = x.UnitType,
+                        CoverImageUrl = x.CoverImageUrl
                     });
 
                 var query = products.Join(
@@ -441,7 +452,8 @@ namespace KS.BusinessLogic.Services
                         StockTrackingIsEnabled = product.StockTrackingIsEnabled,
                         GenderType = product.GenderType,
                         UnitType = product.UnitType,
-                        QuantityStock = stock.Quantity
+                        QuantityStock = stock.Quantity,
+                        CoverImageUrl = product.CoverImageUrl
                     }
                 );
 

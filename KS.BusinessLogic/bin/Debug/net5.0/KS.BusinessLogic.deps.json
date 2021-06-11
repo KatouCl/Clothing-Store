@@ -9,7 +9,9 @@
       "KS.BusinessLogic/1.0.0": {
         "dependencies": {
           "KS.DataAccess": "1.0.0",
-          "KS.Interfaces": "1.0.0"
+          "KS.Interfaces": "1.0.0",
+          "Newtonsoft.Json": "11.0.2",
+          "Microsoft.AspNetCore.Http.Abstractions": "5.0.0.0"
         },
         "runtime": {
           "KS.BusinessLogic.dll": {}
@@ -386,6 +388,14 @@
           }
         }
       },
+      "Newtonsoft.Json/11.0.2": {
+        "runtime": {
+          "lib/netstandard2.0/Newtonsoft.Json.dll": {
+            "assemblyVersion": "11.0.0.0",
+            "fileVersion": "11.0.2.21924"
+          }
+        }
+      },
       "System.Collections.Immutable/6.0.0-preview.3.21201.4": {
         "dependencies": {
           "System.Runtime.CompilerServices.Unsafe": "6.0.0-preview.3.21201.4"
@@ -598,6 +608,22 @@
         },
         "runtime": {
           "KS.ViewModels.dll": {}
+        }
+      },
+      "Microsoft.AspNetCore.Http.Abstractions/5.0.0.0": {
+        "runtime": {
+          "Microsoft.AspNetCore.Http.Abstractions.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.220.61302"
+          }
+        }
+      },
+      "Microsoft.Net.Http.Headers/5.0.0.0": {
+        "runtime": {
+          "Microsoft.Net.Http.Headers.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.220.61302"
+          }
         }
       }
     }
@@ -832,6 +858,13 @@
       "path": "microsoft.win32.systemevents/4.7.0",
       "hashPath": "microsoft.win32.systemevents.4.7.0.nupkg.sha512"
     },
+    "Newtonsoft.Json/11.0.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-IvJe1pj7JHEsP8B8J8DwlMEx8UInrs/x+9oVY+oCD13jpLu4JbJU2WCIsMRn5C4yW9+DgkaO8uiVE5VHKjpmdQ==",
+      "path": "newtonsoft.json/11.0.2",
+      "hashPath": "newtonsoft.json.11.0.2.nupkg.sha512"
+    },
     "System.Collections.Immutable/6.0.0-preview.3.21201.4": {
       "type": "package",
       "serviceable": true,
@@ -961,6 +994,16 @@
     },
     "KS.ViewModels/1.0.0": {
       "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Microsoft.AspNetCore.Http.Abstractions/5.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Microsoft.Net.Http.Headers/5.0.0.0": {
+      "type": "reference",
       "serviceable": false,
       "sha512": ""
     }

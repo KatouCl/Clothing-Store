@@ -1,0 +1,138 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelper
+
+<nav id="sidebar" class="sidebar">
+    <div class="sidebar-content js-simplebar">
+        <a class="sidebar-brand" asp-controller="Home" asp-action="Index">
+            <span class="align-middle">Admin Panel</span>
+        </a>
+        <ul class="sidebar-nav">
+            <li class="sidebar-header">
+                Cтраницы
+            </li>
+
+            <li class="sidebar-item active">
+                <a class="sidebar-link" asp-controller="Home" asp-action="Index">
+                    <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Главная</span>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="#site" data-bs-toggle="collapse" class="sidebar-link collapsed">
+                    <i class="align-middle" data-feather="collapse"></i> <span class="align-middle">Сайт</span>
+                </a>
+                <ul id="site" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
+                    @* <li class="sidebar-item"> *@
+                    @*     <a class="sidebar-link" href="#">Отзывы</a> *@
+                    @* </li> *@
+                    <li class="sidebar-item">
+                        <a class="sidebar-link" href="#">Контакты</a>
+                    </li>
+                </ul>
+            </li>
+            
+            <li class="sidebar-item">
+                <a href="#catalog" data-bs-toggle="collapse" class="sidebar-link collapsed">
+                    <i class="align-middle" data-feather="users"></i> <span class="align-middle">Каталог</span>
+                </a>
+                <ul id="catalog" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
+                    <li class="sidebar-item">
+                        <a asp-controller="Product" asp-action="Index" class="sidebar-link">Товары</a>
+                    </li>
+                    @* <li class="sidebar-item"> *@
+                    @*     <a class="sidebar-link">Цены на продукцию</a> *@
+                    @* </li> *@
+                    <li class="sidebar-item">
+                        <a asp-controller="Category" asp-action="Index" class="sidebar-link">Категории</a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a class="sidebar-link" asp-controller="Brand" asp-action="Index">Бренды</a>
+                    </li>
+                </ul>
+            </li>
+            
+            <li class="sidebar-item">
+                <a href="#orders" data-bs-toggle="collapse" class="sidebar-link collapsed">
+                    <i class="align-middle" data-feather="users"></i> <span class="align-middle">Продажи</span>
+                </a>
+                <ul id="orders" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
+                    <li class="sidebar-item">
+                        <a asp-controller="User" asp-action="Index" class="sidebar-link">Пользователи</a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a asp-controller="Order" asp-action="Index" class="sidebar-link">Заказы</a>
+                    </li>
+                </ul>
+            </li>
+            
+            <li class="sidebar-item">
+                <a href="#inventory" data-bs-toggle="collapse" class="sidebar-link collapsed">
+                    <i class="align-middle" data-feather="users"></i> <span class="align-middle">Склады</span>
+                </a>
+                <ul id="inventory" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
+                    <li class="sidebar-item">
+                        <a class="sidebar-link" asp-controller="Warehouse" asp-action="Index">Склады</a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a class="sidebar-link" asp-controller="Warehouse" asp-action="Storage">Управление товарами</a>
+                    </li>
+                </ul>
+            </li>
+
+            @* <li class="sidebar-header"> *@
+            @*     Отчеты *@
+            @* </li> *@
+            @* <li class="sidebar-item"> *@
+            @*     <a data-bs-target="#ui" data-bs-toggle="collapse" class="sidebar-link collapsed"> *@
+            @*         <i class="align-middle" data-feather="briefcase"></i> <span class="align-middle">UI Elements</span> *@
+            @*     </a> *@
+            @*     <ul id="ui" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar"> *@
+            @*         <li class="sidebar-item"> *@
+            @*             <a class="sidebar-link" href="ui-alerts.html">Alerts</a> *@
+            @*         </li> *@
+            @*         <li class="sidebar-item"> *@
+            @*             <a class="sidebar-link" href="ui-buttons.html">Buttons</a> *@
+            @*         </li> *@
+            @*         <li class="sidebar-item"> *@
+            @*             <a class="sidebar-link" href="ui-cards.html">Cards</a> *@
+            @*         </li> *@
+            @*         <li class="sidebar-item"> *@
+            @*             <a class="sidebar-link" href="ui-general.html">General</a> *@
+            @*         </li> *@
+            @*         <li class="sidebar-item"> *@
+            @*             <a class="sidebar-link" href="ui-grid.html">Grid</a> *@
+            @*         </li> *@
+            @*         <li class="sidebar-item"> *@
+            @*             <a class="sidebar-link" href="ui-typography.html">Typography</a> *@
+            @*         </li> *@
+            @*     </ul> *@
+            @* </li> *@
+
+            @* <li class="sidebar-item"> *@
+            @*     <a class="sidebar-link" href="icons-feather.html"> *@
+            @*         <i class="align-middle" data-feather="coffee"></i> <span class="align-middle">Icons</span> *@
+            @*     </a> *@
+            @* </li> *@
+            @* *@
+            @* <li class="sidebar-item"> *@
+            @*     <a class="sidebar-link" href="forms-basic-inputs.html"> *@
+            @*         <i class="align-middle" data-feather="check-circle"></i> <span class="align-middle">Forms</span> *@
+            @*     </a> *@
+            @* </li> *@
+
+            @* <li class="sidebar-header"> *@
+            @*     Plugins & Addons *@
+            @* </li> *@
+            @* *@
+            @* <li class="sidebar-item"> *@
+            @*     <a class="sidebar-link" href="charts-chartjs.html"> *@
+            @*         <i class="align-middle" data-feather="bar-chart-2"></i> <span class="align-middle">Charts</span> *@
+            @*     </a> *@
+            @* </li> *@
+            @* *@
+            @* <li class="sidebar-item"> *@
+            @*     <a class="sidebar-link" href="maps-google.html"> *@
+            @*         <i class="align-middle" data-feather="map"></i> <span class="align-middle">Maps</span> *@
+            @*     </a> *@
+            @* </li> *@
+        </ul>
+    </div>
+</nav>

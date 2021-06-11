@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using KS.Entities.Enums;
 using Microsoft.AspNetCore.Identity;
 
@@ -13,7 +14,5 @@ namespace KS.Entities
         public string Address { get; set; }
         public string Phone { get; set; }
         public string Comment { get; set; }
-        
-        public DeliveryType DeliveryType { get; set; }
     }
 }

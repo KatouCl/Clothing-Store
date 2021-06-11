@@ -8,17 +8,18 @@
 }
 
 <head>
+    <title>@ViewBag.Title</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="Little Closet template">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="~/lib/bootstrap-4.1.2/bootstrap.min.css">
-    <link href="~/plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" type="text/css" href="~/plugins/OwlCarousel2-2.2.1/owl.carousel.css">
-    <link rel="stylesheet" type="text/css" href="~/plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
-    <link rel="stylesheet" type="text/css" href="~/plugins/OwlCarousel2-2.2.1/animate.css">
-    <link rel="stylesheet" type="text/css" href="~/css/category.css">
-    <link rel="stylesheet" type="text/css" href="~/css/category_responsive.css">
+    <link rel="stylesheet" type="text/css" href="~/Shop/lib/bootstrap-4.1.2/bootstrap.min.css">
+    <link href="~/Shop/plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="~/Shop/plugins/OwlCarousel2-2.2.1/owl.carousel.css">
+    <link rel="stylesheet" type="text/css" href="~/Shop/plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
+    <link rel="stylesheet" type="text/css" href="~/Shop/plugins/OwlCarousel2-2.2.1/animate.css">
+    <link rel="stylesheet" type="text/css" href="~/Shop/css/category.css">
+    <link rel="stylesheet" type="text/css" href="~/Shop/css/category_responsive.css">
     @* <link rel="stylesheet" type="text/css" href="~/css/checkout.css"> *@
 </head>
 
@@ -113,7 +114,7 @@
                         <div class="col-xl-4 col-md-6 grid-item new">
                             <div class="product">
                                 <div class="product_image">
-                                    <img src="~/images/product_1.jpg" alt="">
+                                    <img src="~/@product.CoverImageUrl" alt="">
                                     @* <img src="@Url.Content($"{product.CoverImageUrl}")" alt="@product.Name"> *@
                                 </div>
                                 <div class="product_content">
@@ -132,13 +133,13 @@
                                         </div>
                                     </div>
                                     <div class="product_buttons">
-                                        @if (SignInManager.IsSignedIn(User))
+                                        @if (_signInManager.IsSignedIn(User))
                                         {
                                             <div class="text-right d-flex flex-row align-items-start justify-content-start">
                                                 <div onclick="return wishlist_onclick(@product.Id)" class="product_button product_fav text-center d-flex flex-column align-items-center justify-content-center">
                                                     <div>
                                                         <div>
-                                                            <img src="~/images/heart_2.svg" class="svg" alt="">
+                                                            <img src="~/Shop/images/heart_2.svg" class="svg" alt="">
                                                             <div>+</div>
                                                         </div>
                                                     </div>
@@ -146,7 +147,7 @@
                                                 <div onclick="return cart_onclick(@product.Id)" class="product_button product_cart text-center d-flex flex-column align-items-center justify-content-center">
                                                     <div>
                                                         <div>
-                                                            <img src="~/images/cart.svg" class="svg" alt="">
+                                                            <img src="~/Shop/images/cart.svg" class="svg" alt="">
                                                             <div>+</div>
                                                         </div>
                                                     </div>
@@ -159,7 +160,7 @@
                                                 <div onclick="alert('Вы не авторизованы')" class="product_button product_fav text-center d-flex flex-column align-items-center justify-content-center">
                                                     <div>
                                                         <div>
-                                                            <img src="~/images/heart_2.svg" class="svg" alt="">
+                                                            <img src="~/Shop/images/heart_2.svg" class="svg" alt="">
                                                             <div>+</div>
                                                         </div>
                                                     </div>
@@ -167,7 +168,7 @@
                                                 <div onclick="alert('Вы не авторизованы')" class="product_button product_cart text-center d-flex flex-column align-items-center justify-content-center">
                                                     <div>
                                                         <div>
-                                                            <img src="~/images/cart.svg" class="svg" alt="">
+                                                            <img src="~/Shop/images/cart.svg" class="svg" alt="">
                                                             <div>+</div>
                                                         </div>
                                                     </div>
@@ -205,7 +206,7 @@
 
 @section Scripts
 {
-    <script src="~/js/catalog/ProductsScript.js"></script>
+    <script src="~/Shop/js/catalog/ProductsScript.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
 
     <script>

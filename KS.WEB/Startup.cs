@@ -18,6 +18,7 @@ using KS.DataAccess.Repositories;
 using KS.Entities;
 using KS.Interfaces.DataAccess.BusinessLogic.Services;
 using KS.Interfaces.DataAccess.Repositories;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.Extensions.FileProviders;
 
@@ -64,11 +65,24 @@ namespace KS.WEB
             services.AddScoped<IStockRepository, StockRepository>();
             services.AddScoped<IStockService, StockService>();
             services.AddScoped<ICategoryService, CategoryService >();
-            services.AddScoped<ICartService, CartService>();
+            // services.AddScoped<ICartService, CartService>();
             services.AddScoped<IWishListService, WishListService>();
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddScoped<IUserRepository, UserRepository >();
+
+            services.AddDistributedMemoryCache();
+
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromSeconds(10);
+                options.Cookie.HttpOnly = true;
+                options.Cookie.IsEssential = true;
+            });
             
             services.AddControllersWithViews();
             services.AddRazorPages();
+            services.AddHttpContextAccessor();
+            services.AddMemoryCache();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -87,12 +101,8 @@ namespace KS.WEB
             }
 
             app.UseHttpsRedirection();
-            app.UseStaticFiles();            // app.UseStaticFiles(new StaticFileOptions   
-                                             // {  
-                                             //     FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "SharedImages")),  
-                                             //     RequestPath = "/SharedImages"  
-                                             // }); 
-
+            app.UseStaticFiles();
+            app.UseSession();
 
             app.UseRouting();
 
@@ -102,8 +112,13 @@ namespace KS.WEB
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
+                "Areas", 
+                "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+                
+                endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+                
                 endpoints.MapRazorPages();
             });
         }

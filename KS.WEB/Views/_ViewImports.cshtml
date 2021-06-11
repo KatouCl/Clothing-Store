@@ -2,8 +2,8 @@
 @using KS.WEB
 @using KS.WEB.Models
 @using Microsoft.AspNetCore.Identity
-@inject SignInManager<ApplicationUser> SignInManager
-@inject UserManager<ApplicationUser> UserManager
+@inject SignInManager<ApplicationUser> _signInManager
+@inject UserManager<ApplicationUser> _userManager
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
 @using X.PagedList.Mvc.Core;
