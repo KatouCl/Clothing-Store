@@ -1,0 +1,153 @@
+﻿@model KS.ViewModels.Search.SearchResultVm
+
+@{
+    ViewBag.Title = "Результаты поиска";
+    Layout = "_Layout";
+}
+
+
+<head>
+    <title>@ViewBag.Title</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Little Closet template">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="~/Shop/lib/bootstrap-4.1.2/bootstrap.min.css">
+    <link href="~/Shop/plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="~/Shop/plugins/OwlCarousel2-2.2.1/owl.carousel.css">
+    <link rel="stylesheet" type="text/css" href="~/Shop/plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
+    <link rel="stylesheet" type="text/css" href="~/Shop/plugins/OwlCarousel2-2.2.1/animate.css">
+    <link rel="stylesheet" type="text/css" href="~/Shop/css/category.css">
+    <link rel="stylesheet" type="text/css" href="~/Shop/css/category_responsive.css">
+</head>
+
+<div class="super_container">
+
+    <div class="super_container_inner">
+        <div class="super_overlay"></div>
+
+        <!-- Home -->
+
+        <div class="home">
+            <div class="mt-4 home_container d-flex flex-column align-items-center justify-content-end">
+                <div class="home_content text-center">
+                    <div class="home_title">Результат поиска по запросу: @Model.SearchQuery</div>
+                    <div class="breadcrumbs d-flex flex-column align-items-center justify-content-center">
+                        <ul class="d-flex flex-row align-items-start justify-content-start text-center">
+                            <li>
+                                <a asp-controller="Home" asp-action="Index">Главная</a>
+                            </li>
+                            <li>Товары</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Products -->
+
+        <div class="products">
+            <div class="container">
+                <div class="row products_row products_container grid">
+                    @if (Model.EmptySearchResults)
+                    {
+                        foreach (var product in Model.Products)
+                        {
+                            <!-- Product -->
+                            <div class="col-xl-4 col-md-6 grid-item new">
+                                <div class="product">
+                                    <div class="product_image">
+                                        <img src="~/@product.CoverImageUrl" alt="">
+                                    </div>
+                                    <div class="product_content">
+                                        <div class="mb-4 product_info d-flex flex-row align-items-start justify-content-start">
+                                            <div>
+                                                <div>
+                                                    <div class="product_name">
+                                                        <a asp-controller="Product" asp-action="Details" asp-route-id="@product.Id">@product.Name</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="ml-auto text-right">
+                                                <div class="product_price text-right">
+                                                    ₽ @product.Price.ToString("0")<span>.00</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="product_buttons">
+                                            @if (_signInManager.IsSignedIn(User))
+                                            {
+                                                <div class="text-right d-flex flex-row align-items-start justify-content-start">
+                                                    <div onclick="return wishlist_onclick(@product.Id)" class="product_button product_fav text-center d-flex flex-column align-items-center justify-content-center">
+                                                        <div>
+                                                            <div>
+                                                                <img src="~/Shop/images/heart_2.svg" class="svg" alt="">
+                                                                <div>+</div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div onclick="return cart_onclick(@product.Id)" class="product_button product_cart text-center d-flex flex-column align-items-center justify-content-center">
+                                                        <div>
+                                                            <div>
+                                                                <img src="~/Shop/images/cart.svg" class="svg" alt="">
+                                                                <div>+</div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            }
+                                            else
+                                            {
+                                                <div class="text-right d-flex flex-row align-items-start justify-content-start">
+                                                    <div onclick="alert('Вы не авторизованы')" class="product_button product_fav text-center d-flex flex-column align-items-center justify-content-center">
+                                                        <div>
+                                                            <div>
+                                                                <img src="~/Shop/images/heart_2.svg" class="svg" alt="">
+                                                                <div>+</div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div onclick="alert('Вы не авторизованы')" class="product_button product_cart text-center d-flex flex-column align-items-center justify-content-center">
+                                                        <div>
+                                                            <div>
+                                                                <img src="~/Shop/images/cart.svg" class="svg" alt="">
+                                                                <div>+</div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+                    else
+                    {
+                        <div class="text-center d-block mx-auto">
+                            <h3>Товаров по вашему запросу "@Model.SearchQuery" нет</h3>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts
+{
+    <script src="~/Shop/js/catalog/ProductMen.js"></script>
+
+    <script>
+            function cart_onclick(productId) {
+                window.location = "/Cart/AddToCart?productId=" + productId + "&quantity=" + 1;
+                return alert("Товар добавлен в корзину");
+            }
+            
+            function wishlist_onclick(productId) {
+                window.location = "/WishList/AddToWishList?productId=" + productId;
+                return alert("Товар добавлен в список желаний");
+            }
+    </script>
+}

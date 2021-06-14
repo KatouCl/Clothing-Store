@@ -7,7 +7,7 @@ namespace KS.ViewModels.Warehouse
         public long Id { get; set; }
 
         public string Name { get; set; }
-
+        public long ProductId { get; set; }
         public int? Quantity { get; set; }
         public bool isChech { get; set; }
         public bool IsExistInWarehouse

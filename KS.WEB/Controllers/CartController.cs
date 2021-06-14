@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using KS.Entities;
 using KS.Interfaces.DataAccess.BusinessLogic.Services;
 using KS.Interfaces.DataAccess.Repositories;
+using KS.ViewModels;
 using KS.ViewModels.Cart;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -15,82 +18,83 @@ namespace KS.WEB.Controllers
     public class CartController : Controller
     {
         private readonly IBaseRepository<CartItem> _cartRepository;
+        private readonly IBaseRepository<Product> _productRepository;
         private readonly ICartService _cartService;
         private readonly UserManager<ApplicationUser> _userManager;
-        private readonly ISession _session;
 
         public CartController(
             ICartService cartService,
             UserManager<ApplicationUser> userManager,
             IBaseRepository<CartItem> cartRepository,
-            ISession session)
+            IBaseRepository<Product> productRepository)
         {
             _cartService = cartService;
             _userManager = userManager;
             _cartRepository = cartRepository;
-            _session = session;
+            _productRepository = productRepository;
         }
-
-        public class Reqst
-        {
-            public int ProductId { get; set; }
-            public int Quantity { get; set; }
-        }
-
+        
         public async Task<IActionResult> Index()
         {
-            var currentUser = await _userManager.GetUserAsync(HttpContext.User);
-            if (currentUser == null)
-            {
-                ViewBag["SM"] = "Вы не авторизованы";
-                return RedirectToAction("Index", "Home");
-            }
-
-            var cartListProducts = _cartService.GetCartDetails(currentUser.Id);
-            // var cartListProducts = _cartService.GetCartDetailsAsync(HttpContext.Session);
-
-            return View(cartListProducts);
+            var cartDetails = await _cartService.GetCartDetailsAsync(HttpContext.Session);
+            return View(cartDetails);
         }
 
-        public async Task<IActionResult> AddToCart(int productId, int? quantity)
+        [Authorize]
+        public  IActionResult AddToCart(int productId, int? quantity)
         {
-            var currentUser = await _userManager.GetUserAsync(HttpContext.User);
-            if (currentUser == null)
+            var product = _productRepository.GetByIdAsync(productId).Result;
+            var addProductToCart = new CartItemVm
             {
-                TempData["SM"] = "Вы не авторизованы";
-                return RedirectToAction("Index", "Home");
-            }
-            
-            var cartProduct = new CartItemVm
-            {
+                Id = productId,
                 ProductId = productId,
+                ProductName = product.Name,
+                Price = product.Price,
+                ImageUrl = product.CoverImageUrl,
                 Quantity = quantity?? 1
             };
-
-            var stringObject = JsonConvert.SerializeObject(cartProduct);
-            _session.SetString("cart", stringObject);
             
-            _cartService.AddToCart(HttpContext.Session, cartProduct);
-
+            _cartService.AddProductToCart(HttpContext.Session, addProductToCart);
+            
             TempData["SM"] = "Товар добавлен";
             return RedirectToAction("Details", "Product", new {id = productId});
         }
 
-        public async Task<IActionResult> RemoveFromCart(int id)
+        [Authorize]
+        public IActionResult RemoveFromCart(int id)
+        {
+            var removeProductFromCart = new CartItemVm { Id = id };
+            _cartService.RemoveProductFromCart(HttpContext.Session, removeProductFromCart);
+
+            TempData["SM"] = "Вы успешно удалили.";
+            return RedirectToAction("Index", "Cart");
+        }
+
+        public IActionResult CheckoutOrder()
+        {
+            var cartDetails =  _cartService.GetCartDetailsAsync(HttpContext.Session);
+            ViewBag.TotalPrice = cartDetails.Result.Price.ToString("0");
+            
+            return View();
+        }
+        
+        [Authorize]
+        public async Task<IActionResult> Checkout(CheckoutVm checkout)
         {
             var currentUser = await _userManager.GetUserAsync(HttpContext.User);
-            if (currentUser == null)
-            {
-                TempData["SM"] = "Вы не авторизованы";
-                return RedirectToAction("Index", "Home");
-            }
+            await _cartService.Checkout(HttpContext.Session, checkout, currentUser);
+            return View();
+        }
 
-            var product = await _cartRepository.GetByIdAsync(id);
-
-            await _cartRepository.DeleteAsync(product);
-            TempData["SM"] = "Вы успешно удалили.";
-
+        public IActionResult ClearCart()
+        {
+            _cartService.ClearProductFromCart(HttpContext.Session);
             return RedirectToAction("Index", "Cart");
+        }
+        public int GetCartQuantity()
+        {
+            var cartQuantity = _cartService.GetCartQuantity(HttpContext.Session);
+            return cartQuantity;
         }
     }
 }

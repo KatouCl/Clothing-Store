@@ -39,4 +39,3 @@ M:\KataStore\KS.BusinessLogic\obj\Debug\net5.0\KS.BusinessLogic.pdb
 M:\KataStore\KS.BusinessLogic\bin\Debug\net5.0\KS.DataAccess.dll
 M:\KataStore\KS.BusinessLogic\bin\Debug\net5.0\KS.DataAccess.pdb
 M:\KataStore\KS.BusinessLogic\bin\Debug\net5.0\Microsoft.AspNetCore.Http.Abstractions.dll
-M:\KataStore\KS.BusinessLogic\bin\Debug\net5.0\Microsoft.Net.Http.Headers.dll

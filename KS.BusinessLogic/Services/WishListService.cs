@@ -13,7 +13,8 @@ namespace KS.BusinessLogic.Services
         private readonly IBaseRepository<Product> _productRepository;
         private readonly IBaseRepository<WishList> _wishListRepository;
 
-        public WishListService(IBaseRepository<Product> productRepository,
+        public WishListService(
+            IBaseRepository<Product> productRepository,
             IBaseRepository<WishList> wishListRepository)
         {
             _productRepository = productRepository;

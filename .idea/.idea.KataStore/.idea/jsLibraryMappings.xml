@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="JavaScriptLibraryMappings">
-    <file url="PROJECT" libraries="{bootstrap-editable, bootstrap-table, buttons.bootstrap4, buttons.colVis, buttons.html5, buttons.print, dataTables.bootstrap4, dataTables.buttons, dataTables.responsive, jquery, jquery-3.3.1, jquery-3.5.0, jquery.dataTables, jszip, pdfmake, responsive.bootstrap4, tableExport, tableexport.jquery.plugin, twitter-bootstrap}" />
+    <file url="PROJECT" libraries="{bootstrap-editable, bootstrap-table, buttons.bootstrap4, buttons.colVis, buttons.html5, buttons.print, dataTables.bootstrap4, dataTables.buttons, dataTables.responsive, jquery, jquery-3.3.1, jquery-3.5.0, jquery.dataTables, jquery.validate.unobtrusive, jszip, pdfmake, responsive.bootstrap4, tableExport, tableexport.jquery.plugin, twitter-bootstrap}" />
   </component>
 </project>

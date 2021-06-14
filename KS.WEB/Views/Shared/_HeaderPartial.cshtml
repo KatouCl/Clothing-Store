@@ -35,9 +35,13 @@
         <div class="header_right d-flex flex-row align-items-center justify-content-start ml-auto">
             <!-- Search -->
             <div class="header_search">
-                <form action="#" id="header_search_form">
-                    <input type="text" class="search_input" placeholder="Поиск " required="required">
-                    <button class="header_search_button">
+                <form id="header_search_form">
+                    <input id="search" type="text" class="search_input" placeholder="Поиск..." required="required">
+                    <button onclick="function searchQuery() {
+                        var str = form.search;
+                        window.location = '/Search/Search?searchQuery=' + str;
+                    }
+                    return searchQuery();" class="header_search_button" type="submit">
                         <img src="~/Shop/images/search.png" alt="">
                     </button>
                 </form>

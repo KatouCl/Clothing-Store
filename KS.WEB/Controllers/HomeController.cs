@@ -3,26 +3,40 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using KS.Interfaces.DataAccess.BusinessLogic.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using KS.WEB.Models;
+using X.PagedList;
 
 namespace KS.WEB.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly ICategoryService _categoryService;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(
+            ILogger<HomeController> logger,
+            ICategoryService categoryService)
         {
             _logger = logger;
+            _categoryService = categoryService;
         }
 
+        public async Task<IActionResult> LastProduct(long? categoryId)
+        {
+            var catalogListing = await _categoryService.GetProductForCatalog(categoryId)
+                .Take(6)
+                .ToListAsync();
+            return PartialView();
+        }
         public IActionResult Index()
         {
             return View();
         }
 
+            
         public IActionResult Privacy()
         {
             return View();

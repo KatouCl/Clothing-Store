@@ -21,6 +21,7 @@ using KS.Interfaces.DataAccess.Repositories;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.Extensions.FileProviders;
+using Newtonsoft.Json;
 
 namespace KS.WEB
 {
@@ -65,20 +66,16 @@ namespace KS.WEB
             services.AddScoped<IStockRepository, StockRepository>();
             services.AddScoped<IStockService, StockService>();
             services.AddScoped<ICategoryService, CategoryService >();
-            // services.AddScoped<ICartService, CartService>();
             services.AddScoped<IWishListService, WishListService>();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddScoped<IUserRepository, UserRepository >();
+            services.AddScoped<ISearchService, SearchService >();
+            services.AddScoped<ICartService, CartService>();
+            
 
             services.AddDistributedMemoryCache();
 
-            services.AddSession(options =>
-            {
-                options.IdleTimeout = TimeSpan.FromSeconds(10);
-                options.Cookie.HttpOnly = true;
-                options.Cookie.IsEssential = true;
-            });
-            
+            services.AddSession();
             services.AddControllersWithViews();
             services.AddRazorPages();
             services.AddHttpContextAccessor();

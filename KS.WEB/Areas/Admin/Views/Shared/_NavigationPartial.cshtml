@@ -3,7 +3,7 @@
 <nav id="sidebar" class="sidebar">
     <div class="sidebar-content js-simplebar">
         <a class="sidebar-brand" asp-controller="Home" asp-action="Index">
-            <span class="align-middle">Admin Panel</span>
+            <span class="align-middle">Панель администратора</span>
         </a>
         <ul class="sidebar-nav">
             <li class="sidebar-header">
@@ -20,9 +20,6 @@
                     <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Сайт</span>
                 </a>
                 <ul id="site" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
-                    @* <li class="sidebar-item"> *@
-                    @*     <a class="sidebar-link" href="#">Отзывы</a> *@
-                    @* </li> *@
                     <li class="sidebar-item">
                         <a class="sidebar-link" href="#">Контакты</a>
                     </li>
@@ -37,9 +34,6 @@
                     <li class="sidebar-item">
                         <a asp-controller="Product" asp-action="Index" class="sidebar-link">Товары</a>
                     </li>
-                    @* <li class="sidebar-item"> *@
-                    @*     <a class="sidebar-link">Цены на продукцию</a> *@
-                    @* </li> *@
                     <li class="sidebar-item">
                         <a asp-controller="Category" asp-action="Index" class="sidebar-link">Категории</a>
                     </li>
@@ -76,63 +70,22 @@
                     </li>
                 </ul>
             </li>
-
-            @* <li class="sidebar-header"> *@
-            @*     Отчеты *@
-            @* </li> *@
-            @* <li class="sidebar-item"> *@
-            @*     <a data-bs-target="#ui" data-bs-toggle="collapse" class="sidebar-link collapsed"> *@
-            @*         <i class="align-middle" data-feather="briefcase"></i> <span class="align-middle">UI Elements</span> *@
-            @*     </a> *@
-            @*     <ul id="ui" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar"> *@
-            @*         <li class="sidebar-item"> *@
-            @*             <a class="sidebar-link" href="ui-alerts.html">Alerts</a> *@
-            @*         </li> *@
-            @*         <li class="sidebar-item"> *@
-            @*             <a class="sidebar-link" href="ui-buttons.html">Buttons</a> *@
-            @*         </li> *@
-            @*         <li class="sidebar-item"> *@
-            @*             <a class="sidebar-link" href="ui-cards.html">Cards</a> *@
-            @*         </li> *@
-            @*         <li class="sidebar-item"> *@
-            @*             <a class="sidebar-link" href="ui-general.html">General</a> *@
-            @*         </li> *@
-            @*         <li class="sidebar-item"> *@
-            @*             <a class="sidebar-link" href="ui-grid.html">Grid</a> *@
-            @*         </li> *@
-            @*         <li class="sidebar-item"> *@
-            @*             <a class="sidebar-link" href="ui-typography.html">Typography</a> *@
-            @*         </li> *@
-            @*     </ul> *@
-            @* </li> *@
-
-            @* <li class="sidebar-item"> *@
-            @*     <a class="sidebar-link" href="icons-feather.html"> *@
-            @*         <i class="align-middle" data-feather="coffee"></i> <span class="align-middle">Icons</span> *@
-            @*     </a> *@
-            @* </li> *@
-            @* *@
-            @* <li class="sidebar-item"> *@
-            @*     <a class="sidebar-link" href="forms-basic-inputs.html"> *@
-            @*         <i class="align-middle" data-feather="check-circle"></i> <span class="align-middle">Forms</span> *@
-            @*     </a> *@
-            @* </li> *@
-
-            @* <li class="sidebar-header"> *@
-            @*     Plugins & Addons *@
-            @* </li> *@
-            @* *@
-            @* <li class="sidebar-item"> *@
-            @*     <a class="sidebar-link" href="charts-chartjs.html"> *@
-            @*         <i class="align-middle" data-feather="bar-chart-2"></i> <span class="align-middle">Charts</span> *@
-            @*     </a> *@
-            @* </li> *@
-            @* *@
-            @* <li class="sidebar-item"> *@
-            @*     <a class="sidebar-link" href="maps-google.html"> *@
-            @*         <i class="align-middle" data-feather="map"></i> <span class="align-middle">Maps</span> *@
-            @*     </a> *@
-            @* </li> *@
+            
+            <li class="sidebar-header">
+                Отчёты
+            </li>
+            <li class="sidebar-item">
+                <a href="#chart" data-bs-toggle="collapse" class="sidebar-link collapsed">
+                    <i class="align-middle" data-feather="bar-chart-2"></i> <span class="align-middle">Отчёты</span>
+                </a>
+                <ul id="chart" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
+                    <li class="sidebar-item">
+                        <a class="sidebar-link">
+                            <i class="align-middle"></i> <span class="align-middle">Отчеты</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
         </ul>
     </div>
 </nav>

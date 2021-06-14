@@ -10,11 +10,11 @@ namespace KS.Interfaces.DataAccess.BusinessLogic.Services
 {
     public interface ICartService
     {
-        // Task<ProductCartVm> GetCartDetailsAsync(ISession session);
-        void AddToCart(ISession session, CartItemVm addProductToCart);
-
-        IList<CartItemVm> GetCartDetails(string customerId);
-        // int GetCartQuantity(ISession session);
-        // Task<int> Checkout(ISession session, CheckoutVm checkout);
+        void AddProductToCart(ISession session, CartItemVm addProductToCart);
+        void ClearProductFromCart(ISession session);
+        Task<ProductCartVm> GetCartDetailsAsync(ISession session);
+        void RemoveProductFromCart(ISession session, CartItemVm removeProductFromCart);
+        int GetCartQuantity(ISession session);
+        Task<int> Checkout(ISession session, CheckoutVm checkout, ApplicationUser customer);
     }
 }

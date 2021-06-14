@@ -155,8 +155,7 @@ namespace KS.WEB.Areas.Admin.Controllers
                 Warehouse = _warehouseRepository.GetByIdAsync(x.WarehouseId).Result,
                 WarehouseId = x.WarehouseId,
                 ProductId = x.ProductId,
-                Quantity = x.Quantity,
-                ReservedQuantity = x.ReservedQuantity
+                Quantity = x.Quantity
             });
 
             var query = _productRepository.GetAll().Join(stocksList,
@@ -165,6 +164,7 @@ namespace KS.WEB.Areas.Admin.Controllers
                 (product, stock) => new MangeWarehouseProductItemViewModel
                 {
                     Id = product.Id,
+                    ProductId = product.Id,
                     Name = product.Name,
                     Quantity = stock.Quantity
                 }

@@ -1,0 +1,162 @@
+﻿@model KS.ViewModels.CheckoutVm
+
+@{
+    ViewBag.Title = "Оформление заказа";
+    Layout = "_Layout";
+}
+<head>
+    <title>@ViewBag.Title</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Little Closet template">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="~/Shop/lib/bootstrap-4.1.2/bootstrap.min.css">
+    <link href="~/Shop/plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="~/Shop/css/checkout.css">
+    <link rel="stylesheet" type="text/css" href="~/Shop/css/checkout_responsive.css">
+</head>
+
+
+<div class="super_container">
+    <div class="super_container_inner">
+        <div class="super_overlay"></div>
+
+        <!-- Home -->
+        <div class="home">
+            <div class="home_container d-flex flex-column align-items-center justify-content-end">
+                <div class="home_content text-center">
+                    <div class="home_title">Оформление заказа</div>
+                    <div class="breadcrumbs d-flex flex-column align-items-center justify-content-center">
+                        <ul class="d-flex flex-row align-items-start justify-content-start text-center">
+                            <li>
+                                <a asp-controller="Home" asp-action="Index">Главная</a>
+                            </li>
+                            <li>Проверка</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Checkout -->
+
+        <div class="checkout">
+            <div class="container">
+                <form asp-controller="Cart" asp-action="Checkout" method="post" id="CheckoutForm">
+                    <div class="row">
+                        
+                        <!-- Billing -->
+                        <div class="col-lg-6">
+                            <div class="billing">
+                                <div class="checkout_title">Адрес доставки</div>
+                                <div class="checkout_form_container">
+                                    <div id="checkout_form" class="checkout_form">
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <!-- Name -->
+                                                <input asp-for="FirstName" type="text" class="checkout_input" placeholder="Имя" required="required">
+                                                <span asp-validation-for="FirstName"></span>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <!-- Last Name -->
+                                                <input asp-for="LastName" type="text" class="checkout_input" placeholder="Фамилия" required="required">
+                                                <span asp-validation-for="LastName"></span>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <!-- Country -->
+                                            <input asp-for="Country" type="text" placeholder="Страна" class="checkout_input">
+                                            <span asp-validation-for="Country"></span>
+                                        </div>
+                                        <div>
+                                            <!-- City -->
+                                            <input asp-for="City" type="text" placeholder="Город" class="checkout_input">
+                                            <span asp-validation-for="City"></span>
+                                        </div>
+                                        <div>
+                                            <!-- Region -->
+                                            <input asp-for="Region" type="text" placeholder="Регион" class="checkout_input">
+                                            <span asp-validation-for="Region"></span>
+                                        </div>
+                                        <div>
+                                            <!-- Address -->
+                                            <input asp-for="Address" type="text" placeholder="Адрес" class="checkout_input">
+                                            <span asp-validation-for="Address"></span>
+                                        </div>
+                                        <div>
+                                            <!-- Phone -->
+                                            <input asp-for="Phone" type="phone" class="checkout_input" placeholder="Телефон" required="required">
+                                            <span asp-validation-for="Phone"></span>
+                                        </div>
+                                        <div>
+                                            <!-- Email -->
+                                            <input asp-for="Email" type="email" class="checkout_input" placeholder="Почта" required="required">
+                                            <span asp-validation-for="Email"></span>
+                                        </div>
+                                        <div>
+                                            <!-- Comment -->
+                                            <textarea asp-for="Comment" class="checkout_input" placeholder="Комментарий к заказу" required="required"></textarea>
+                                            <span asp-validation-for="Comment"></span>
+                                        </div>
+                                        <div asp-validation-summary="All" class="text-danger"></div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Cart Total -->
+                        <div class="col-lg-6 cart_col">
+                            <div class="cart_total">
+                                <div class="cart_extra_content cart_extra_total">
+                                    <div class="checkout_title">Всего в корзине</div>
+                                    <ul class="cart_extra_total_list">
+                                        <li class="d-flex flex-row align-items-center justify-content-start">
+                                            <div class="cart_extra_total_title">Итог:</div>
+                                            <div class="cart_extra_total_value ml-auto">₽ @ViewBag.TotalPrice</div>
+                                        </li>
+                                        <li class="d-flex flex-row align-items-center justify-content-start">
+                                            <div class="cart_extra_total_title">Доставка</div>
+                                            <div class="cart_extra_total_value ml-auto">Бесплатно</div>
+                                        </li>
+                                        <li class="d-flex flex-row align-items-center justify-content-start">
+                                            <div class="cart_extra_total_title">Весь заказ</div>
+                                            <div class="cart_extra_total_value ml-auto">₽ @ViewBag.TotalPrice</div>
+                                        </li>
+                                    </ul>
+                                    <div class="payment_options">
+                                        <div class="checkout_title">Способы оплаты</div>
+                                        <ul>
+                                            <li class="shipping_option d-flex flex-row align-items-center justify-content-start">
+                                                <label class="radio_container" disabled="disabled">
+                                                    <input type="radio" id="radio_3" name="payment_radio" class="payment_radio" checked="">
+                                                    <span class="radio_mark"></span>
+                                                    <span class="radio_text">Кредитная карта</span>
+                                                </label>
+                                            </li>
+                                            <li class="shipping_option d-flex flex-row align-items-center justify-content-start">
+                                                <label class="radio_container" disabled="disabled">
+                                                    <input type="radio" id="radio_1" name="payment_radio" class="payment_radio" disabled>
+                                                    <span class="radio_mark"></span>
+                                                    <span class="radio_text">PayPal</span>
+                                                </label>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="cart_text">
+                                        <p>Доставка до 2 раз быстрее, если вы покупаете только в нашем магазин</p>
+                                    </div>
+                                    <div class="checkout_button trans_200">
+                                        <a onclick="document.getElementById('CheckoutForm').submit()">Заказать</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+
+</div>

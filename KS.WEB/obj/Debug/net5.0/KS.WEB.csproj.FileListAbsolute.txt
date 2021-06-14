@@ -468,3 +468,7 @@ M:\KataStore\KS.WEB\obj\Debug\net5.0\Razor\Areas\Admin\Views\Warehouse\Storage.c
 M:\KataStore\KS.WEB\obj\Debug\net5.0\Razor\Areas\Admin\Views\_ViewImports.cshtml.g.cs
 M:\KataStore\KS.WEB\obj\Debug\net5.0\Razor\Areas\Admin\Views\_ViewStart.cshtml.g.cs
 M:\KataStore\KS.WEB\obj\Debug\net5.0\Razor\Areas\Admin\Views\Shared\_AdminLayout.cshtml.g.cs
+M:\KataStore\KS.WEB\obj\Debug\net5.0\Razor\Views\Home\LastProduct.cshtml.g.cs
+M:\KataStore\KS.WEB\obj\Debug\net5.0\Razor\Views\Search\Result.cshtml.g.cs
+M:\KataStore\KS.WEB\obj\Debug\net5.0\Razor\Views\Cart\Checkout.cshtml.g.cs
+M:\KataStore\KS.WEB\obj\Debug\net5.0\Razor\Views\Cart\CheckoutOrder.cshtml.g.cs

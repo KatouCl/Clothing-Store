@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using KS.Entities;
 using KS.Interfaces.DataAccess.BusinessLogic.Services;
 using KS.Interfaces.DataAccess.Repositories;
+using KS.ViewModels.Stock;
 using KS.ViewModels.Warehouse;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -17,6 +18,7 @@ namespace KS.WEB.Areas.Admin.Controllers
     {
         private readonly IBaseRepository<Warehouse> _warehouseRepository;
         private readonly IBaseRepository<Product> _productRepository;
+        private readonly IStockService _stockService;
         private readonly IBaseRepository<Stock> _stockRepository;
 
 
@@ -30,6 +32,7 @@ namespace KS.WEB.Areas.Admin.Controllers
             _warehouseRepository = warehouseRepository;
             _productRepository = productRepository;
             _stockRepository = stockRepository;
+            _stockService = stockService;
         }
 
         // GET
@@ -50,8 +53,7 @@ namespace KS.WEB.Areas.Admin.Controllers
                     Warehouse = _warehouseRepository.GetByIdAsync(x.WarehouseId).Result,
                     WarehouseId = x.WarehouseId,
                     ProductId = x.ProductId,
-                    Quantity = x.Quantity,
-                    ReservedQuantity = x.ReservedQuantity
+                    Quantity = x.Quantity
                 });
 
             var joinedQuery = query.GroupJoin
@@ -105,6 +107,18 @@ namespace KS.WEB.Areas.Admin.Controllers
             }
 
             return RedirectToAction("Storage", "Warehouse");
+        }
+
+        public async Task<IActionResult> UpdateQuantityProduct(long warehouseId, long productId, int quantity)
+        {
+            var stockUpdateVm = new StockUpdateVm
+            {
+                WarehouseId = warehouseId,
+                ProductId = productId,
+                Quantity = quantity
+            };
+            await _stockService.UpdateStock(stockUpdateVm);
+            return RedirectToAction("Stocks", "Warehouse", new {warehouseId = warehouseId});
         }
     }
 }

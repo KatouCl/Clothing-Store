@@ -110,95 +110,107 @@
                     </div>
                 </div>
                 <div class="row products_row products_container grid">
-                    @foreach (var product in Model)
+                    @if (Model.Any())
                     {
-                        <!-- Product -->
-                        <div class="col-xl-4 col-md-6 grid-item new">
-                            <div class="product">
-                                <div class="product_image">
-                                    <img src="~/@product.CoverImageUrl" alt="">
-                                    @* <img src="@Url.Content($"{product.CoverImageUrl}")" alt="@product.Name"> *@
-                                </div>
-                                <div class="product_content">
-                                    <div class="mb-4 product_info d-flex flex-row align-items-start justify-content-start">
-                                        <div>
-                                            <div>
-                                                <div class="product_name">
-                                                    <a asp-controller="Product" asp-action="Details" asp-route-id="@product.Id">@product.Name</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="ml-auto text-right">
-                                            <div class="product_price text-right">
-                                                ₽ @product.Price.ToString("0") <span>.00</span>
-                                            </div>
-                                        </div>
+                        foreach (var product in Model)
+                        {
+                            <!-- Product -->
+                            <div class="col-xl-4 col-md-6 grid-item new">
+                                <div class="product">
+                                    <div class="product_image">
+                                        <img src="~/@product.CoverImageUrl" alt="">
+                                        @* <img src="@Url.Content($"{product.CoverImageUrl}")" alt="@product.Name"> *@
                                     </div>
-                                    <div class="product_buttons">
-                                        @if (_signInManager.IsSignedIn(User))
-                                        {
-                                            <div class="text-right d-flex flex-row align-items-start justify-content-start">
-                                                <div onclick="return wishlist_onclick(@product.Id)" class="product_button product_fav text-center d-flex flex-column align-items-center justify-content-center">
-                                                    <div>
-                                                        <div>
-                                                            <img src="~/Shop/images/heart_2.svg" class="svg" alt="">
-                                                            <div>+</div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div onclick="return cart_onclick(@product.Id)" class="product_button product_cart text-center d-flex flex-column align-items-center justify-content-center">
-                                                    <div>
-                                                        <div>
-                                                            <img src="~/Shop/images/cart.svg" class="svg" alt="">
-                                                            <div>+</div>
-                                                        </div>
+                                    <div class="product_content">
+                                        <div class="mb-4 product_info d-flex flex-row align-items-start justify-content-start">
+                                            <div>
+                                                <div>
+                                                    <div class="product_name">
+                                                        <a asp-controller="Product" asp-action="Details" asp-route-id="@product.Id">@product.Name</a>
                                                     </div>
                                                 </div>
                                             </div>
-                                        }
-                                        else
-                                        {
-                                            <div class="text-right d-flex flex-row align-items-start justify-content-start">
-                                                <div onclick="alert('Вы не авторизованы')" class="product_button product_fav text-center d-flex flex-column align-items-center justify-content-center">
-                                                    <div>
-                                                        <div>
-                                                            <img src="~/Shop/images/heart_2.svg" class="svg" alt="">
-                                                            <div>+</div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div onclick="alert('Вы не авторизованы')" class="product_button product_cart text-center d-flex flex-column align-items-center justify-content-center">
-                                                    <div>
-                                                        <div>
-                                                            <img src="~/Shop/images/cart.svg" class="svg" alt="">
-                                                            <div>+</div>
-                                                        </div>
-                                                    </div>
+                                            <div class="ml-auto text-right">
+                                                <div class="product_price text-right">
+                                                    ₽ @product.Price.ToString("0")<span>.00</span>
                                                 </div>
                                             </div>
-                                        }
+                                        </div>
+                                        <div class="product_buttons">
+                                            @if (_signInManager.IsSignedIn(User))
+                                            {
+                                                <div class="text-right d-flex flex-row align-items-start justify-content-start">
+                                                    <div onclick="return wishlist_onclick(@product.Id)" class="product_button product_fav text-center d-flex flex-column align-items-center justify-content-center">
+                                                        <div>
+                                                            <div>
+                                                                <img src="~/Shop/images/heart_2.svg" class="svg" alt="">
+                                                                <div>+</div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div onclick="return cart_onclick(@product.Id)" class="product_button product_cart text-center d-flex flex-column align-items-center justify-content-center">
+                                                        <div>
+                                                            <div>
+                                                                <img src="~/Shop/images/cart.svg" class="svg" alt="">
+                                                                <div>+</div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            }
+                                            else
+                                            {
+                                                <div class="text-right d-flex flex-row align-items-start justify-content-start">
+                                                    <div onclick="alert('Вы не авторизованы')" class="product_button product_fav text-center d-flex flex-column align-items-center justify-content-center">
+                                                        <div>
+                                                            <div>
+                                                                <img src="~/Shop/images/heart_2.svg" class="svg" alt="">
+                                                                <div>+</div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div onclick="alert('Вы не авторизованы')" class="product_button product_cart text-center d-flex flex-column align-items-center justify-content-center">
+                                                        <div>
+                                                            <div>
+                                                                <img src="~/Shop/images/cart.svg" class="svg" alt="">
+                                                                <div>+</div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            }
+                                        </div>
                                     </div>
                                 </div>
                             </div>
+                        }
+                    }
+                    else
+                    {
+                        <div class="text-center ">
+                            <h3>Товаров нет</h3>
                         </div>
                     }
                 </div>
-                <div class="row page_nav_row">
-                    <div class="col">
-                        <div class="page_nav">
-                            @Html.PagedListPager((IPagedList) Model, page => Url.Action("Index", new {page, categoryId = ViewBag.SelectedCategory}),
-                                new PagedListRenderOptions
-                                {
-                                    DisplayLinkToIndividualPages = true,
-                                    DisplayPageCountAndCurrentLocation = false,
-                                    MaximumPageNumbersToDisplay = 10,
-                                    UlElementClasses = new string[] {"d-flex flex-row align-items-start justify-content-center"},
-                                    LiElementClasses = new string[] {""},
-                                    PageClasses = new string[] {"active"},
-                                })
+                @if (Model.Any())
+                {
+                    <div class="row page_nav_row">
+                        <div class="col">
+                            <div class="page_nav">
+                                @Html.PagedListPager((IPagedList) Model, page => Url.Action("Index", new {page, categoryId = ViewBag.SelectedCategory}),
+                                    new PagedListRenderOptions
+                                    {
+                                        DisplayLinkToIndividualPages = true,
+                                        DisplayPageCountAndCurrentLocation = false,
+                                        MaximumPageNumbersToDisplay = 10,
+                                        UlElementClasses = new string[] {"d-flex flex-row align-items-start justify-content-center"},
+                                        LiElementClasses = new string[] {""},
+                                        PageClasses = new string[] {"active"},
+                                    })
+                            </div>
                         </div>
                     </div>
-                </div>
+                }
             </div>
         </div>
     </div>

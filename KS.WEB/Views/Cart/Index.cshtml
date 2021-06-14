@@ -1,4 +1,5 @@
-﻿@model System.Collections.Generic.IList<KS.ViewModels.Cart.CartItemVm>
+﻿@model KS.ViewModels.Cart.ProductCartVm
+
 
 @{
     ViewBag.Title = "Корзина";
@@ -70,9 +71,9 @@
                             <!-- Cart Items -->
                             <div class="cart_items">
                                 <ul class="cart_items_list">
-                                    @if (Model.Any())
+                                    @if (Model.Products.Any())
                                     {
-                                        foreach (var item in Model)
+                                        foreach (var item in Model.Products)
                                         {
                                             totalAmount += @item.Price * @item.Quantity;
                                             <!-- Cart Item -->
@@ -128,12 +129,21 @@
                             <!-- Cart Buttons -->
                             <div class="cart_buttons d-flex flex-row align-items-start justify-content-start">
                                 <div class="cart_buttons_inner ml-sm-auto d-flex flex-row align-items-start justify-content-start flex-wrap">
-                                    <div class="button button_clear trans_200">
-                                        <a>Очистить корзину</a>
-                                    </div>
                                     <div class="button button_continue trans_200">
-                                        <a>Оформить</a>
+                                        <a asp-controller="Cart" asp-action="ClearCart">Очистить</a>
                                     </div>
+                                    @if (totalAmount < -1)
+                                    {
+                                        <div class="button button_continue trans_200">
+                                            <a asp-controller="Cart" asp-action="CheckoutOrder">Оформить</a>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="button button_continue trans_200">
+                                            <a asp-controller="Cart" asp-action="CheckoutOrder">Оформить</a>
+                                        </div>
+                                    }
                                 </div>
                             </div>
                         </div>
@@ -143,14 +153,14 @@
                     <div class="col-lg-6">
                         <div class="cart_extra cart_extra_1">
                             <div class="cart_extra_content cart_extra_coupon">
-                                <div class="cart_extra_title">Купон</div>
-                                <div class="coupon_form_container">
-                                    <form action="#" id="coupon_form" class="coupon_form">
-                                        <input type="text" class="coupon_input" required="required" disabled>
-                                        <button class="coupon_button" disabled>Применить</button>
-                                    </form>
-                                </div>
-                                <div class="coupon_text"></div>
+                                @* <div class="cart_extra_title">Купон</div> *@
+                                @* <div class="coupon_form_container"> *@
+                                @*     <form action="#" id="coupon_form" class="coupon_form"> *@
+                                @*         <input type="text" class="coupon_input" required="required" disabled> *@
+                                @*         <button class="coupon_button" disabled>Применить</button> *@
+                                @*     </form> *@
+                                @* </div> *@
+                                @* <div class="coupon_text"></div> *@
                                 <div class="shipping">
                                     <div class="cart_extra_title">Способы доставки</div>
                                     <ul>
@@ -172,7 +182,7 @@
                                         @* </li> *@
                                         <li class="shipping_option d-flex flex-row align-items-center justify-content-start">
                                             <label class="radio_container">
-                                                <input type="radio" id="radio_3" name="shipping_radio" class="shipping_radio">
+                                                <input type="radio" id="radio_3" name="shipping_radio" class="shipping_radio" >
                                                 <span class="radio_mark"></span>
                                                 <span class="radio_text">Бесплатная доставка</span>
                                             </label>
@@ -201,9 +211,18 @@
                                         <div class="cart_extra_total_value ml-auto">₽ @totalAmount.ToString("0")</div>
                                     </li>
                                 </ul>
-                                <div class="checkout_button trans_200" disabled>
-                                    <a>Перейти к оформлению заказа</a>
-                                </div>
+                                @if (totalAmount < -1)
+                                {
+                                    <div class="checkout_button trans_200">
+                                        <a asp-controller="Cart" asp-action="CheckoutOrder">Перейти к оформлению заказа</a>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="checkout_button trans_200" data-disabled>
+                                        <a asp-controller="Cart" asp-action="CheckoutOrder">Перейти к оформлению заказа ee</a>
+                                    </div>
+                                }
                             </div>
                         </div>
                     </div>
@@ -227,7 +246,7 @@
             },5000);
         });
     </script>
-    
+
     <script type="text/javascript">
     
     $(document).ready(function () {

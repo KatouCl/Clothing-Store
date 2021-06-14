@@ -4,48 +4,75 @@
     <title>@ViewData</title>
     ViewData["Title"] = "Создание аккаунта";
 }
+<head>
+    <title>@ViewData["Title"]</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Little Closet template">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="~/Shop/lib/bootstrap-4.1.2/bootstrap.min.css">
+    <link href="~/Shop/plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="~/Shop/css/checkout.css">
+    <link rel="stylesheet" type="text/css" href="~/Shop/css/checkout_responsive.css">
+</head>
 
-<h1>@ViewData["Title"]</h1>
+@* <partial name="_StatusMessage" model="Model.StatusMessage"/> *@
+<div class="super_container">
 
-@* <div class="row"> *@
-    <div class="col-md-4 mr-10 p-5">
-        <form asp-route-returnUrl="@Model.ReturnUrl" method="post">
-            <h3>Создать аккаунт</h3>
-            <hr/>
-            <div asp-validation-summary="All" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Input.Email"></label>
-                <input asp-for="Input.Email" class="form-control"/>
-                <span asp-validation-for="Input.Email" class="text-danger"></span>
+    <div class="super_container_inner">
+        <div class="super_overlay"></div>
+
+        <div class="home">
+            <div class="home_container d-flex flex-column align-items-center justify-content-end">
+                <div class="home_content text-center">
+                    <div class="home_title">Регистрация</div>
+                    <div class="breadcrumbs d-flex flex-column align-items-center justify-content-center">
+                        <ul class="d-flex flex-row align-items-start justify-content-start text-center">
+                            <li>
+                                <a asp-controller="Home" asp-action="Index">Главная</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="Input.Password"></label>
-                <input asp-for="Input.Password" class="form-control"/>
-                <span asp-validation-for="Input.Password" class="text-danger"></span>
+        </div>
+
+        <div class="checkout">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="billing">
+                            <div class="checkout_form_container">
+                                <form asp-route-returnUrl="@Model.ReturnUrl" method="post">
+                                    <h3>Создать аккаунт</h3>
+                                    <hr/>
+                                    <div asp-validation-summary="All" class="text-danger"></div>
+                                    <div>
+                                        <!-- Email -->
+                                        <input asp-for="Input.Email" type="text" placeholder="Почта" class="checkout_input mt-2">
+                                        <span asp-validation-for="Input.Email" class="text-danger"></span>
+                                    </div>
+                                    <div>
+                                        <!-- Password -->
+                                        <input asp-for="Input.Password" type="password" placeholder="Введите пароль" class="checkout_input mt-4">
+                                        <span asp-validation-for="Input.Password" class="text-danger"></span>
+                                    </div>
+                                    <div>
+                                        <input asp-for="Input.ConfirmPassword" type="password" placeholder="Подтверждение пароля" class="checkout_input mt-4">
+                                        <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+                                    </div>
+                                    <button id="update-profile-button" type="submit" class="checkout_button trans_200">Регистрация</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="Input.ConfirmPassword"></label>
-                <input asp-for="Input.ConfirmPassword" class="form-control"/>
-                <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
-            </div>
-            <button type="submit" class="btn btn-primary black-background white">Создать аккаунт</button>
-        </form>
+        </div>
     </div>
-@* </div> *@
+
+</div>
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial"/>
 }
-
-<style type="text/css">
-    .btn-primary {
-        color: #fff;
-        background-color: #2fce98;
-        border-color: #2fce98;
-    }
-    .btn-primary:focus-visible {
-        color: #fff;
-        background-color: #2fce98;
-        border-color: #2fce98;
-    }
-</style>

@@ -1,7 +1,7 @@
 ﻿@model IList<KS.ViewModels.Warehouse.MangeWarehouseProductItemViewModel>
 
 @{
-    int warehouseId = ViewBag.warehouseId;
+    long warehouseId = ViewBag.warehouseId;
     ViewBag.Title = $"Склад {warehouseId.ToString()}";
     Layout = "_AdminLayout";
 }
@@ -49,18 +49,19 @@
                 <tr>
                     <td>
                         <input type="hidden" asp-for="@warehouseId" id="ajaxWarehouseId">
-                        <label id="ajaxProductId">
+                        <label>
                             @warehouse.Name
                         </label>
+                        <input value="@warehouse.ProductId" id="ajaxProductId" hidden>
                     </td>
                     <td>
                         <label>@warehouse.Quantity</label>
                     </td>
                     <td>
-                        <input type="number" class="form-control" id="ajaxQuantity" value="@warehouse.Quantity" min="-@warehouse.Quantity" max="10000" step="1">
+                        <input type="number" class="form-control" id="ajaxQuantity" min="-@warehouse.Quantity" max="1000" step="1">
                     </td>
                     <td class="table-action">
-                        <a asp-controller="Warehouse" asp-action="Put" asp-route-id="@warehouse.Id" id="">
+                        <a id="btnUpdateQuantity" onclick="updateQuantity()">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-2 align-middle">
                                 <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path>
                             </svg>
@@ -72,3 +73,11 @@
         </table>
     }
 </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>
+function updateQuantity() {
+    var productId =$("#ajaxProductId").val();
+    var quantity =$("#ajaxQuantity").val() ;
+            window.location = '/Admin/WarehouseProduct/UpdateQuantityProduct?warehouseId='+@warehouseId+'&productId='+productId+'&quantity='+quantity;
+}
+</script>

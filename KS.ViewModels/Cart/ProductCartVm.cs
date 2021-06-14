@@ -5,13 +5,13 @@ namespace KS.ViewModels.Cart
 {
     public class ProductCartVm
     {
-        public List<ProductCartVm> Products { get; set; }
+        public List<CartItemVm> Products { get; set; }
         public decimal Price => Products.Sum(x => x.Price);
-        public int Count => Products.Sum(x => x.Count);
+        public int Count => Products.Sum(x => x.Quantity);
 
         public ProductCartVm()
         {
-            Products = new List<ProductCartVm>();
+            Products = new List<CartItemVm>();
         } 
     }
 }
