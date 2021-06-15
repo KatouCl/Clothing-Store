@@ -118,6 +118,14 @@ namespace KS.BusinessLogic.Services
         {
             var sessionData = this.GetSessionCartData(session);
             
+            var item = sessionData.Products.Select(x => new CartDetailsItemSessionVm
+            {
+                Id = x.Id,
+                ProductId = x.ProductId,
+                Price = x.Price,
+                Quantity = x.Quantity
+            });
+            
             var ids = sessionData.Products.Select(x => x.Id);
 
             var products = await _productRepository.GetAllQuery().Where(x => ids.Contains(x.Id)).ToListAsync();
@@ -138,7 +146,7 @@ namespace KS.BusinessLogic.Services
                     {
                         Product = product,
                         Order = order,
-                        Price = product.Price
+                        Price = product.Price * item.FirstOrDefault(x => x.Id == product.Id).Quantity,
                     };
             
                     orderItems.Add(orderItem);
@@ -160,7 +168,7 @@ namespace KS.BusinessLogic.Services
             order.OrderItems = orderItems;
             order.Delivery = delivery;
             order.Customer = customer;
-            order.Price = order.OrderItems.Sum(x => x.TotalPrice);
+            order.Price = order.OrderItems.Sum(x => x.Price);
             
             var checkoutId = (await _orderRepository.AddAsync(order)).Id;
             

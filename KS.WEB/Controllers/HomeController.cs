@@ -24,16 +24,12 @@ namespace KS.WEB.Controllers
             _categoryService = categoryService;
         }
 
-        public async Task<IActionResult> LastProduct(long? categoryId)
+        public async Task<IActionResult> Index(long? categoryId)
         {
             var catalogListing = await _categoryService.GetProductForCatalog(categoryId)
                 .Take(6)
                 .ToListAsync();
-            return PartialView();
-        }
-        public IActionResult Index()
-        {
-            return View();
+            return View(catalogListing);
         }
 
             

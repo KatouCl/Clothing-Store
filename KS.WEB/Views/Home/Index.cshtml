@@ -1,9 +1,9 @@
 ﻿@model IEnumerable<KS.ViewModels.Category.GoodsInStockVm>
 
 @{
-    ViewData["Title"] = "Kata Store";
+    ViewBag.Title = "Kata Store";
 }
-
+<head><title>@ViewBag.Title</title></head>
 <div class="super_container_inner">
     <div class="super_overlay"></div>
 
@@ -37,8 +37,8 @@
                                                             <div class="product home_item_large">
                                                                 <div class="product_tag d-flex flex-column align-items-center justify-content-center">
                                                                     <div>
-                                                                        <div>from</div>
-                                                                        <div>$3<span>.99</span></div>
+                                                                        <div>от</div>
+                                                                        <div>₽3<span>.99</span></div>
                                                                     </div>
                                                                 </div>
                                                                 <div class="product_image">
@@ -51,13 +51,13 @@
                                                                                 <div class="product_name">
                                                                                     <a>Cool Clothing with Brown Stripes</a>
                                                                                 </div>
-                                                                                <div class="product_category">In <a>Category</a></div>
+                                                                                <div class="product_category">В <a asp-controller="Catalog" asp-action="Index">категориях</a></div>
                                                                             </div>
                                                                         </div>
                                                                         <div class="ml-auto text-right">
                                                                             <div class="rating_r rating_r_4 home_item_rating">
                                                                             </div>
-                                                                            <div class="product_price text-right">$3<span>.99</span></div>
+                                                                            <div class="product_price text-right">₽3<span>.99</span></div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -97,12 +97,66 @@
         </div>
         <div class="row products_row">
             <!-- Product -->
-            <div class="col-xl-4 col-md-6">
-                @* @foreach (var item in Model) *@
-                @* { *@
-                @*     <partial name="LastProduct" model="item"/> *@
-                @* } *@
-            </div>
+            @if (Model.Any())
+            {
+                foreach (var product in Model)
+                {
+                    <div class="col-xl-4 col-md-6">
+
+                        <div class="product">
+                            <div class="product_image">
+                                <img src="~/@product.CoverImageUrl" alt="">
+                            </div>
+                            <div class="product_content">
+                                <div class="product_info d-flex flex-row align-items-start justify-content-start">
+                                    <div>
+                                        <div>
+                                            <div class="product_name">
+                                                <a asp-controller="Product" asp-action="Details" asp-route-id="@product.Id">@product.Name</a>
+                                            </div>
+                                            <div class="product_category">В <a asp-controller="Catalog" asp-action="Index">категориях</a></div>
+                                        </div>
+                                    </div>
+                                    <div class="ml-auto text-right">
+                                        <div class="rating_r rating_r_4 home_item_rating">
+                                             ᅠ ᅠ
+                                        </div>
+                                        <div class="product_price text-right">
+                                            ₽ @product.Price.ToString("0")<span>.00</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="product_buttons">
+                                    <div class="text-right d-flex flex-row align-items-start justify-content-start">
+                                        <div onclick="return wishlist_onclick(@product.Id)" class="product_button product_fav text-center d-flex flex-column align-items-center justify-content-center">
+                                            <div>
+                                                <div>
+                                                    <img src="~/Shop/images/heart_2.svg" class="svg" alt="">
+                                                    <div>+</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div onclick="return cart_onclick(@product.Id)" class="product_button product_cart text-center d-flex flex-column align-items-center justify-content-center">
+                                            <div>
+                                                <div>
+                                                    <img src="~/Shop/images/cart.svg" class="svg" alt="">
+                                                    <div>+</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                }
+            }
+            else
+            {
+                <div class="text-center">Корзина пуста</div>
+            }
         </div>
         <div class="row load_more_row">
             <div class="col">
@@ -229,3 +283,22 @@
         </div>
     </div>
 </div>
+
+
+@section Scripts
+{
+    <script src="~/Shop/js/catalog/ProductsScript.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+
+    <script>
+        function cart_onclick(productId) {
+            window.location = "/Cart/AddToCart?productId=" + productId + "&quantity=" + 1;
+            return alert("Товар добавлен в корзину");
+        }
+        
+        function wishlist_onclick(productId) {
+            window.location = "/WishList/AddToWishList?productId=" + productId;
+            return alert("Товар добавлен в список желаний");
+        }
+    </script>
+}
