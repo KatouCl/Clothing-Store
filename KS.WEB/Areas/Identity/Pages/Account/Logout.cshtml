@@ -1,21 +1,39 @@
 ﻿@page
 @model LogoutModel
 @{
-    ViewData["Title"] = "Log out";
+    ViewData["Title"] = "Выход из аккаунта";
 }
+<head>
+    <title>@ViewBag.Title</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Little Closet template">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="~/Shop/lib/bootstrap-4.1.2/bootstrap.min.css">
+    <link href="~/Shop/plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="~/Shop/css/cart.css">
+    <link rel="stylesheet" type="text/css" href="~/Shop/css/cart_responsive.css">
+</head>
 
-<header>
-    <h1>@ViewData["Title"]</h1>
-    @{
-        if (User.Identity.IsAuthenticated)
-        {
-            <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">
-                <button type="submit" class="nav-link btn btn-link text-dark">Click here to Logout</button>
-            </form>
-        }
-        else
-        {
-            <p>You have successfully logged out of the application.</p>
-        }
-    }
-</header>
+<div class="super_container">
+
+    <div class="super_container_inner pt-5">
+        <div class="super_overlay p-5"></div>
+        <div class="text-center mx-auto p-5">
+            <header>
+            <h3>@ViewData["Title"]</h3>
+            @{
+                if (User.Identity.IsAuthenticated)
+                {
+                    <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new {area = ""})" method="post">
+                        <button type="submit" class="nav-link btn btn-link text-dark text-center mx-auto">Нажмите здесь, чтобы выйти.</button>
+                    </form>
+                }
+                else
+                {
+                    <p>Вы успешно вышли из приложения.</p>
+                }
+            }
+            </header>
+        </div>
+    </div>
+</div>

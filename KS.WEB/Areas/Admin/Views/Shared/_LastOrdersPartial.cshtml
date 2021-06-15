@@ -1,0 +1,8 @@
+﻿@model KS.ViewModels.Order.LastOrdersVm
+
+<tr>
+    <td>@Model.OrderId</td>
+    <td>@Model.CustomerName</td>
+    <td class="d-none d-xl-table-cell">@Model.CreationDate.ToString("d")</td>
+    <td>₽ @Model.TotalPrice.ToString("0")</td>
+</tr>

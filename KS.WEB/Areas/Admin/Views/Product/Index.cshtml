@@ -40,9 +40,8 @@
                 <th>Картинка</th>
                 <th style="width:50%;">Название</th>
                 <th>Цена</th>
-                <th>Можно заказать</th>
                 <th>Рекомендуется</th>
-                <th>Ценообразование</th>
+                <th>Пол</th>
                 <th>Действие</th>
             </tr>
             </thead>
@@ -55,9 +54,8 @@
                     </td>
                     <td><a asp-controller="Product" asp-action="Get" asp-route-id="@product.Id">@product.Name</a></td>
                     <td>@product.Price</td>
-                    <td>@product.IsAllowToOrder</td>
                     <td>@product.IsFeatured</td>
-                    <td>@product.IsCallForPricing</td>
+                    <td>@product.GenderType</td>
                     <td class="table-action">
                         <a asp-controller="Product" asp-action="Put" asp-route-id="@product.Id">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-2 align-middle">

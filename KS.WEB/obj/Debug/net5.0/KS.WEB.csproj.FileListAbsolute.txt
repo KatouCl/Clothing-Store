@@ -472,3 +472,7 @@ M:\KataStore\KS.WEB\obj\Debug\net5.0\Razor\Views\Home\LastProduct.cshtml.g.cs
 M:\KataStore\KS.WEB\obj\Debug\net5.0\Razor\Views\Search\Result.cshtml.g.cs
 M:\KataStore\KS.WEB\obj\Debug\net5.0\Razor\Views\Cart\Checkout.cshtml.g.cs
 M:\KataStore\KS.WEB\obj\Debug\net5.0\Razor\Views\Cart\CheckoutOrder.cshtml.g.cs
+M:\KataStore\KS.WEB\obj\Debug\net5.0\Razor\Views\Order\Index.cshtml.g.cs
+M:\KataStore\KS.WEB\obj\Debug\net5.0\Razor\Views\Order\OrderDetails.cshtml.g.cs
+M:\KataStore\KS.WEB\obj\Debug\net5.0\Razor\Areas\Admin\Views\Home\LastOrders.cshtml.g.cs
+M:\KataStore\KS.WEB\obj\Debug\net5.0\Razor\Areas\Admin\Views\Shared\_LastOrdersPartial.cshtml.g.cs

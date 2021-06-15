@@ -127,7 +127,6 @@
 
     <ItemGroup>
       <Folder Include="Areas\" />
-      <Folder Include="Views\Order" />
       <Folder Include="wwwroot\Images\Product" />
       <Folder Include="wwwroot\Shop" />
     </ItemGroup>

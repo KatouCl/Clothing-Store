@@ -7,6 +7,7 @@ namespace KS.ViewModels.WishList
         public long Id { get; set; }
 
         public string CustomerId { get; set; }
+        public string CustomerEmail { get; set; }
         public ApplicationUser Customer { get; set; }
 
         public long ProductId { get; set; }

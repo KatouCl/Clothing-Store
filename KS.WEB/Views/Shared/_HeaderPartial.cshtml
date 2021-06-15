@@ -95,7 +95,7 @@
                                class="dropdown-item">
                                 Профиль
                             </a>
-                            <a class="dropdown-item" asp-controller="Cart" asp-action="Index">Заказы</a>
+                            <a class="dropdown-item" asp-controller="Order" asp-action="Index">Заказы</a>
                             <a class="dropdown-item" asp-controller="WishList" asp-action="Index">Список желаний</a>
                             @if (SignInManager.IsSignedIn(User) && User.IsInRole("Admin"))
                             {

@@ -1,0 +1,6 @@
+﻿@model System.Collections.Generic.List<KS.ViewModels.Order.LastOrdersVm>
+
+@foreach (var order in Model)
+{
+   @await Html.PartialAsync("_LastOrdersPartial", order)
+}

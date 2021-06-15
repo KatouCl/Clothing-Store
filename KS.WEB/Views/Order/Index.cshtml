@@ -1,0 +1,143 @@
+﻿@model IEnumerable<KS.ViewModels.Order.OrderListVm>
+
+@{
+    ViewBag.Title = "Все заказы";
+    Layout = "_Layout";
+}
+
+<head>
+    <title>@ViewBag.Title</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Little Closet template">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="~/Shop/lib/bootstrap-4.1.2/bootstrap.min.css">
+    <link href="~/Shop/plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="~/Shop/css/cart.css">
+    <link rel="stylesheet" type="text/css" href="~/Shop/css/cart_responsive.css">
+</head>
+
+@if (TempData["SM"] != null)
+{
+    <div id="my-alert" class="alert alert-danger alert-dismissible fade show" role="alert">
+        @TempData["SM"]
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">×</span>
+        </button>
+    </div>
+}
+
+<div class="super_container">
+
+    <div class="super_container_inner">
+        <div class="super_overlay"></div>
+
+        <!-- Home -->
+
+        <div class="home">
+            <div class="home_container d-flex flex-column align-items-center justify-content-end">
+                <div class="home_content text-center">
+                    <div class="home_title">Все заказы</div>
+                    <div class="breadcrumbs d-flex flex-column align-items-center justify-content-center">
+                        <ul class="d-flex flex-row align-items-start justify-content-start text-center">
+                            <li>
+                                <a asp-controller="Home" asp-action="Index">Главная</a>
+                            </li>
+                            <li>заказы</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Cart -->
+        <div class="cart_section">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="cart_container">
+
+                            <!-- Cart Bar -->
+                            <div class="cart_bar">
+                                <ul class="cart_bar_list item_list d-flex flex-row align-items-center justify-content-end">
+                                    <li class="mr-auto w-25" >Номер заказа</li>
+                                    <li>Количество товаров</li>
+                                    <li>Общая стоимость</li>
+                                    <li>Дата создания</li>
+                                    <li></li>
+                                </ul>
+                            </div>
+
+                            <!-- Cart Items -->
+                            <div class="cart_items">
+                                <ul class="cart_items_list">
+                                    @if (Model.Any())
+                                    {
+                                        foreach (var order in Model)
+                                        {
+                                            <!-- Cart Item -->
+                                            <li class="cart_item item_list d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-lg-end justify-content-start">
+                                                <div class="product d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-start mr-auto">
+                                                    <div class="product_name_container">
+                                                        <div class="product_name">
+                                                            <a>@order.Id</a>
+                                                        </div>
+                                                        @* <div class="product_text">Second line for additional info</div> *@
+                                                    </div>
+                                                </div>
+                                                <div class="product_price product_text">
+                                                    <span> </span>@order.QuantityProduct
+                                                </div>
+                                                <div class="product_price product_text">
+                                                    <span> </span>₽ @order.Price.ToString("0")
+                                                </div>
+                                                <div class="product_price product_text">
+                                                    <span> </span>@order.CreationDate.ToString("MM/dd/yyyy")
+                                                </div>
+                                                <div class="product_name">
+                                                    <a asp-controller="Order" asp-action="OrderDetails" asp-route-orderId="@order.Id">Подробнее</a>
+                                                </div>
+                                            </li>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <div class="text-center">Список заказов пуст</div>
+                                    }
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+@section Scripts
+{
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+    <script src="~/Shop/lib/bootstrap-4.1.2/bootstrap.min.js"></script>
+
+    <script>
+        $(function(){
+            window.setTimeout(function(){
+                $('#my-alert').alert('close');
+            },5000);
+        });
+    </script>
+
+    <script type="text/javascript">
+    
+    $(document).ready(function () {
+     
+    window.setTimeout(function() {
+        $(".alert").fadeTo(1000, 0).slideUp(1000, function(){
+            $(this).remove(); 
+        });
+    }, 5000);
+     
+    });
+    </script>
+}

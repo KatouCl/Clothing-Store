@@ -71,6 +71,7 @@ namespace KS.WEB
             services.AddScoped<IUserRepository, UserRepository >();
             services.AddScoped<ISearchService, SearchService >();
             services.AddScoped<ICartService, CartService>();
+            services.AddScoped<IOrderService, OrderService>();
             
 
             services.AddDistributedMemoryCache();

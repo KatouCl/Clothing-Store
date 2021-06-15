@@ -1,22 +1,39 @@
 @page
 @model RegisterConfirmationModel
 @{
-    ViewData["Title"] = "Register confirmation";
+    ViewData["Title"] = "Подтверждение регистрации";
 }
 
-<h1>@ViewData["Title"]</h1>
-@{
-    if (@Model.DisplayConfirmAccountLink)
-    {
-<p>
-    This app does not currently have a real email sender registered, see <a href="https://aka.ms/aspaccountconf">these docs</a> for how to configure a real email sender.
-    Normally this would be emailed: <a id="confirm-link" href="@Model.EmailConfirmationUrl">Click here to confirm your account</a>
-</p>
-    }
-    else
-    {
-<p>
-        Please check your email to confirm your account.
-</p>
-    }
-}
+<head>
+    <title>@ViewBag.Title</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Little Closet template">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="~/Shop/lib/bootstrap-4.1.2/bootstrap.min.css">
+    <link href="~/Shop/plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="~/Shop/css/cart.css">
+    <link rel="stylesheet" type="text/css" href="~/Shop/css/cart_responsive.css">
+</head>
+
+<div class="super_container">
+
+    <div class="super_container_inner pt-5">
+        <div class="super_overlay p-5"></div>
+        <div class="text-center mx-auto p-5">
+            @{
+                if (@Model.DisplayConfirmAccountLink)
+                {
+                    <p>
+                        <a id="confirm-link" href="@Model.EmailConfirmationUrl">Нажмите здесь, чтобы подтвердить свою учетную запись</a>
+                    </p>
+                }
+                else
+                {
+                    <p>
+                        Пожалуйста, проверьте свою электронную почту, чтобы подтвердить свою учетную запись.
+                    </p>
+                }
+            }
+        </div>
+    </div>
+</div>
