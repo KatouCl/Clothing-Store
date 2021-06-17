@@ -1,9 +1,9 @@
 ﻿<div class="menu">
     <!-- Search -->
     <div class="menu_search">
-        <form action="#" id="menu_search_form" class="menu_search_form">
-            <input type="text" class="search_input" placeholder="Search Item" required="required">
-            <button class="menu_search_button">
+        <form asp-area="" asp-controller="Search" asp-action="Search" action="#" id="menu_search_form" class="menu_search_form">
+            <input name="SearchQuery" type="text" class="search_input" placeholder="Поиск..." required="required">
+            <button class="menu_search_button" type="submit">
                 <img src="~/Shop/images/search.png" alt="">
             </button>
         </form>
@@ -12,20 +12,20 @@
     <div class="menu_nav">
         <ul>
             <li>
-                <a asp-controller="Home" asp-action="Index">Главная</a>
+                <a asp-area="" asp-controller="Home" asp-action="Index">Главная</a>
             </li>
             <li>
-                <a asp-controller="Catalog" asp-action="Index">Каталог</a>
+                <a asp-area="" asp-controller="Catalog" asp-action="Index">Каталог</a>
             </li>
             <li>
-                <a asp-controller="Catalog" asp-action="Woman">Женщинам</a>
+                <a asp-area="" asp-controller="Catalog" asp-action="Woman">Женщинам</a>
             </li>
             <li>
-                <a asp-controller="Catalog" asp-action="Men">Мужчинам</a>
+                <a asp-area="" asp-controller="Catalog" asp-action="Men">Мужчинам</a>
             </li>
-            <li>
-                <a href="#">Контакты</a>
-            </li>
+            @* <li> *@
+            @*     <a href="#">Контакты</a> *@
+            @* </li> *@
         </ul>
     </div>
     <!-- Contact Info -->
@@ -36,7 +36,6 @@
                     <img src="~/Shop/images/phone.svg" alt="https://www.flaticon.com/authors/freepik">
                 </div>
             </div>
-            <div>+1 912-252-7350</div>
         </div>
         <div class="menu_social">
             <ul class="menu_social_list d-flex flex-row align-items-start justify-content-start">

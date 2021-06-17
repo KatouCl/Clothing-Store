@@ -11,7 +11,6 @@ namespace KS.Interfaces.DataAccess.BusinessLogic.Services
     public interface ICartService
     {
         void AddProductToCart(ISession session, CartItemVm addProductToCart);
-        void ClearProductFromCart(ISession session);
         Task<ProductCartVm> GetCartDetailsAsync(ISession session);
         void RemoveProductFromCart(ISession session, CartItemVm removeProductFromCart);
         int GetCartQuantity(ISession session);

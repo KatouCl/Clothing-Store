@@ -61,11 +61,11 @@
                                 </p>
                             </div>
                             <div class="product_text">
-                                <p>@Model.Description</p>
+                                <p>@Html.Raw(Model.Description)</p>
                                 <hr>
-                                <p>@Model.Specification</p>
-                                <hr>
-                                <p>Количество товаров на складе: @Model.QuantityStock.ToString()</p>
+                                <p>@Html.Raw(Model.Specification)</p>
+                                @* <hr> *@
+                                @* <p>Количество товаров на складе: @Model.QuantityStock.ToString()</p> *@
                             </div>
                             <div class="product_buttons">
                                 @if (_signInManager.IsSignedIn(User))

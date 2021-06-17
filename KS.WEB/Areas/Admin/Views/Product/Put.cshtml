@@ -8,7 +8,7 @@
     ViewBag.Title = $"Редактирование товара: {Model.Name}";
     Layout = "_AdminLayout";
 }
-
+<script src="~/Script/ckeditor/ckeditor.js"></script>
 <div class="container">
     <div class="row">
         <div class="col-12">
@@ -46,21 +46,21 @@
                                     <div class="mb-3 row">
                                         <label asp-for="ShortDescription" class="col-form-label col-sm-2 text-sm-end">Краткое описание</label>
                                         <div class="col-sm-10">
-                                            <textarea asp-for="ShortDescription" class="form-control" rows="3" ></textarea>
+                                            <textarea id="ContentShortDescription" asp-for="ShortDescription" class="form-control" rows="3" ></textarea>
                                         </div>
                                         <span asp-validation-for="ShortDescription"></span>
                                     </div>
                                     <div class="mb-3 row">
                                         <label asp-for="Description" class="col-form-label col-sm-2 text-sm-end">Oписание</label>
                                         <div class="col-sm-10">
-                                            <textarea asp-for="Description" class="form-control" rows="3" ></textarea>
+                                            <textarea id="ContentDescription" asp-for="Description" class="form-control" rows="3" ></textarea>
                                         </div>
                                         <span asp-validation-for="Description"></span>
                                     </div>
                                     <div class="mb-3 row">
                                         <label asp-for="Specification" class="col-form-label col-sm-2 text-sm-end">О товаре</label>
                                         <div class="col-sm-10">
-                                            <textarea asp-for="Specification" class="form-control" rows="3" ></textarea>
+                                            <textarea id="ContentSpecification" asp-for="Specification" class="form-control" rows="3" ></textarea>
                                         </div>
                                         <span asp-validation-for="Specification"></span>
                                     </div>
@@ -73,33 +73,6 @@
                                         </div>
                                         <span asp-validation-for="IsFeatured"></span>
                                     </div>
-                                    @* <div class="mb-3-row"> *@
-                                    @*     <div class="col-sm-10"> *@
-                                    @*         <label class="form-check m-0"> *@
-                                    @*             <input asp-for="IsAllowToOrder" type="checkbox" class="form-check-input"> *@
-                                    @*             <span class="form-check-label">Можно заказать</span> *@
-                                    @*         </label> *@
-                                    @*     </div> *@
-                                    @*     <span asp-validation-for="IsAllowToOrder"></span> *@
-                                    @* </div> *@
-                                    @* <div class="mb-3-row"> *@
-                                    @*     <div class="col-sm-10"> *@
-                                    @*         <label class="form-check m-0"> *@
-                                    @*             <input asp-for="IsCallForPricing" type="checkbox" class="form-check-input"> *@
-                                    @*             <span class="form-check-label">Требуется ценообразование</span> *@
-                                    @*         </label> *@
-                                    @*     </div> *@
-                                    @*     <span asp-validation-for="IsCallForPricing"></span> *@
-                                    @* </div> *@
-                                    @* <div class="mb-3-row"> *@
-                                    @*     <div class="col-sm-10"> *@
-                                    @*         <label class="form-check m-0"> *@
-                                    @*             <input asp-for="StockTrackingIsEnabled" type="checkbox" class="form-check-input"> *@
-                                    @*             <span class="form-check-label">Включено отслеживание запасов</span> *@
-                                    @*         </label> *@
-                                    @*     </div> *@
-                                    @*     <span asp-validation-for="StockTrackingIsEnabled"></span> *@
-                                    @* </div> *@
                                 </div>
                                 <div class="col-md-2">
 
@@ -121,7 +94,7 @@
                         <div class="tab-pane" id="tab-2" role="tabpanel">
                             <div class="pt-5">
                                 <div class="mb-3-row">
-                                    <label asp-for="Price" class="form-label">Цена</label>
+                                    <label asp-for="Price" class="form-label">Скидочная цена</label>
                                     <div class="input-group mb-3-row">
                                         <span class="input-group-text">₽</span>
                                         <input asp-for="Price" type="text" class="form-control">
@@ -130,7 +103,7 @@
                                     </div>
                                 </div>
                                 <div class="mb-3-row">
-                                    <label asp-for="OldPrice" class="form-label mt-3">Старая цена</label>
+                                    <label asp-for="OldPrice" class="form-label mt-3">Розничная цена</label>
                                     <div class="input-group mb-3-row">
                                         <span class="input-group-text">₽</span>
                                         <input asp-for="OldPrice" type="text" class="form-control">
@@ -188,7 +161,7 @@
                                     <span asp-validation-for="GenderType"></span>
                                 </div>
                                 <div class="mb-3-row mt-4">
-                                    <label class="form-label mt-3">Тип товара</label>
+                                    <label class="form-label mt-3">Единица измерения</label>
                                     <select asp-for="UnitType" class="form-select flex-grow-1" asp-items="@Html.GetEnumSelectList<UnitType>()">
                                         <option value="">Выберите тип продукции</option>
                                     </select>
@@ -215,3 +188,10 @@
         </div>
     </div>
 </div>
+<script>
+    document.addEventListener("DOMContentLoaded", function (event){
+        var editor1 = CKEDITOR.replace('ContentSpecification');
+        var editor2 = CKEDITOR.replace('ContentDescription');
+        var editor3 = CKEDITOR.replace('ContentShortDescription');
+        });
+</script>

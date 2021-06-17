@@ -17,7 +17,6 @@ namespace KS.WEB.Controllers
             _searchService = searchService;
         }
 
-        // GET
         public IActionResult Result(string searchQuery, long? categoryId)
         {
             var products = _searchService.SearchProduct(searchQuery, categoryId);

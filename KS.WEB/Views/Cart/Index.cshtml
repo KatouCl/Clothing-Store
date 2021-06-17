@@ -99,17 +99,20 @@
                                                 <div class="product_price product_text">
                                                     <span> </span>₽ @item.Price.ToString("0")
                                                 </div>
-                                                <div class="product_quantity_container">
-                                                    <div class="product_quantity ml-lg-auto mr-lg-auto text-center">
-                                                        <span class="product_text product_num">@item.Quantity.ToString()</span>
-                                                        <div class="qty_sub qty_button trans_200 text-center">
-                                                            <span>-</span>
-                                                        </div>
-                                                        <div class="qty_add qty_button trans_200 text-center">
-                                                            <span>+</span>
-                                                        </div>
-                                                    </div>
+                                                <div class="product_price product_text">
+                                                    <span> </span>@item.Quantity
                                                 </div>
+                                                @* <div class="product_quantity_container"> *@
+                                                @*     <div class="product_quantity ml-lg-auto mr-lg-auto text-center"> *@
+                                                @*         <span class="product_text product_num">@item.Quantity.ToString()</span> *@
+                                                @*         $1$ <div class="qty_sub qty_button trans_200 text-center"> #1# *@
+                                                @*         $1$     <span>-</span> #1# *@
+                                                @*         $1$ </div> #1# *@
+                                                @*         $1$ <div class="qty_add qty_button trans_200 text-center"> #1# *@
+                                                @*         $1$     <span>+</span> #1# *@
+                                                @*         $1$ </div> #1# *@
+                                                @*     </div> *@
+                                                @* </div> *@
                                                 <div class="product_price product_text">
                                                     <span> </span>₽ @item.TotalPrice.ToString("0")
                                                 </div>
@@ -182,7 +185,7 @@
                                         @* </li> *@
                                         <li class="shipping_option d-flex flex-row align-items-center justify-content-start">
                                             <label class="radio_container">
-                                                <input type="radio" id="radio_3" name="shipping_radio" class="shipping_radio" >
+                                                <input type="radio" id="radio_3" name="shipping_radio" class="shipping_radio" checked>
                                                 <span class="radio_mark"></span>
                                                 <span class="radio_text">Бесплатная доставка</span>
                                             </label>

@@ -20,7 +20,7 @@ namespace KS.WEB.Areas.Admin.Controllers
         public IActionResult Index()
         {
             var users = _userManager.Users;
-            return PartialView(users);
+            return View(users);
         }
     }
 }

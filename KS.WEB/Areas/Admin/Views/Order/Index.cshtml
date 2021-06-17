@@ -1,31 +1,46 @@
-﻿@{
-    ViewBag.Title = "title";
+﻿@model IEnumerable<KS.ViewModels.Order.OrderListVm>
+
+@{
+    ViewBag.Title = "Все заказы";
     Layout = "_AdminLayout";
 }
 
-<div class="col-12 col-lg-8 col-xxl-9 d-flex">
-    <div class="card flex-fill">
-        <div class="card-header">
+    <div class="container-fluid p-0">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="card">
+                    <div class="card-header pb-0">
+                        <h5 class="card-title mb-0">Все заказы</h5>
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-striped" style="width:100%">
+                            <thead>
+                            <tr>
+                                <th>Клиент</th>
+                                <th>Количество</th>
+                                <th>Сумма</th>
+                                <th>Дата создания</th>
+                                <th></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @foreach (var order in Model)
+                            {
+                                <tr>
+                                    <td>@order.Customer</td>
+                                    <td>@order.QuantityProduct</td>
+                                    <td>₽ @order.Price.ToString("0")</td>
+                                    <td>@order.CreationDate.ToString("d")</td>
+                                    <td><a asp-area="Admin" asp-controller="Order" asp-action="OrderDetails" asp-route-orderId="@order.Id">Подробнее</a></td>
+                                </tr>
+                            }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
 
-            <h5 class="card-title mb-0">Последние заказы</h5>
+
         </div>
-        <table class="table table-hover my-0">
-            <thead>
-            <tr>
-                <th class="d-none d-xl-table-cell">Номер заказа</th>
-                <th>Пользователь</th>
-                <th class="d-none d-xl-table-cell">Дата</th>
-                <th class="d-none d-xl-table-cell">Цена</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td>number order</td>
-                <td>user</td>
-                <td class="d-none d-xl-table-cell">01/01/2021</td>
-                <td>Price</td>
-            </tr>
-            </tbody>
-        </table>
+
     </div>
-</div>

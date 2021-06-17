@@ -7,7 +7,7 @@
                 <div class="col-lg-4 footer_col">
                     <div class="footer_about">
                         <div class="footer_logo">
-                            <a href="#">
+                            <a asp-area="" asp-controller="Home" asp-action="Index">
                                 <div class="d-flex flex-row align-items-center justify-content-start">
                                     <div class="footer_logo_icon">
                                         <img src="~/Shop/images/logo_2.png" alt="">
@@ -45,11 +45,11 @@
                                     </div>
                                 </a>
                             </li>
-                            <li>
-                                <a href="#">
-                                    <div>Контакты</div>
-                                </a>
-                            </li>
+                            @* <li> *@
+                            @*     <a href="#"> *@
+                            @*         <div>Контакты</div> *@
+                            @*     </a> *@
+                            @* </li> *@
                         </ul>
                     </div>
                 </div>
@@ -103,20 +103,20 @@
                         <nav class="footer_nav ml-md-auto order-md-2 order-1">
                             <ul class="d-flex flex-row align-items-center justify-content-start">
                                 <li>
-                                    <a asp-controller="Home" asp-action="Index">Главная</a>
+                                    <a asp-area="" asp-controller="Home" asp-action="Index">Главная</a>
                                 </li>
                                 <li>
-                                    <a asp-controller="Catalog" asp-action="Index">Каталог</a>
+                                    <a asp-area="" asp-controller="Catalog" asp-action="Index">Каталог</a>
                                 </li>
                                 <li>
-                                    <a asp-controller="Catalog" asp-action="Woman">Женщинам</a>
+                                    <a asp-area="" asp-controller="Catalog" asp-action="Woman">Женщинам</a>
                                 </li>
                                 <li>
-                                    <a asp-controller="Catalog" asp-action="Men">Мужчинам</a>
+                                    <a asp-area="" asp-controller="Catalog" asp-action="Men">Мужчинам</a>
                                 </li>
-                                <li>
-                                    <a href="#">Контакты</a>
-                                </li>
+                                @* <li> *@
+                                @*     <a href="#">Контакты</a> *@
+                                @* </li> *@
                             </ul>
                         </nav>
                     </div>

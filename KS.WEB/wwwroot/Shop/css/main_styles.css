@@ -838,16 +838,16 @@ section
 	border-right: none;
 	border-bottom: none;
 }
+.product_name
+{
+	max-width: 1000px;
+}
 .product_info
 {
 	padding-left: 25px;
 	padding-right: 25px;
 	padding-top: 18px;
 	padding-bottom: 10px;
-}
-.product_name
-{
-	max-width: 175px;
 }
 .product_name a
 {

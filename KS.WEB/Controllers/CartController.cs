@@ -88,8 +88,9 @@ namespace KS.WEB.Controllers
 
         public IActionResult ClearCart()
         {
-            _cartService.ClearProductFromCart(HttpContext.Session);
+            HttpContext.Session.Clear();
             return RedirectToAction("Index", "Cart");
+
         }
         public int GetCartQuantity()
         {

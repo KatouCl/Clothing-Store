@@ -1,13 +1,11 @@
 ﻿@inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
-@using Microsoft.AspNetCore.Identity
-
 
 <header class="header">
     <div class="header_overlay"></div>
     <div class="header_content d-flex flex-row align-items-center justify-content-start">
         <div class="logo">
-            <a asp-controller="Home" asp-action="Index">
+            <a asp-area="" asp-controller="Home" asp-action="Index">
                 <div class="d-flex flex-row align-items-center justify-content-start">
                     <div>
                         <img src="~/Shop/images/logo_1.png" alt="">
@@ -19,29 +17,25 @@
         <nav class="main_nav">
             <ul class="d-flex flex-row align-items-start justify-content-start">
                 <li>
-                    <a asp-controller="Catalog" asp-action="Index">Каталог</a>
+                    <a asp-area="" asp-controller="Catalog" asp-action="Index">Каталог</a>
                 </li>
                 <li>
-                    <a asp-controller="Catalog" asp-action="Woman">Женщинам</a>
+                    <a asp-area="" asp-controller="Catalog" asp-action="Woman">Женщинам</a>
                 </li>
                 <li>
-                    <a asp-controller="Catalog" asp-action="Men">Мужчинам</a>
+                    <a asp-area="" asp-controller="Catalog" asp-action="Men">Мужчинам</a>
                 </li>
-                <li>
-                    <a href="#">Контакты</a>
-                </li>
+                @* <li> *@
+                @*     <a href="#">Контакты</a> *@
+                @* </li> *@
             </ul>
         </nav>
         <div class="header_right d-flex flex-row align-items-center justify-content-start ml-auto">
             <!-- Search -->
             <div class="header_search">
-                <form id="header_search_form">
-                    <input id="search" type="text" class="search_input" placeholder="Поиск..." required="required">
-                    <button onclick="function searchQuery() {
-                        var str = form.search;
-                        window.location = '/Search/Search?searchQuery=' + str;
-                    }
-                    return searchQuery();" class="header_search_button" type="submit">
+                <form id="header_search_form" asp-area="" asp-controller="Search" asp-action="Search">
+                    <input name="searchQuery" type="text" class="search_input" placeholder="Поиск..." required="required">
+                    <button class="header_search_button" type="submit">
                         <img src="~/Shop/images/search.png" alt="">
                     </button>
                 </form>
@@ -51,7 +45,7 @@
             @if (SignInManager.IsSignedIn(User))
             {
                 <div class="cart">
-                    <a asp-controller="WishList" asp-action="Index">
+                    <a asp-area="" asp-controller="WishList" asp-action="Index">
                         <div>
                             <img class="svg" src="~/Shop/images/heart_2.svg" alt="https://www.flaticon.com/authors/freepik">
                             @* <div>1</div> *@
@@ -60,7 +54,7 @@
                 </div>
 
                 <div class="cart">
-                    <a asp-controller="Cart" asp-action="Index">
+                    <a asp-area="" asp-controller="Cart" asp-action="Index">
                         <div>
                             <img class="svg" src="~/Shop/images/cart.svg" alt="https://www.flaticon.com/authors/freepik">
                             @* <div>1</div> *@

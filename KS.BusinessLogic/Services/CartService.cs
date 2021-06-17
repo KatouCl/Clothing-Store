@@ -69,11 +69,6 @@ namespace KS.BusinessLogic.Services
             this.SaveSessionCartData(session, sessionData);
         }
 
-        public void ClearProductFromCart(ISession session)
-        {
-            this.ClearProductFromCart(session);
-        }
-
         public async Task<ProductCartVm> GetCartDetailsAsync(ISession session)
         {
             var sessionData = this.GetSessionCartData(session);
@@ -146,7 +141,9 @@ namespace KS.BusinessLogic.Services
                     {
                         Product = product,
                         Order = order,
-                        Price = product.Price * item.FirstOrDefault(x => x.Id == product.Id).Quantity,
+                        Quantity = item.FirstOrDefault(x => ids.Contains(x.Id)).Quantity,
+                        Price = item.FirstOrDefault(x => x.Id == product.Id).Price,
+                        TotalPrice = product.Price * item.FirstOrDefault(x => x.Id == product.Id).Quantity,
                     };
             
                     orderItems.Add(orderItem);

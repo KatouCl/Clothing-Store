@@ -21,7 +21,6 @@ namespace KS.BusinessLogic.Services
             
             return _categoryService.GetProductForCatalog(categoryId).Where(product  
                 => product.Name.ToLower().Contains(normalized)
-                   || product.Price == Convert.ToDecimal(normalized)
                    || product.Slug.ToLower().Contains(normalized)
                    );
         }

@@ -42,9 +42,49 @@ namespace KS.BusinessLogic.Services
             return orderList;
         }
 
+        public IEnumerable<OrderListVm> GetOrders()
+        {
+            var orderList = _orderRepository.GetAllQuery()
+                .OrderBy(x => x.CreationDate)
+                .Select(x => new OrderListVm
+                {
+                    Id = x.Id,
+                    Customer = x.Customer.Email,
+                    Price = x.Price,
+                    CreationDate = x.CreationDate,
+                    QuantityProduct = _orderItemRepository.GetAllQuery()
+                        .Where(w => w.Order.Id == x.Id)
+                        .Select(s => s.Product)
+                        .Count()
+                });
+
+            return orderList;
+        }
+
+
         public IEnumerable<OrderDetailsItemVm> GetOrderDetailsItem(string customerId, long orderId)
         {
             var orderDetailsList = _orderItemRepository.GetAllQuery()
+                .Where(x => x.Order.Id == orderId)
+                .Select(x => new OrderDetailsItemVm
+                {
+                    Id = x.Id,
+                    ProductId = x.Product.Id,
+                    ProductName = _productRepository.GetAll().FirstOrDefault(p => p.Id == x.Product.Id).Name,
+                    CoverImageUrl =_productRepository.GetAll().FirstOrDefault(p => p.Id == x.Product.Id).CoverImageUrl,
+                    OrderId = orderId,
+                    Price = x.Price,
+                    TotalPrice =_productRepository.GetAll().FirstOrDefault(p => p.Id == x.Product.Id).Price,
+                    CreationDate = x.CreationDate
+                });
+            
+            return orderDetailsList;
+        }
+
+        public IEnumerable<OrderDetailsItemVm> GetOrderDetails(long orderId)
+        {
+            var orderDetailsList = _orderItemRepository.GetAllQuery()
+                .OrderBy(x => x.CreationDate)
                 .Where(x => x.Order.Id == orderId)
                 .Select(x => new OrderDetailsItemVm
                 {

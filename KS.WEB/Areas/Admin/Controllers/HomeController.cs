@@ -64,6 +64,7 @@ namespace KS.WEB.Areas.Admin.Controllers
                 })
                 .Take(5)
                 .ToListAsync();
+            
             var model = new OrderHomeVm
             {
                 LastOrdersVms = lastOrdersList,
@@ -74,7 +75,6 @@ namespace KS.WEB.Areas.Admin.Controllers
             ViewBag.Orders = _orderRepository.GetAllQuery().Count().ToString();
             ViewBag.GoodsSold = _orderItemRepository.GetAllQuery().Count().ToString();
             ViewBag.MoneyEarned = _orderRepository.GetAllQuery().Select(x => x.Price).Sum().ToString("0");
-            ViewBag.OrdersItems = _orderItemRepository.GetAllQuery().OrderBy(x => x.CreationDate).Take(5).ToListAsync();
 
             return View(model);
         }
