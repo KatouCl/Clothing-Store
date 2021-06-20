@@ -69,6 +69,23 @@ namespace KS.DataAccess
                     new Brand {Id = 13, Name = "Versace", Description = "Versace", CreationDate = DateTime.Now}
                 );
 
+            //Contact
+            modelBuilder.Entity<Contact>()
+                .HasData(
+                    new Contact
+                    {
+                        Id = 1,
+                        Title = "<h1>Контакты</h1>",
+                        Place =
+                            "<table border='0' cellpadding='0' cellspacing='0' style='width:500px'><tbody><tr><td><p>г. Москва, ул.&nbsp;Петровка,&nbsp;д.&nbsp;2,</p><p>&nbsp;пункт выдачи заказов&nbsp;на 1 и 5 этажах</p></td><td><p>Ежедневно на 1 этаже с 10:00 до 24:00,</p><p>Ежедневно на 5 этаже с 11:00 до 23:00</p></td></tr></tbody></table><p>&nbsp;</p>",
+                        Number =
+                            "<table border='0' cellpadding='0' cellspacing='0' style='width:500px'><tbody><tr><td>KataStore:<br /><a href='tel:+78005008000'>+7 800 500 80 00</a></td><td>Интернет-магазин:<br /><a href='tel:+7 800 500 73 21'>+7 800 500 73 21</a></td></tr><tr><td><a href='tel:+74959337300'>+7 (495) 933 73 00</a></td><td><a href='tel:+7 495 933 73 21'>+7 495 933 73 21</a></td></tr></tbody></table><p>&nbsp;</p>",
+                        Context =
+                            "<p>KataStore &ndash; крупнейший&nbsp;department store&nbsp;в Европе. На площади 70 тысяч квадратных метров расположились коллекции более двух тысяч брендов. Среди них &ndash; Dolce&amp;Gabbana, Valentino, Celine, Ralph Lauren, Alexander McQueen, Brioni, Loro Piana, Chopard, Rolex, Graff, Garrard, Patek Philippe. Своим клиентам KataStore предоставляет безупречный сервис и возможность совершать покупки по европейским ценам, не выезжая за пределы Москвы &ndash; с начала 2016 года цены в универмаге приравнены к миланским.</p>",
+                        CreationDate = DateTime.Now
+                    }
+                );
+
             //Category
             modelBuilder.Entity<Category>()
                 .HasData(
@@ -171,8 +188,9 @@ namespace KS.DataAccess
                 new IdentityUserRole<string>()
                     {RoleId = "fab4fac1-c546-41de-aebc-a14da6895711", UserId = "b74ddd14-6340-4840-95c2-db12554843e5"}
             );
-            
+
             //Product
+
             #region Products
 
             // modelBuilder.Entity<Product>()
@@ -383,7 +401,6 @@ namespace KS.DataAccess
             //     );
 
             #endregion
-
         }
     }
 }

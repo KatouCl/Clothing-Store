@@ -478,4 +478,11 @@ M:\KataStore\KS.WEB\obj\Debug\net5.0\Razor\Areas\Admin\Views\Home\LastOrders.csh
 M:\KataStore\KS.WEB\obj\Debug\net5.0\Razor\Areas\Admin\Views\Shared\_LastOrdersPartial.cshtml.g.cs
 M:\KataStore\KS.WEB\obj\Debug\net5.0\Razor\Areas\Admin\Views\Order\OrderDetails.cshtml.g.cs
 M:\KataStore\KS.WEB\obj\Debug\net5.0\Razor\Areas\Admin\Views\Chart\Order.cshtml.g.cs
-M:\KataStore\KS.WEB\obj\Debug\net5.0\Razor\Pages\Contact\Index.cshtml.g.cs
+M:\KataStore\KS.WEB\obj\Debug\net5.0\Razor\Areas\Admin\Views\FeedBack\Get.cshtml.g.cs
+M:\KataStore\KS.WEB\obj\Debug\net5.0\Razor\Areas\Admin\Views\FeedBack\Index.cshtml.g.cs
+M:\KataStore\KS.WEB\obj\Debug\net5.0\Razor\Views\Help\AboutUs.cshtml.g.cs
+M:\KataStore\KS.WEB\obj\Debug\net5.0\Razor\Views\Help\Contact.cshtml.g.cs
+M:\KataStore\KS.WEB\obj\Debug\net5.0\Razor\Views\Help\FeedBack.cshtml.g.cs
+M:\KataStore\KS.WEB\obj\Debug\net5.0\Razor\Views\Help\SizeCharts.cshtml.g.cs
+M:\KataStore\KS.WEB\obj\Debug\net5.0\Razor\Areas\Admin\Views\Contact\Index.cshtml.g.cs
+M:\KataStore\KS.WEB\obj\Debug\net5.0\Razor\Areas\Admin\Views\Contact\Put.cshtml.g.cs

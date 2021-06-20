@@ -130,6 +130,8 @@
 
     <ItemGroup>
       <Folder Include="Areas\" />
+      <Folder Include="Pages" />
+      <Folder Include="Views\Contact" />
       <Folder Include="wwwroot\Images\Product" />
     </ItemGroup>
 

@@ -1,0 +1,59 @@
+﻿@model System.Collections.Generic.IEnumerable<KS.ViewModels.FeedBack.FeedBackIndexVm>
+
+@{
+    ViewBag.Title = "title";
+    Layout = "_AdminLayout";
+}
+
+
+<div class="container-fluid p-0">
+    <div class="row">
+        <div class="col-xl-12">
+            <div class="card">
+                <div class="card-header pb-0">
+                    <h5 class="card-title mb-0">Обратная связь</h5>
+                </div>
+                <div class="card-body">
+                    @if (Model.Any())
+                    {
+                        <table class="table table-striped" style="width:100%">
+                            <thead>
+                            <tr>
+                                <th>Почта</th>
+                                <th>Имя</th>
+                                <th>Содержание</th>
+                                <th>Дата создания</th>
+                                <th></th>
+                            </tr>
+                            </thead>
+
+                            <tbody>
+                            @foreach (var feedBack in Model)
+                            {
+                                <tr>
+                                    <td>@feedBack.Email</td>
+                                    <td>@feedBack.Name</td>
+                                    <td>@feedBack.Comment...</td>
+                                    <td>@feedBack.CreationDate.ToString("d")</td>
+                                    <td>
+                                        <a asp-area="Admin" asp-controller="FeedBack" asp-action="Get" asp-route-id="@feedBack.Id">Подробнее</a>
+                                    </td>
+                                </tr>
+                            }
+                            </tbody>
+                        </table>
+                    }
+                    else
+                    {
+                        <div class="text-center">
+                            <h5>Данных нет</h5>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+</div>

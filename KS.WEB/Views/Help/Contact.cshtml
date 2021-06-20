@@ -1,0 +1,60 @@
+﻿@model KS.ViewModels.Contact.ContactIndexVm
+
+@{
+    ViewBag.Title = "Наши контакты  ";
+    Layout = "_Layout";
+}
+<head>
+    <title>@ViewBag.Title</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Little Closet template">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="~/Shop/lib/bootstrap-4.1.2/bootstrap.min.css">
+    <link href="~/Shop/plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="~/Shop/css/cart.css">
+    <link rel="stylesheet" type="text/css" href="~/Shop/css/cart_responsive.css">
+
+</head>
+<div class="super_container">
+
+    <input type="text" value="sadasd" hidden>
+    <div class="super_container_inner">
+        <div class="super_overlay"></div>
+
+        <!-- Home -->
+        <div class="home">
+            <div class="home_container d-flex flex-column align-items-center justify-content-end">
+                <div class="home_content text-center">
+                    <div class="home_title">Контакты</div>
+                    <div class="breadcrumbs d-flex flex-column align-items-center justify-content-center">
+                        <ul class="d-flex flex-row align-items-start justify-content-start text-center">
+                            <li>
+                                <a asp-controller="Home" asp-action="Index">Главная</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Size Charts -->
+        <div class="cart_section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3"></div>
+                    <div class="col-lg-6">
+
+                        @Html.Raw(Model.Title)
+                        <hr/>
+                        @Html.Raw(Model.Place)
+                        <hr/>
+                        @Html.Raw(Model.Number)
+                        <hr/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

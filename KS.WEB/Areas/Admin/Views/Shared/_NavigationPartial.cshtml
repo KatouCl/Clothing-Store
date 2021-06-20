@@ -21,7 +21,10 @@
                 </a>
                 <ul id="site" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
                     <li class="sidebar-item">
-                        <a class="sidebar-link" href="#">Контакты</a>
+                        <a class="sidebar-link" asp-area="Admin" asp-controller="Contact" asp-action="Index">Контакты</a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a class="sidebar-link" asp-area="Admin" asp-controller="FeedBack" asp-action="Index">Обратная связь</a>
                     </li>
                 </ul>
             </li>

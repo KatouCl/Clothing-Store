@@ -1,0 +1,59 @@
+﻿@model KS.ViewModels.Contact.ContactIndexVm
+@{
+    ViewBag.Title = "Контакты";
+    Layout = "_AdminLayout";
+}
+
+<script src="~/Script/ckeditor/ckeditor.js"></script>
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="tab">
+                <div class="tab-content">
+                    <div class="tab-pane active" id="tab-1" role="tabpanel">
+                        <div class="row pt-5">
+                            <div class="col-md-10">
+                                <div class="mb-3 row">
+                                    <label asp-for="Title" class="col-form-label col-sm-2 text-sm-end">Заголовок</label>
+                                    <div class="col-sm-10">
+                                        <textarea id="ContentTitle" asp-for="Title" class="form-control" rows="3" disabled></textarea>
+                                    </div>
+                                </div>
+                                <div class="mb-3 row">
+                                    <label asp-for="Place" class="col-form-label col-sm-2 text-sm-end">Место</label>
+                                    <div class="col-sm-10">
+                                        <textarea id="ContentPlace" asp-for="Place" class="form-control" rows="3" disabled></textarea>
+                                    </div>
+                                </div>
+                                <div class="mb-3 row">
+                                    <label asp-for="Number" class="col-form-label col-sm-2 text-sm-end">Номера</label>
+                                    <div class="col-sm-10">
+                                        <textarea id="ContentNumber" asp-for="Number" class="form-control" rows="3" disabled></textarea>
+                                    </div>
+                                </div>
+                                <div class="mb-3 row">
+                                    <label asp-for="Context" class="col-form-label col-sm-2 text-sm-end">Содержание</label>
+                                    <div class="col-sm-10">
+                                        <textarea id="ContentContext" asp-for="Context" class="form-control" rows="3" disabled></textarea>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <hr/>
+                        <a class="float-left float-end mt-n1" asp-area="Admin" asp-controller="Contact" asp-action="Put" asp-route-id="@Model.Id">Изменить</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function (event){
+        var editor1 = CKEDITOR.replace('ContentTitle');
+        var editor2 = CKEDITOR.replace('ContentPlace');
+        var editor3 = CKEDITOR.replace('ContentNumber');
+        var editor4 = CKEDITOR.replace('ContentContext');
+        });
+</script>

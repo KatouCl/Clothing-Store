@@ -29,27 +29,36 @@
                     <div class="footer_menu">
                         <div class="footer_title">Помощь</div>
                         <ul class="footer_list">
-                            @* <li> *@
-                            @*     <a href="#"> *@
-                            @*         <div> *@
-                            @*             Центр поддержки *@
-                            @*             <div class="footer_tag_1"></div> *@
-                            @*         </div> *@
-                            @*     </a> *@
-                            @* </li> *@
                             <li>
-                                <a href="#">
+                                <a asp-area="" asp-controller="Help" asp-action="SizeCharts">
                                     <div>
                                         Таблица размеров
                                         <div class="footer_tag_2">Рекомендуется</div>
                                     </div>
                                 </a>
                             </li>
-                            @* <li> *@
-                            @*     <a href="#"> *@
-                            @*         <div>Контакты</div> *@
-                            @*     </a> *@
-                            @* </li> *@
+                            <li>
+                                <a asp-area="" asp-controller="Help" asp-action="Contact">
+                                    <div>
+                                        Контакты
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a asp-area="" asp-controller="Help" asp-action="FeedBack">
+                                    <div>
+                                        Напишите нам
+                                        <div class="footer_tag_2">Рекомендуется</div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a asp-area="" asp-controller="Help" asp-action="AboutUs">
+                                    <div>
+                                        О нас
+                                    </div>
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -114,9 +123,9 @@
                                 <li>
                                     <a asp-area="" asp-controller="Catalog" asp-action="Men">Мужчинам</a>
                                 </li>
-                                @* <li> *@
-                                @*     <a href="#">Контакты</a> *@
-                                @* </li> *@
+                                <li>
+                                    <a asp-area="" asp-controller="Help" asp-action="Contact">Контакты</a>
+                                </li>
                             </ul>
                         </nav>
                     </div>

@@ -1,0 +1,73 @@
+﻿@model KS.ViewModels.FeedBack.FeedBackIndexVm
+@{
+    ViewBag.Title = "Напишите нам";
+    Layout = "_Layout";
+}
+<head>
+    <title>@ViewData["Title"]</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Little Closet template">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="~/Shop/lib/bootstrap-4.1.2/bootstrap.min.css">
+    <link href="~/Shop/plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="~/Shop/css/checkout.css">
+    <link rel="stylesheet" type="text/css" href="~/Shop/css/checkout_responsive.css">
+</head>
+
+@* <partial name="_StatusMessage" model="Model.StatusMessage"/> *@
+<div class="super_container">
+
+    <div class="super_container_inner">
+        <div class="super_overlay"></div>
+
+        <div class="home">
+            <div class="home_container d-flex flex-column align-items-center justify-content-end">
+                <div class="home_content text-center">
+                    <div class="home_title">Напишите нам</div>
+                    <div class="breadcrumbs d-flex flex-column align-items-center justify-content-center">
+                        <ul class="d-flex flex-row align-items-start justify-content-start text-center">
+                            <li>
+                                <a asp-area="" asp-controller="Home" asp-action="Index">Главная</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="checkout">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3"></div>
+                    <div class="col-lg-6">
+                        <div class="billing">
+                            <div class="checkout_title">Напишите нам!</div>
+                            <div class="checkout_form_container">
+                                <form asp-area="" asp-controller="Help" asp-action="PostFeedBack" method="post" id="checkout_form" class="checkout_form">
+                                    <div>
+                                        <!-- Name -->
+                                        <input asp-for="Name" type="text" id="checkout_phone" class="checkout_input" placeholder="Имя" required="required">
+                                        <span asp-validation-for="Name" class="text-danger"></span>
+                                    </div>
+                                    <div>
+                                        <!-- Email -->
+                                        <input asp-for="Email" type="email" id="checkout_email" class="checkout_input" placeholder="Почта" required="required">
+                                        <span asp-validation-for="Email" class="text-danger"></span>
+                                    </div>
+                                    <div>
+                                        <!-- Comment -->
+                                        <textarea asp-for="Comment" type="text" id="checkout_email" class="checkout_input" required="required"></textarea>
+                                        <span asp-validation-for="Comment" class="text-danger"></span>
+                                    </div>
+                                    <button id="update-profile-button" type="submit" class="checkout_button trans_200">Отправить</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
