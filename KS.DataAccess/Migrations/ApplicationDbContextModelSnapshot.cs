@@ -109,13 +109,13 @@ namespace KS.DataAccess.Migrations
                         {
                             Id = "b74ddd14-6340-4840-95c2-db12554843e5",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "ccb68588-f85e-43d4-b8a3-f031bff20613",
+                            ConcurrencyStamp = "640e5444-d7cd-4dbc-b3bb-7e0668edd4a5",
                             Email = "admin@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "admin@gmail.com",
                             NormalizedUserName = "admin",
-                            PasswordHash = "AQAAAAEAACcQAAAAEPZv2dle7aSM6fLkNL2w/C9PRMi43tBIqk0A71ho8OsKhp2HVMMGpMzbuJs9pvXsYw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEOIt3qvi83AwLqxismBf4rInNCMREXhA6mOHao/5Jy6ek3CpvMV+R7LPYgprfjQyDQ==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -147,91 +147,91 @@ namespace KS.DataAccess.Migrations
                         new
                         {
                             Id = 1L,
-                            CreationDate = new DateTime(2021, 6, 17, 23, 12, 33, 173, DateTimeKind.Local).AddTicks(1027),
+                            CreationDate = new DateTime(2021, 6, 20, 14, 16, 10, 854, DateTimeKind.Local).AddTicks(685),
                             Description = "Nike",
                             Name = "Nike"
                         },
                         new
                         {
                             Id = 2L,
-                            CreationDate = new DateTime(2021, 6, 17, 23, 12, 33, 173, DateTimeKind.Local).AddTicks(1091),
+                            CreationDate = new DateTime(2021, 6, 20, 14, 16, 10, 854, DateTimeKind.Local).AddTicks(767),
                             Description = "Adidas",
                             Name = "Adidas"
                         },
                         new
                         {
                             Id = 3L,
-                            CreationDate = new DateTime(2021, 6, 17, 23, 12, 33, 173, DateTimeKind.Local).AddTicks(1096),
+                            CreationDate = new DateTime(2021, 6, 20, 14, 16, 10, 854, DateTimeKind.Local).AddTicks(771),
                             Description = "Polo",
                             Name = "Polo"
                         },
                         new
                         {
                             Id = 4L,
-                            CreationDate = new DateTime(2021, 6, 17, 23, 12, 33, 173, DateTimeKind.Local).AddTicks(1101),
+                            CreationDate = new DateTime(2021, 6, 20, 14, 16, 10, 854, DateTimeKind.Local).AddTicks(774),
                             Description = "Balmain",
                             Name = "Balmain"
                         },
                         new
                         {
                             Id = 5L,
-                            CreationDate = new DateTime(2021, 6, 17, 23, 12, 33, 173, DateTimeKind.Local).AddTicks(1105),
+                            CreationDate = new DateTime(2021, 6, 20, 14, 16, 10, 854, DateTimeKind.Local).AddTicks(777),
                             Description = "Bottega Veneta",
                             Name = "Bottega Veneta"
                         },
                         new
                         {
                             Id = 6L,
-                            CreationDate = new DateTime(2021, 6, 17, 23, 12, 33, 173, DateTimeKind.Local).AddTicks(1110),
+                            CreationDate = new DateTime(2021, 6, 20, 14, 16, 10, 854, DateTimeKind.Local).AddTicks(781),
                             Description = "Brunello Cucinelli",
                             Name = "Brunello Cucinelli"
                         },
                         new
                         {
                             Id = 7L,
-                            CreationDate = new DateTime(2021, 6, 17, 23, 12, 33, 173, DateTimeKind.Local).AddTicks(1115),
+                            CreationDate = new DateTime(2021, 6, 20, 14, 16, 10, 854, DateTimeKind.Local).AddTicks(784),
                             Description = "Jil Sander",
                             Name = "Jil Sander"
                         },
                         new
                         {
                             Id = 8L,
-                            CreationDate = new DateTime(2021, 6, 17, 23, 12, 33, 173, DateTimeKind.Local).AddTicks(1120),
+                            CreationDate = new DateTime(2021, 6, 20, 14, 16, 10, 854, DateTimeKind.Local).AddTicks(787),
                             Description = "Gucci",
                             Name = "Gucci"
                         },
                         new
                         {
                             Id = 9L,
-                            CreationDate = new DateTime(2021, 6, 17, 23, 12, 33, 173, DateTimeKind.Local).AddTicks(1126),
+                            CreationDate = new DateTime(2021, 6, 20, 14, 16, 10, 854, DateTimeKind.Local).AddTicks(791),
                             Description = "Ralph Lauren",
                             Name = "Ralph Lauren"
                         },
                         new
                         {
                             Id = 10L,
-                            CreationDate = new DateTime(2021, 6, 17, 23, 12, 33, 173, DateTimeKind.Local).AddTicks(1131),
+                            CreationDate = new DateTime(2021, 6, 20, 14, 16, 10, 854, DateTimeKind.Local).AddTicks(794),
                             Description = "Alexander McQueen",
                             Name = "Alexander McQueen"
                         },
                         new
                         {
                             Id = 11L,
-                            CreationDate = new DateTime(2021, 6, 17, 23, 12, 33, 173, DateTimeKind.Local).AddTicks(1135),
+                            CreationDate = new DateTime(2021, 6, 20, 14, 16, 10, 854, DateTimeKind.Local).AddTicks(797),
                             Description = "Prada",
                             Name = "Prada"
                         },
                         new
                         {
                             Id = 12L,
-                            CreationDate = new DateTime(2021, 6, 17, 23, 12, 33, 173, DateTimeKind.Local).AddTicks(1139),
+                            CreationDate = new DateTime(2021, 6, 20, 14, 16, 10, 854, DateTimeKind.Local).AddTicks(801),
                             Description = "Off-White",
                             Name = "Off-White"
                         },
                         new
                         {
                             Id = 13L,
-                            CreationDate = new DateTime(2021, 6, 17, 23, 12, 33, 173, DateTimeKind.Local).AddTicks(1144),
+                            CreationDate = new DateTime(2021, 6, 20, 14, 16, 10, 854, DateTimeKind.Local).AddTicks(804),
                             Description = "Versace",
                             Name = "Versace"
                         });
@@ -295,178 +295,205 @@ namespace KS.DataAccess.Migrations
                         new
                         {
                             Id = 1L,
-                            CreationDate = new DateTime(2021, 6, 17, 23, 12, 33, 176, DateTimeKind.Local).AddTicks(3604),
+                            CreationDate = new DateTime(2021, 6, 20, 14, 16, 10, 855, DateTimeKind.Local).AddTicks(7337),
                             Name = "Блуза",
                             Slug = "Блуза"
                         },
                         new
                         {
                             Id = 2L,
-                            CreationDate = new DateTime(2021, 6, 17, 23, 12, 33, 176, DateTimeKind.Local).AddTicks(3629),
+                            CreationDate = new DateTime(2021, 6, 20, 14, 16, 10, 855, DateTimeKind.Local).AddTicks(7350),
                             Name = "Рубашка",
                             Slug = "Рубашка"
                         },
                         new
                         {
                             Id = 3L,
-                            CreationDate = new DateTime(2021, 6, 17, 23, 12, 33, 176, DateTimeKind.Local).AddTicks(3637),
+                            CreationDate = new DateTime(2021, 6, 20, 14, 16, 10, 855, DateTimeKind.Local).AddTicks(7354),
                             Name = "Брюки",
                             Slug = "Брюки"
                         },
                         new
                         {
                             Id = 4L,
-                            CreationDate = new DateTime(2021, 6, 17, 23, 12, 33, 176, DateTimeKind.Local).AddTicks(3642),
+                            CreationDate = new DateTime(2021, 6, 20, 14, 16, 10, 855, DateTimeKind.Local).AddTicks(7357),
                             Name = "Бриджи",
                             Slug = "Бриджи"
                         },
                         new
                         {
                             Id = 5L,
-                            CreationDate = new DateTime(2021, 6, 17, 23, 12, 33, 176, DateTimeKind.Local).AddTicks(3646),
+                            CreationDate = new DateTime(2021, 6, 20, 14, 16, 10, 855, DateTimeKind.Local).AddTicks(7361),
                             Name = "Лосины",
                             Slug = "Лосины"
                         },
                         new
                         {
                             Id = 6L,
-                            CreationDate = new DateTime(2021, 6, 17, 23, 12, 33, 176, DateTimeKind.Local).AddTicks(3653),
+                            CreationDate = new DateTime(2021, 6, 20, 14, 16, 10, 855, DateTimeKind.Local).AddTicks(7364),
                             Name = "Джинсы",
                             Slug = "Джинсы"
                         },
                         new
                         {
                             Id = 7L,
-                            CreationDate = new DateTime(2021, 6, 17, 23, 12, 33, 176, DateTimeKind.Local).AddTicks(3659),
+                            CreationDate = new DateTime(2021, 6, 20, 14, 16, 10, 855, DateTimeKind.Local).AddTicks(7368),
                             Name = "Шорты",
                             Slug = "Шорты"
                         },
                         new
                         {
                             Id = 8L,
-                            CreationDate = new DateTime(2021, 6, 17, 23, 12, 33, 176, DateTimeKind.Local).AddTicks(3663),
+                            CreationDate = new DateTime(2021, 6, 20, 14, 16, 10, 855, DateTimeKind.Local).AddTicks(7371),
                             Name = "Юбка",
                             Slug = "Юбка"
                         },
                         new
                         {
                             Id = 9L,
-                            CreationDate = new DateTime(2021, 6, 17, 23, 12, 33, 176, DateTimeKind.Local).AddTicks(3668),
+                            CreationDate = new DateTime(2021, 6, 20, 14, 16, 10, 855, DateTimeKind.Local).AddTicks(7374),
                             Name = "Комбинезон",
                             Slug = "Комбинезон"
                         },
                         new
                         {
                             Id = 10L,
-                            CreationDate = new DateTime(2021, 6, 17, 23, 12, 33, 176, DateTimeKind.Local).AddTicks(3672),
+                            CreationDate = new DateTime(2021, 6, 20, 14, 16, 10, 855, DateTimeKind.Local).AddTicks(7378),
                             Name = "Джемпер",
                             Slug = "Джемпер"
                         },
                         new
                         {
                             Id = 11L,
-                            CreationDate = new DateTime(2021, 6, 17, 23, 12, 33, 176, DateTimeKind.Local).AddTicks(3677),
+                            CreationDate = new DateTime(2021, 6, 20, 14, 16, 10, 855, DateTimeKind.Local).AddTicks(7381),
                             Name = "Свитер",
                             Slug = "Свитер"
                         },
                         new
                         {
                             Id = 12L,
-                            CreationDate = new DateTime(2021, 6, 17, 23, 12, 33, 176, DateTimeKind.Local).AddTicks(3681),
+                            CreationDate = new DateTime(2021, 6, 20, 14, 16, 10, 855, DateTimeKind.Local).AddTicks(7385),
                             Name = "Гольф",
                             Slug = "Гольф"
                         },
                         new
                         {
                             Id = 13L,
-                            CreationDate = new DateTime(2021, 6, 17, 23, 12, 33, 176, DateTimeKind.Local).AddTicks(3686),
+                            CreationDate = new DateTime(2021, 6, 20, 14, 16, 10, 855, DateTimeKind.Local).AddTicks(7389),
                             Name = "Пуловер",
                             Slug = "Пуловер"
                         },
                         new
                         {
                             Id = 14L,
-                            CreationDate = new DateTime(2021, 6, 17, 23, 12, 33, 176, DateTimeKind.Local).AddTicks(3691),
+                            CreationDate = new DateTime(2021, 6, 20, 14, 16, 10, 855, DateTimeKind.Local).AddTicks(7392),
                             Name = "Кофта",
                             Slug = "Кофта"
                         },
                         new
                         {
                             Id = 15L,
-                            CreationDate = new DateTime(2021, 6, 17, 23, 12, 33, 176, DateTimeKind.Local).AddTicks(3695),
+                            CreationDate = new DateTime(2021, 6, 20, 14, 16, 10, 855, DateTimeKind.Local).AddTicks(7396),
                             Name = "Кардиган",
                             Slug = "Кардиган"
                         },
                         new
                         {
                             Id = 16L,
-                            CreationDate = new DateTime(2021, 6, 17, 23, 12, 33, 176, DateTimeKind.Local).AddTicks(3700),
+                            CreationDate = new DateTime(2021, 6, 20, 14, 16, 10, 855, DateTimeKind.Local).AddTicks(7399),
                             Name = "Жакет",
                             Slug = "Жакет"
                         },
                         new
                         {
                             Id = 17L,
-                            CreationDate = new DateTime(2021, 6, 17, 23, 12, 33, 176, DateTimeKind.Local).AddTicks(3704),
+                            CreationDate = new DateTime(2021, 6, 20, 14, 16, 10, 855, DateTimeKind.Local).AddTicks(7402),
                             Name = "Пиджак",
                             Slug = "Пиджак"
                         },
                         new
                         {
                             Id = 18L,
-                            CreationDate = new DateTime(2021, 6, 17, 23, 12, 33, 176, DateTimeKind.Local).AddTicks(3709),
+                            CreationDate = new DateTime(2021, 6, 20, 14, 16, 10, 855, DateTimeKind.Local).AddTicks(7435),
                             Name = "Футболка",
                             Slug = "Футболка"
                         },
                         new
                         {
                             Id = 19L,
-                            CreationDate = new DateTime(2021, 6, 17, 23, 12, 33, 176, DateTimeKind.Local).AddTicks(3713),
+                            CreationDate = new DateTime(2021, 6, 20, 14, 16, 10, 855, DateTimeKind.Local).AddTicks(7438),
                             Name = "Майка",
                             Slug = "Майка"
                         },
                         new
                         {
                             Id = 20L,
-                            CreationDate = new DateTime(2021, 6, 17, 23, 12, 33, 176, DateTimeKind.Local).AddTicks(3718),
+                            CreationDate = new DateTime(2021, 6, 20, 14, 16, 10, 855, DateTimeKind.Local).AddTicks(7441),
                             Name = "Поло",
                             Slug = "Поло"
                         },
                         new
                         {
                             Id = 21L,
-                            CreationDate = new DateTime(2021, 6, 17, 23, 12, 33, 176, DateTimeKind.Local).AddTicks(3723),
+                            CreationDate = new DateTime(2021, 6, 20, 14, 16, 10, 855, DateTimeKind.Local).AddTicks(7445),
                             Name = "Футболка с длинным рукавом",
                             Slug = "Футболка с длинным рукавом"
                         },
                         new
                         {
                             Id = 22L,
-                            CreationDate = new DateTime(2021, 6, 17, 23, 12, 33, 176, DateTimeKind.Local).AddTicks(3727),
+                            CreationDate = new DateTime(2021, 6, 20, 14, 16, 10, 855, DateTimeKind.Local).AddTicks(7448),
                             Name = "Тенниска",
                             Slug = "Тенниска"
                         },
                         new
                         {
                             Id = 23L,
-                            CreationDate = new DateTime(2021, 6, 17, 23, 12, 33, 176, DateTimeKind.Local).AddTicks(3732),
+                            CreationDate = new DateTime(2021, 6, 20, 14, 16, 10, 855, DateTimeKind.Local).AddTicks(7451),
                             Name = "Реглан",
                             Slug = "Реглан"
                         },
                         new
                         {
                             Id = 24L,
-                            CreationDate = new DateTime(2021, 6, 17, 23, 12, 33, 176, DateTimeKind.Local).AddTicks(3737),
+                            CreationDate = new DateTime(2021, 6, 20, 14, 16, 10, 855, DateTimeKind.Local).AddTicks(7455),
                             Name = "Платье",
                             Slug = "Платье"
                         },
                         new
                         {
                             Id = 25L,
-                            CreationDate = new DateTime(2021, 6, 17, 23, 12, 33, 176, DateTimeKind.Local).AddTicks(3741),
+                            CreationDate = new DateTime(2021, 6, 20, 14, 16, 10, 855, DateTimeKind.Local).AddTicks(7458),
                             Name = "Ветровка",
                             Slug = "Ветровка"
                         });
+                });
+
+            modelBuilder.Entity("KS.Entities.Contact", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Context")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreationDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Number")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Place")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Contacts");
                 });
 
             modelBuilder.Entity("KS.Entities.Delivery", b =>
@@ -512,6 +539,30 @@ namespace KS.DataAccess.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Deliveries");
+                });
+
+            modelBuilder.Entity("KS.Entities.FeedBack", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Comment")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreationDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("FeedBacks");
                 });
 
             modelBuilder.Entity("KS.Entities.Media", b =>
@@ -764,21 +815,21 @@ namespace KS.DataAccess.Migrations
                         new
                         {
                             Id = 1L,
-                            CreationDate = new DateTime(2021, 6, 17, 23, 12, 33, 176, DateTimeKind.Local).AddTicks(7353),
+                            CreationDate = new DateTime(2021, 6, 20, 14, 16, 10, 855, DateTimeKind.Local).AddTicks(9236),
                             Interest = 0m,
                             Name = "0%"
                         },
                         new
                         {
                             Id = 2L,
-                            CreationDate = new DateTime(2021, 6, 17, 23, 12, 33, 176, DateTimeKind.Local).AddTicks(7411),
+                            CreationDate = new DateTime(2021, 6, 20, 14, 16, 10, 855, DateTimeKind.Local).AddTicks(9270),
                             Interest = 10m,
                             Name = "10%"
                         },
                         new
                         {
                             Id = 3L,
-                            CreationDate = new DateTime(2021, 6, 17, 23, 12, 33, 176, DateTimeKind.Local).AddTicks(7417),
+                            CreationDate = new DateTime(2021, 6, 20, 14, 16, 10, 855, DateTimeKind.Local).AddTicks(9275),
                             Interest = 18m,
                             Name = "18%"
                         });
@@ -814,7 +865,7 @@ namespace KS.DataAccess.Migrations
                         {
                             Id = 1L,
                             Address = "г. Белебей, ул. Красноармейская 125",
-                            CreationDate = new DateTime(2021, 6, 17, 23, 12, 33, 177, DateTimeKind.Local).AddTicks(462),
+                            CreationDate = new DateTime(2021, 6, 20, 14, 16, 10, 856, DateTimeKind.Local).AddTicks(864),
                             Name = "Основной",
                             Vendor = "452000"
                         },
@@ -822,7 +873,7 @@ namespace KS.DataAccess.Migrations
                         {
                             Id = 2L,
                             Address = "г. Уфа, ул. Советская 25",
-                            CreationDate = new DateTime(2021, 6, 17, 23, 12, 33, 177, DateTimeKind.Local).AddTicks(483),
+                            CreationDate = new DateTime(2021, 6, 20, 14, 16, 10, 856, DateTimeKind.Local).AddTicks(874),
                             Name = "Основной (запасной)",
                             Vendor = "450000"
                         });

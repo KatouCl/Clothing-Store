@@ -1,9 +1,6 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using KS.Entities.Enums;
-using KS.ViewModels.Cart;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace KS.ViewModels
+namespace KS.ViewModels.Checkout
 {
     public class CheckoutVm
     {
@@ -31,6 +28,5 @@ namespace KS.ViewModels
         [Required(ErrorMessage = "Введите номер телефона")]
         public string Phone { get; set; }
         public string Comment { get; set; }
-        // public DeliveryType DeliveryType { get; set; } 
     }
 }

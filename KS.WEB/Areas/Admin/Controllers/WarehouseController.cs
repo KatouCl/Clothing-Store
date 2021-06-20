@@ -163,7 +163,7 @@ namespace KS.WEB.Areas.Admin.Controllers
                 stock => stock.ProductId,
                 (product, stock) => new MangeWarehouseProductItemViewModel
                 {
-                    Id = product.Id,
+                    Id = stock.Id,
                     ProductId = product.Id,
                     Name = product.Name,
                     Quantity = stock.Quantity

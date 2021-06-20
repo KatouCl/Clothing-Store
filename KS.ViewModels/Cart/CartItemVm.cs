@@ -15,7 +15,9 @@ namespace KS.ViewModels.Cart
         // public Entities.Product Product { get; set; }
         public string ImageUrl { get; set; }
         public int Quantity { get; set; }
+        public int QuantityStock { get; set; }
         public decimal Price { get; set; }
+        public long StockId { get; set; }
         public decimal TotalPrice
         {
             get

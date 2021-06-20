@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using KS.Entities;
 using KS.ViewModels;
 using KS.ViewModels.Cart;
+using KS.ViewModels.Checkout;
 using Microsoft.AspNetCore.Http;
 
 namespace KS.Interfaces.DataAccess.BusinessLogic.Services

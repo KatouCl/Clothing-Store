@@ -33,30 +33,25 @@ namespace KS.BusinessLogic.Services
                     Customer = x.Customer.Id,
                     Price = x.Price,
                     CreationDate = x.CreationDate,
-                    QuantityProduct = _orderItemRepository.GetAllQuery()
-                        .Where(w => w.Order.Id == x.Id)
-                        .Select(s => s.Product)
-                        .Count()
-                });
-
+                    QuantityProduct = _orderItemRepository.GetAllQuery().Where(w => w.Order.Id == x.Id).Sum(s => s.Quantity)
+                }).ToList();
+            
             return orderList;
         }
 
         public IEnumerable<OrderListVm> GetOrders()
         {
             var orderList = _orderRepository.GetAllQuery()
-                .OrderBy(x => x.CreationDate)
                 .Select(x => new OrderListVm
                 {
                     Id = x.Id,
-                    Customer = x.Customer.Email,
+                    Customer = x.Customer.Id,
                     Price = x.Price,
                     CreationDate = x.CreationDate,
                     QuantityProduct = _orderItemRepository.GetAllQuery()
                         .Where(w => w.Order.Id == x.Id)
-                        .Select(s => s.Product)
-                        .Count()
-                });
+                        .Sum(s => s.Quantity)
+                }).ToList();
 
             return orderList;
         }
@@ -73,8 +68,9 @@ namespace KS.BusinessLogic.Services
                     ProductName = _productRepository.GetAll().FirstOrDefault(p => p.Id == x.Product.Id).Name,
                     CoverImageUrl =_productRepository.GetAll().FirstOrDefault(p => p.Id == x.Product.Id).CoverImageUrl,
                     OrderId = orderId,
+                    Quantity = x.Quantity,
                     Price = x.Price,
-                    TotalPrice =_productRepository.GetAll().FirstOrDefault(p => p.Id == x.Product.Id).Price,
+                    TotalPrice = x.Price * x.Quantity,
                     CreationDate = x.CreationDate
                 });
             
@@ -93,8 +89,9 @@ namespace KS.BusinessLogic.Services
                     ProductName = _productRepository.GetAll().FirstOrDefault(p => p.Id == x.Product.Id).Name,
                     CoverImageUrl =_productRepository.GetAll().FirstOrDefault(p => p.Id == x.Product.Id).CoverImageUrl,
                     OrderId = orderId,
+                    Quantity = x.Quantity,
                     Price = x.Price,
-                    TotalPrice =_productRepository.GetAll().FirstOrDefault(p => p.Id == x.Product.Id).Price,
+                    TotalPrice = x.Price * x.Quantity,
                     CreationDate = x.CreationDate
                 });
             

@@ -478,3 +478,4 @@ M:\KataStore\KS.WEB\obj\Debug\net5.0\Razor\Areas\Admin\Views\Home\LastOrders.csh
 M:\KataStore\KS.WEB\obj\Debug\net5.0\Razor\Areas\Admin\Views\Shared\_LastOrdersPartial.cshtml.g.cs
 M:\KataStore\KS.WEB\obj\Debug\net5.0\Razor\Areas\Admin\Views\Order\OrderDetails.cshtml.g.cs
 M:\KataStore\KS.WEB\obj\Debug\net5.0\Razor\Areas\Admin\Views\Chart\Order.cshtml.g.cs
+M:\KataStore\KS.WEB\obj\Debug\net5.0\Razor\Pages\Contact\Index.cshtml.g.cs

@@ -5,11 +5,12 @@ using KS.Interfaces.DataAccess.Repositories;
 using KS.ViewModels.Brand;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.CodeAnalysis;
 
 namespace KS.WEB.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [Authorize(Roles="Admin")]
+    [Authorize(Roles = "Admin")]
     public class BrandController : Controller
     {
         private readonly IBrandRepository _brandRepository;
@@ -41,16 +42,21 @@ namespace KS.WEB.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> Post(BrandIndexViewModel model)
         {
-            var brand = new Brand
+            if (ModelState.IsValid)
             {
-                Id = model.Id,
-                Name = model.Name,
-                Description = model.Description
-            };
-            await _brandRepository.AddAsync(brand);
+                var brand = new Brand
+                {
+                    Id = model.Id,
+                    Name = model.Name,
+                    Description = model.Description
+                };
+                await _brandRepository.AddAsync(brand);
 
-            TempData["SM"] = "Вы успешно создали.";
-            return RedirectToAction("Index", "Brand");
+                TempData["SM"] = "Вы успешно создали.";
+                return RedirectToAction("Index", "Brand");
+            }
+
+            return View(model);
         }
 
         public async Task<IActionResult> Put(int id, BrandIndexViewModel model)

@@ -60,12 +60,12 @@
                                     <del> ₽ @Model.OldPrice.ToString()</del>
                                 </p>
                             </div>
-                            <div class="product_text">
-                                <p>@Html.Raw(Model.Description)</p>
+                            <div class="product_text text-dark">
+                                @Html.Raw(Model.Description)
                                 <hr>
-                                <p>@Html.Raw(Model.Specification)</p>
-                                @* <hr> *@
-                                @* <p>Количество товаров на складе: @Model.QuantityStock.ToString()</p> *@
+                                @Html.Raw(Model.Specification)
+                                <hr>
+                                <p>Количество товаров на складе: @Model.QuantityStock.ToString()</p>
                             </div>
                             <div class="product_buttons">
                                 @if (_signInManager.IsSignedIn(User))
@@ -79,6 +79,7 @@
                                                 </div>
                                             </div>
                                         </div>
+
                                         <div id="AddToCart" class="product_button product_cart text-center d-flex flex-column align-items-center justify-content-center">
                                             <div>
                                                 <div>
@@ -172,7 +173,7 @@
         // TODO: Сделать нормально по-людки по запросу
         $( "#AddToCart" ).click(function() {
             
-            window.location = "/Cart/AddToCart?productId=" + @Model.Id + "&quantity=" + 1;
+            window.location = "/Cart/AddToCart?productId=" + @Model.Id + "&stockId=" + @Model.StockId + "&quantity=" + 1;
             return alert("Товар добавлен в корзину");
         });
         /****************************************************/

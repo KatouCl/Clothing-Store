@@ -38,7 +38,7 @@
                                                                 <div class="product_tag d-flex flex-column align-items-center justify-content-center">
                                                                     <div>
                                                                         <div>от</div>
-                                                                        <div>₽3<span>.99</span></div>
+                                                                        <div>₽999<span>.99</span></div>
                                                                     </div>
                                                                 </div>
                                                                 <div class="product_image">
@@ -57,7 +57,7 @@
                                                                         <div class="ml-auto text-right">
                                                                             <div class="rating_r rating_r_4 home_item_rating">
                                                                             </div>
-                                                                            <div class="product_price text-right">₽3<span>.99</span></div>
+                                                                            <div class="product_price text-right">₽999<span>.99</span></div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -136,7 +136,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div onclick="return cart_onclick(@product.Id)" class="product_button product_cart text-center d-flex flex-column align-items-center justify-content-center">
+                                        <div onclick="return cart_onclick(@product.Id, @product.StockId)" class="product_button product_cart text-center d-flex flex-column align-items-center justify-content-center">
                                             <div>
                                                 <div>
                                                     <img src="~/Shop/images/cart.svg" class="svg" alt="">
@@ -291,8 +291,8 @@
     <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
 
     <script>
-        function cart_onclick(productId) {
-            window.location = "/Cart/AddToCart?productId=" + productId + "&quantity=" + 1;
+        function cart_onclick(productId, stockId) {
+            window.location = "/Cart/AddToCart?productId=" + productId + "&stockId=" + stockId + "&quantity=" + 1;
             return alert("Товар добавлен в корзину");
         }
         

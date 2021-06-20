@@ -20,6 +20,8 @@ namespace KS.DataAccess
         public DbSet<Delivery> Deliveries { get; set; }
         public DbSet<OrderItem> OrderItems { get; set; }
         public DbSet<Product> Products { get; set; }
+        public DbSet<FeedBack> FeedBacks { get; set; }
+        public DbSet<Contact> Contacts { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<ProductCategory> ProductCategories { get; set; }
         public DbSet<Brand> Brands { get; set; }

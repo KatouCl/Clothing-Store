@@ -21,7 +21,9 @@ namespace KS.WEB.Controllers
         {
             var pageNumber = page ?? 1;
 
-            var catalogListing = _categoryService.GetProductForCatalog(categoryId);
+            var catalogListing = _categoryService.GetProductForCatalog(categoryId)
+                .Where(x => x.QuantityStock >= 1)
+                .OrderByDescending(x => x.Id);
 
             var onePageOfCatalogs = catalogListing.ToPagedList(pageNumber, 9);
             ViewBag.onePageOfCatalogs = onePageOfCatalogs;
@@ -30,7 +32,9 @@ namespace KS.WEB.Controllers
         }
         public IActionResult Woman(int? page, long? categoryId)
         {
-            var catalogListing = _categoryService.GetProductForFemale(categoryId);
+            var catalogListing = _categoryService.GetProductForFemale(categoryId)
+                .Where(x => x.QuantityStock >= 1)
+                .OrderByDescending(x => x.Id);
 
             var pageNumber = page ?? 1;
 
@@ -41,7 +45,9 @@ namespace KS.WEB.Controllers
         }
         public IActionResult Men(int? page, long? categoryId)
         {
-            var catalogListing = _categoryService.GetProductForMale(categoryId);
+            var catalogListing = _categoryService.GetProductForMale(categoryId)
+                .Where(x => x.QuantityStock >= 1)
+                .OrderByDescending(x => x.Id);
 
             var pageNumber = page ?? 1;
             

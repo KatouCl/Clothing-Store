@@ -8,6 +8,7 @@ using KS.Interfaces.DataAccess.BusinessLogic.Services;
 using KS.Interfaces.DataAccess.Repositories;
 using KS.ViewModels;
 using KS.ViewModels.Cart;
+using KS.ViewModels.Checkout;
 using KS.ViewModels.Session;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Features;
@@ -21,6 +22,7 @@ namespace KS.BusinessLogic.Services
     public class CartService : ICartService
     {
         private readonly IBaseRepository<CartItem> _cartRepository;
+        private readonly IBaseRepository<Stock> _stockRepository;
         private readonly IStockService _stockService;
         private readonly IProductRepository _productRepository;
         private readonly UserManager<ApplicationUser> _userManager;
@@ -33,13 +35,15 @@ namespace KS.BusinessLogic.Services
             UserManager<ApplicationUser> userManager,
             IProductRepository productRepository,
             IStockService stockService,
-            IBaseRepository<Order> orderRepository)
+            IBaseRepository<Order> orderRepository,
+            IBaseRepository<Stock> stockRepository)
         {
             _cartRepository = cartRepository;
             _userManager = userManager;
             _productRepository = productRepository;
             _stockService = stockService;
             _orderRepository = orderRepository;
+            _stockRepository = stockRepository;
         }
 
 
@@ -62,7 +66,8 @@ namespace KS.BusinessLogic.Services
                     ProductName = addProductToCart.ProductName,
                     ImageUrl = addProductToCart.ImageUrl,
                     Quantity = addProductToCart.Quantity,
-                    Price = addProductToCart.Price
+                    Price = addProductToCart.Price,
+                    StockId = addProductToCart.StockId
                 });
             }
 
@@ -92,7 +97,8 @@ namespace KS.BusinessLogic.Services
                     ProductId = x.ProductId,
                     ImageUrl = x.ImageUrl,
                     Price = x.Price,
-                    Quantity = x.Quantity
+                    Quantity = x.Quantity,
+                    StockId = x.StockId
                 }).ToList();
 
             return result;
@@ -112,44 +118,70 @@ namespace KS.BusinessLogic.Services
         public async Task<int> Checkout(ISession session, CheckoutVm checkout, ApplicationUser customer)
         {
             var sessionData = this.GetSessionCartData(session);
-            
-            var item = sessionData.Products.Select(x => new CartDetailsItemSessionVm
-            {
-                Id = x.Id,
-                ProductId = x.ProductId,
-                Price = x.Price,
-                Quantity = x.Quantity
-            });
-            
-            var ids = sessionData.Products.Select(x => x.Id);
 
-            var products = await _productRepository.GetAllQuery().Where(x => ids.Contains(x.Id)).ToListAsync();
-            
+            var item = sessionData.Products.Select(x => new CartDetailsItemSessionVm
+                {
+                    Id = x.Id,
+                    ProductId = x.ProductId,
+                    Price = x.Price,
+                    Quantity = x.Quantity,
+                    StockId = x.StockId
+                })
+                .Where(w => _stockRepository.GetByIdAsync(w.StockId).Result.Id == w.StockId
+                            && _stockRepository.GetByIdAsync(w.StockId).Result.ProductId == w.ProductId
+                            && _stockRepository.GetByIdAsync(w.StockId).Result.Quantity >= w.Quantity
+                );
+
+            var ids = sessionData.Products.Select(x => x.Id);
+            var productIds = sessionData.Products.Select(x => x.ProductId);
+            if (item.Count() != ids.Count())
+            {
+                return 0;
+            }
+
+            var products = await _productRepository.GetAllQuery().Where(x => productIds.Contains(x.Id)).ToListAsync();
+
             var order = new Order();
-            
+
             var orderItems = new List<OrderItem>();
-            
+
             foreach (var sessionProduct in sessionData.Products)
             {
                 var product = products.FirstOrDefault(x => x.Id == sessionProduct.Id);
-            
+
                 var orderItem = orderItems.FirstOrDefault(x => x.Product.Id == product.Id);
-            
+
                 if (orderItem == default)
                 {
                     orderItem = new OrderItem
                     {
                         Product = product,
                         Order = order,
-                        Quantity = item.FirstOrDefault(x => ids.Contains(x.Id)).Quantity,
-                        Price = item.FirstOrDefault(x => x.Id == product.Id).Price,
-                        TotalPrice = product.Price * item.FirstOrDefault(x => x.Id == product.Id).Quantity,
+                        Quantity = item.FirstOrDefault(x => x.ProductId == product.Id).Quantity,
+                        Price = item.FirstOrDefault(x => x.ProductId == product.Id).Price,
+                        TotalPrice = product.Price * item.FirstOrDefault(x => x.ProductId == product.Id).Quantity,
                     };
-            
+
+                    var stQuant = item.FirstOrDefault(x => x.ProductId == product.Id).StockId;
+
+                    var stock = _stockRepository.GetAll().FirstOrDefault(x =>
+                        x.ProductId == product.Id && x.Id == stQuant);
+
+                    if (!(stock.Quantity >= 1))
+                    {
+                        await _stockRepository.DeleteAsync(stock);
+                        return 0;
+                    }
+                    else
+                    {
+                        stock.Quantity = stock.Quantity - orderItem.Quantity;
+                        await _stockRepository.UpdateAsync(stock);
+                    }
+
                     orderItems.Add(orderItem);
                 }
             }
-            
+
             var delivery = new Delivery
             {
                 FirstName = checkout.FirstName,
@@ -161,18 +193,17 @@ namespace KS.BusinessLogic.Services
                 Phone = checkout.Phone,
                 Comment = checkout.Comment
             };
-            
             order.OrderItems = orderItems;
             order.Delivery = delivery;
             order.Customer = customer;
-            order.Price = order.OrderItems.Sum(x => x.Price);
-            
+            order.Price = order.OrderItems.Sum(x => x.TotalPrice);
+
             var checkoutId = (await _orderRepository.AddAsync(order)).Id;
-            
+
             order.Id = checkoutId;
-            
+
             this.ClearSessionCartData(session);
-            
+
             return 1;
         }
 

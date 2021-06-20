@@ -28,7 +28,7 @@ namespace KS.BusinessLogic.Services
                 Name = product.Name,
                 OldPrice = product.OldPrice,
                 Price = product.Price,
-                Description = product.Description,
+                Description = product.Description
             };
 
             return productView;

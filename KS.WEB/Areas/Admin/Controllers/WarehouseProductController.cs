@@ -59,13 +59,15 @@ namespace KS.WEB.Areas.Admin.Controllers
             var joinedQuery = query.GroupJoin
                 (
                     stocksList,
-                    product => product.Id, stock => stock.ProductId,
+                    product => product.Id,
+                    stock => stock.ProductId,
                     (product, stock) => new {product, stock}
                 )
                 .SelectMany(x => x.stock.DefaultIfEmpty(),
                     (x, stock) => new MangeWarehouseProductItemViewModel
                     {
                         Id = x.product.Id,
+                        ProductId = x.product.Id,
                         Name = x.product.Name,
                         Quantity = stock?.Quantity ?? 0,
                     }).ToList();
@@ -118,6 +120,12 @@ namespace KS.WEB.Areas.Admin.Controllers
                 Quantity = quantity
             };
             await _stockService.UpdateStock(stockUpdateVm);
+            return RedirectToAction("Stocks", "Warehouse", new {warehouseId = warehouseId});
+        }
+
+        public async Task<IActionResult> DeleteProductFromStock(long stockId, long warehouseId)
+        {
+            await _stockRepository.DeleteAsync(new Stock {Id = stockId});
             return RedirectToAction("Stocks", "Warehouse", new {warehouseId = warehouseId});
         }
     }

@@ -47,37 +47,38 @@
             @foreach (var warehouse in Model)
             {
                 <tr>
-                    <td>
-                        <input type="hidden" asp-for="@warehouseId" id="ajaxWarehouseId">
-                        <label>
-                            @warehouse.Name
-                        </label>
-                        <input value="@warehouse.ProductId" id="ajaxProductId" hidden>
-                    </td>
-                    <td>
-                        <label>@warehouse.Quantity</label>
-                    </td>
-                    <td>
-                        <input type="number" class="form-control" id="ajaxQuantity" min="-@warehouse.Quantity" max="1000" step="1">
-                    </td>
-                    <td class="table-action">
-                        <a id="btnUpdateQuantity" onclick="updateQuantity()">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-2 align-middle">
-                                <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path>
-                            </svg>
-                        </a>
-                    </td>
+                    <form asp-area="Admin" asp-controller="WarehouseProduct" asp-action="UpdateQuantityProduct">
+                        <td>
+                            <input name="warehouseId" type="hidden" asp-for="@warehouseId">
+                            <label>
+                                @warehouse.Name
+                            </label>
+                            <input name="productId" value="@warehouse.ProductId" hidden>
+                        </td>
+                        <td>
+                            <label>@warehouse.Quantity</label>
+                        </td>
+                        <td>
+                            <input name="quantity" type="number" class="form-control" min="-@warehouse.Quantity" max="1000" step="1">
+                        </td>
+                        <td class="table-action">
+                            <button type="submit" style="border: 0; background-color: #ffffff; color: #3b7ddd">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-2 align-middle">
+                                    <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path>
+                                </svg>
+                            </button>
+                        </td>
+                        <td>
+                            <a asp-area="Admin" asp-controller="WarehouseProduct" asp-action="DeleteProductFromStock" asp-route-warehouseId="@warehouseId" asp-route-stockId="@warehouse.Id">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash align-middle">
+                                    <polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                                </svg>
+                            </a>
+                        </td>
+                    </form>
                 </tr>
             }
             </tbody>
         </table>
     }
 </div>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<script>
-function updateQuantity() {
-    var productId =$("#ajaxProductId").val();
-    var quantity =$("#ajaxQuantity").val() ;
-            window.location = '/Admin/WarehouseProduct/UpdateQuantityProduct?warehouseId='+@warehouseId+'&productId='+productId+'&quantity='+quantity;
-}
-</script>

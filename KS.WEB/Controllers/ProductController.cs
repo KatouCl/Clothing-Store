@@ -56,7 +56,8 @@ namespace KS.WEB.Controllers
                 CoverImageUrl = product.CoverImageUrl,
                 GenderType = product.GenderType,
                 UnitType = product.UnitType,
-                QuantityStock = product.QuantityStock
+                QuantityStock = product.QuantityStock,
+                StockId = product.StockId
             };
 
             return View(model);

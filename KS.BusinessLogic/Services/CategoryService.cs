@@ -100,7 +100,8 @@ namespace KS.BusinessLogic.Services
                         GenderType = product.GenderType,
                         UnitType = product.UnitType,
                         QuantityStock = stock.Quantity,
-                        CoverImageUrl = product.CoverImageUrl
+                        CoverImageUrl = product.CoverImageUrl,
+                        StockId = stock.Id
                     }
                 );
 
@@ -162,8 +163,9 @@ namespace KS.BusinessLogic.Services
                         GenderType = product.GenderType,
                         UnitType = product.UnitType,
                         QuantityStock = stock.Quantity,
-                        CoverImageUrl = product.CoverImageUrl
-                    }
+                        CoverImageUrl = product.CoverImageUrl,
+                        StockId = stock.Id
+                        }
                 );
 
                 return query;
@@ -246,7 +248,8 @@ namespace KS.BusinessLogic.Services
                         GenderType = product.GenderType,
                         UnitType = product.UnitType,
                         QuantityStock = stock.Quantity,
-                        CoverImageUrl = product.CoverImageUrl
+                        CoverImageUrl = product.CoverImageUrl,
+                        StockId = stock.Id
                     }
                 );
 
@@ -308,7 +311,8 @@ namespace KS.BusinessLogic.Services
                         GenderType = product.GenderType,
                         UnitType = product.UnitType,
                         QuantityStock = stock.Quantity,
-                        CoverImageUrl = product.CoverImageUrl
+                        CoverImageUrl = product.CoverImageUrl,
+                        StockId = stock.Id
                     }
                 );
 
@@ -391,7 +395,8 @@ namespace KS.BusinessLogic.Services
                         GenderType = product.GenderType,
                         UnitType = product.UnitType,
                         QuantityStock = stock.Quantity,
-                        CoverImageUrl = product.CoverImageUrl
+                        CoverImageUrl = product.CoverImageUrl,
+                        StockId = stock.Id
                     }
                 );
 
@@ -453,7 +458,8 @@ namespace KS.BusinessLogic.Services
                         GenderType = product.GenderType,
                         UnitType = product.UnitType,
                         QuantityStock = stock.Quantity,
-                        CoverImageUrl = product.CoverImageUrl
+                        CoverImageUrl = product.CoverImageUrl,
+                        StockId = stock.Id
                     }
                 );
 

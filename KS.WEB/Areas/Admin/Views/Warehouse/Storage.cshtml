@@ -22,7 +22,7 @@
             <thead>
             <tr>
                 <th style="width:25%;">Название</th>
-                <th style="width: 75%">Адрес склада</th>
+                <th style="width: 55%">Адрес склада</th>
                 <th style="width: 15%">Количество</th>
             </tr>
             </thead>
@@ -32,7 +32,7 @@
                 <tr>
                     <td><a asp-controller="WarehouseProduct" asp-action="GetProducts" asp-route-warehouseId="@warehouse.Id">@warehouse.Name</a></td>
                     <td>@warehouse.Address</td>
-                    <td><a asp-controller="Warehouse" asp-action="Stocks" asp-route-warehouseId="@warehouse.Id">===</a></td>
+                    <td><a asp-controller="Warehouse" asp-action="Stocks" asp-route-warehouseId="@warehouse.Id">Подробнее</a></td>
                 </tr>
             }
             </tbody>

@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace KS.WEB.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [Authorize(Roles="Admin")]
+    [Authorize(Roles = "Admin")]
     public class CategoryController : Controller
     {
         private readonly ICategoryRepository _categoryRepository;
@@ -41,16 +41,21 @@ namespace KS.WEB.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> Post(CategoryIndexViewModel model)
         {
-            var category = new Category
+            if (ModelState.IsValid)
             {
-                Id = model.Id,
-                Name = model.Name,
-                Slug = model.Slug
-            };
-            await _categoryRepository.AddAsync(category);
-            TempData["SM"] = "Вы успешно создали.";
-            
-            return RedirectToAction("Index", "Category");
+                var category = new Category
+                {
+                    Id = model.Id,
+                    Name = model.Name,
+                    Slug = model.Slug
+                };
+                await _categoryRepository.AddAsync(category);
+                TempData["SM"] = "Вы успешно создали.";
+
+                return RedirectToAction("Index", "Category");
+            }
+
+            return View(model);
         }
 
         public async Task<IActionResult> Put(int id, CategoryIndexViewModel model)

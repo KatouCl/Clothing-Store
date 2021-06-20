@@ -1,4 +1,4 @@
-﻿@model KS.ViewModels.CheckoutVm
+﻿@model KS.ViewModels.Checkout.CheckoutVm
 
 @{
     ViewBag.Title = "Оформление заказа";
@@ -145,9 +145,26 @@
                                     </div>
                                     <div class="cart_text">
                                         <p>Доставка до 2 раз быстрее, если вы покупаете только в нашем магазин</p>
-                                    </div>
-                                    <div class="checkout_button trans_200">
-                                        <a onclick="document.getElementById('CheckoutForm').submit()">Заказать</a>
+                                        
+                                        <button class="coupon_button_submit" type="submit"
+                                            style="position: absolute;
+                                                top: 20px;
+                                                right: 0;
+                                                width: 400px;
+                                                height: 44px;
+                                                background: #2fce98;
+                                                border-radius: 3px;
+                                                color: #FFFFFF;
+                                                text-transform: uppercase;
+                                                font-size: 18px;
+                                                font-weight: 700;
+                                                border: none;
+                                                outline: none;
+                                                cursor: pointer;
+                                            
+                                                text-align: center;
+                                                margin-top: 32px;"
+                                                >Заказать</button>
                                     </div>
                                 </div>
                             </div>

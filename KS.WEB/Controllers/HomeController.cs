@@ -28,6 +28,8 @@ namespace KS.WEB.Controllers
         {
             var catalogListing = await _categoryService.GetProductForCatalog(categoryId)
                 .Take(6)
+                .Where(x => x.QuantityStock >= 1)
+                .OrderByDescending(x => x.Id)
                 .ToListAsync();
             return View(catalogListing);
         }

@@ -55,6 +55,7 @@ namespace KS.ViewModels.Category
         public long? TaxClassId { get; set; }
         public GenderType GenderType { get; set; }
         public UnitType UnitType { get; set; }
+        public long StockId { get; set; }
         public long CategoryId { get; set; }
         public IList<long> CategoryIds { get; set; } = new List<long>();
     }
