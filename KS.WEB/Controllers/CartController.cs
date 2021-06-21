@@ -154,6 +154,7 @@ namespace KS.WEB.Controllers
             return RedirectToAction("Index", "Cart");
         }
 
+        [HttpGet]
         public int GetCartQuantity()
         {
             var cartQuantity = _cartService.GetCartQuantity(HttpContext.Session);

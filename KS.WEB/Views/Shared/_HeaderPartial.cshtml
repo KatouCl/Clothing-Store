@@ -31,9 +31,6 @@
                 <li>
                     <a asp-area="" asp-controller="Help" asp-action="AboutUs">О нас</a>
                 </li>
-                @* <li> *@
-                @*     <a href="#">Контакты</a> *@
-                @* </li> *@
             </ul>
         </nav>
         <div class="header_right d-flex flex-row align-items-center justify-content-start ml-auto">
@@ -50,23 +47,27 @@
             <!-- Cart -->
             @if (SignInManager.IsSignedIn(User))
             {
-                <div class="cart">
+                <div class="user">
                     <a asp-area="" asp-controller="WishList" asp-action="Index">
                         <div>
                             <img class="svg" src="~/Shop/images/heart_2.svg" alt="https://www.flaticon.com/authors/freepik">
-                            @* <div>1</div> *@
+                            <div class="wishlist-quantity-items" style="display: none;">
+                                1
+                            </div>
                         </div>
                     </a>
-                </div>
-
-                <div class="cart">
+                </div> 
+                
+                <div class="user">
                     <a asp-area="" asp-controller="Cart" asp-action="Index">
                         <div>
                             <img class="svg" src="~/Shop/images/cart.svg" alt="https://www.flaticon.com/authors/freepik">
-                            @* <div>1</div> *@
+                            <div class="cart-quantity-items" style="display: none;">
+                                1
+                            </div>
                         </div>
                     </a>
-                </div>
+                </div> 
             }
             <!-- User -->
             <div class="user">
@@ -113,3 +114,50 @@
         </div>
     </div>
 </header>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script>
+setCartQuantity();
+getWishListQuantity();
+  function setCartQuantity() {
+     $.ajax({
+          type: "GET",
+          url: "/Cart/GetCartQuantity" ,
+          dataType: "text",
+          success: function (response) {
+                $(".cart-quantity-items").html(response);
+    
+                if (response == "0") {
+                    $(".cart-quantity-items").hide();
+                    return;
+                }
+    
+                $(".cart-quantity-items").show();
+            },
+
+          
+          
+      });
+     
+  }function getWishListQuantity() {
+        $.ajax({
+             type: "GET",
+             url: "/WishList/GetWishListQuantity" ,
+             dataType: "text",
+             success: function (response) {
+                $(".wishlist-quantity-items").html(response);
+
+                if (response == "0") {
+                    $(".wishlist-quantity-items").hide();
+                    return;
+                }
+
+                $(".wishlist-quantity-items").show();
+            },
+             
+         });
+     }
+
+
+</script>

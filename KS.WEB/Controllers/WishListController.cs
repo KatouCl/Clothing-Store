@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Linq;
+using System.Threading.Tasks;
 using KS.Entities;
 using KS.Interfaces.DataAccess.BusinessLogic.Services;
 using KS.Interfaces.DataAccess.Repositories;
@@ -64,6 +65,13 @@ namespace KS.WEB.Controllers
             TempData["SM"] = "Вы успешно удалили.";
 
             return RedirectToAction("Index", "WishList");
+        }
+        
+        [HttpGet]
+        public int GetWishListQuantity()
+        {
+            var wishListQuantity = _wishListRepository.GetAllQuery().Select(x => x.ProductId).Count();
+            return wishListQuantity;
         }
     }
 }

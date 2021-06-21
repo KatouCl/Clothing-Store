@@ -128,6 +128,7 @@
       <_ContentIncludedByDefault Remove="Areas\Admin\Views\Chart\Index.cshtml" />
       <_ContentIncludedByDefault Remove="Areas\Admin\Views\Report\Index.cshtml" />
       <_ContentIncludedByDefault Remove="Areas\Admin\Views\Report\Order.cshtml" />
+      <_ContentIncludedByDefault Remove="Pages\Components\Cart\Default.cshtml" />
     </ItemGroup>
 
     <ItemGroup>
