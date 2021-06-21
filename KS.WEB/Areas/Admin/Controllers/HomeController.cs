@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using KS.Entities;
+using KS.Interfaces.DataAccess.BusinessLogic.Services;
 using KS.Interfaces.DataAccess.Repositories;
 using KS.ViewModels.Order;
 using KS.ViewModels.WishList;
@@ -23,19 +24,22 @@ namespace KS.WEB.Areas.Admin.Controllers
         private readonly IBaseRepository<WishList> _wishListRepository;
         private readonly IBaseRepository<OrderItem> _orderItemRepository;
         private readonly UserManager<ApplicationUser> _userManager;
+        private readonly IOrderService _orderService;
 
         public HomeController(
             ILogger<HomeController> logger,
             IBaseRepository<Order> orderRepository,
             UserManager<ApplicationUser> userManager,
             IBaseRepository<OrderItem> orderItemRepository,
-            IBaseRepository<WishList> wishListRepository)
+            IBaseRepository<WishList> wishListRepository, 
+            IOrderService orderService)
         {
             _logger = logger;
             _orderRepository = orderRepository;
             _userManager = userManager;
             _orderItemRepository = orderItemRepository;
             _wishListRepository = wishListRepository;
+            _orderService = orderService;
         }
 
         public async Task<IActionResult> Index()
@@ -73,7 +77,7 @@ namespace KS.WEB.Areas.Admin.Controllers
 
             ViewBag.Users = _userManager.Users.Count().ToString();
             ViewBag.Orders = _orderRepository.GetAllQuery().Count().ToString();
-            ViewBag.GoodsSold = _orderItemRepository.GetAllQuery().Count().ToString();
+            ViewBag.GoodsSold = _orderService.GetOrders().Select(x => x.QuantityProduct).Sum().ToString();
             ViewBag.MoneyEarned = _orderRepository.GetAllQuery().Select(x => x.Price).Sum().ToString("0");
 
             return View(model);

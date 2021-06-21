@@ -74,6 +74,64 @@ namespace KS.BusinessLogic.Services
             this.SaveSessionCartData(session, sessionData);
         }
 
+        public void UpdateIncrementToCart(ISession session, CartItemVm addProductToCart)
+        {
+            var sessionData = this.GetSessionCartData(session);
+
+            var existProduct = sessionData.Products.FirstOrDefault(x => x.ProductId == addProductToCart.ProductId);
+
+            if (existProduct != default)
+            {
+                existProduct.Quantity++;
+            }
+            else
+            {
+                sessionData.Products.Add(new CartDetailsItemSessionVm
+                {
+                    Id = addProductToCart.Id,
+                    ProductId = addProductToCart.ProductId,
+                    ProductName = addProductToCart.ProductName,
+                    ImageUrl = addProductToCart.ImageUrl,
+                    Quantity = addProductToCart.Quantity,
+                    Price = addProductToCart.Price,
+                    StockId = addProductToCart.StockId
+                });
+            }
+
+            this.SaveSessionCartData(session, sessionData);
+        }
+        
+        public void UpdateDecrementToCart(ISession session, CartItemVm addProductToCart)
+        {
+            var sessionData = this.GetSessionCartData(session);
+
+            var existProduct = sessionData.Products.FirstOrDefault(x => x.ProductId == addProductToCart.ProductId);
+
+            if (existProduct != default)
+            {
+                existProduct.Quantity--;
+                if (existProduct.Quantity == 0)
+                {
+                    existProduct.Quantity++;
+                }
+            }
+            else
+            {
+                sessionData.Products.Add(new CartDetailsItemSessionVm
+                {
+                    Id = addProductToCart.Id,
+                    ProductId = addProductToCart.ProductId,
+                    ProductName = addProductToCart.ProductName,
+                    ImageUrl = addProductToCart.ImageUrl,
+                    Quantity = addProductToCart.Quantity,
+                    Price = addProductToCart.Price,
+                    StockId = addProductToCart.StockId
+                });
+            }
+
+            this.SaveSessionCartData(session, sessionData);
+        }
+        
         public async Task<ProductCartVm> GetCartDetailsAsync(ISession session)
         {
             var sessionData = this.GetSessionCartData(session);

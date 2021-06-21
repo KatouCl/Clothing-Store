@@ -84,6 +84,62 @@ namespace KS.DataAccess.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Contacts",
+                columns: table => new
+                {
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Title = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Place = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Number = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Context = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CreationDate = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Contacts", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Deliveries",
+                columns: table => new
+                {
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Country = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    City = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Region = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Phone = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Comment = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    DeliveryType = table.Column<byte>(type: "tinyint", nullable: false),
+                    CreationDate = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Deliveries", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "FeedBacks",
+                columns: table => new
+                {
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Comment = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CreationDate = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_FeedBacks", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Images",
                 columns: table => new
                 {
@@ -98,29 +154,6 @@ namespace KS.DataAccess.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Images", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Orders",
-                columns: table => new
-                {
-                    Id = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    OrderRef = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    StripeReference = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    City = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    PostCode = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Status = table.Column<int>(type: "int", nullable: false),
-                    CreationDate = table.Column<DateTime>(type: "datetime2", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Orders", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -261,6 +294,34 @@ namespace KS.DataAccess.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Orders",
+                columns: table => new
+                {
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    DeliveryId = table.Column<long>(type: "bigint", nullable: true),
+                    CustomerId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    CreationDate = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Orders", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Orders_AspNetUsers_CustomerId",
+                        column: x => x.CustomerId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Orders_Deliveries_DeliveryId",
+                        column: x => x.DeliveryId,
+                        principalTable: "Deliveries",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Products",
                 columns: table => new
                 {
@@ -337,6 +398,36 @@ namespace KS.DataAccess.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "OrderItems",
+                columns: table => new
+                {
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Quantity = table.Column<int>(type: "int", nullable: false),
+                    TotalPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    ProductId = table.Column<long>(type: "bigint", nullable: true),
+                    OrderId = table.Column<long>(type: "bigint", nullable: true),
+                    CreationDate = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_OrderItems", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_OrderItems_Orders_OrderId",
+                        column: x => x.OrderId,
+                        principalTable: "Orders",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_OrderItems_Products_ProductId",
+                        column: x => x.ProductId,
+                        principalTable: "Products",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "ProductCategories",
                 columns: table => new
                 {
@@ -372,19 +463,11 @@ namespace KS.DataAccess.Migrations
                     ProductId = table.Column<long>(type: "bigint", nullable: false),
                     WarehouseId = table.Column<long>(type: "bigint", nullable: false),
                     Quantity = table.Column<int>(type: "int", nullable: false),
-                    ReservedQuantity = table.Column<int>(type: "int", nullable: false),
-                    OrderId = table.Column<long>(type: "bigint", nullable: true),
                     CreationDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Stocks", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Stocks_Orders_OrderId",
-                        column: x => x.OrderId,
-                        principalTable: "Orders",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Stocks_Products_ProductId",
                         column: x => x.ProductId,
@@ -439,26 +522,26 @@ namespace KS.DataAccess.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "Address", "City", "Comment", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "Phone", "PhoneNumber", "PhoneNumberConfirmed", "Region", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "b74ddd14-6340-4840-95c2-db12554843e5", 0, null, null, null, "43d4c7aa-c5a7-45e7-b2c3-a56a1be04c45", "admin@gmail.com", false, null, null, false, null, null, null, null, null, "1234567890", false, null, null, false, "Admin" });
+                values: new object[] { "b74ddd14-6340-4840-95c2-db12554843e5", 0, null, null, null, "4235577d-a6a5-4f54-bc4b-cbd754c2aece", "admin@gmail.com", true, null, null, false, null, "admin@gmail.com", "admin", "AQAAAAEAACcQAAAAEF7MEHrKfGTNBFdN1kVemrH17c4SOTVVb/qNC548QLPvOz1tdTO2AaB+ihxwkclbtg==", null, null, false, null, "", false, "admin" });
 
             migrationBuilder.InsertData(
                 table: "Brands",
                 columns: new[] { "Id", "CreationDate", "Description", "Name" },
                 values: new object[,]
                 {
-                    { 3L, new DateTime(2021, 6, 10, 0, 23, 28, 587, DateTimeKind.Local).AddTicks(9809), "Polo", "Polo" },
-                    { 4L, new DateTime(2021, 6, 10, 0, 23, 28, 587, DateTimeKind.Local).AddTicks(9813), "Balmain", "Balmain" },
-                    { 5L, new DateTime(2021, 6, 10, 0, 23, 28, 587, DateTimeKind.Local).AddTicks(9819), "Bottega Veneta", "Bottega Veneta" },
-                    { 6L, new DateTime(2021, 6, 10, 0, 23, 28, 587, DateTimeKind.Local).AddTicks(9824), "Brunello Cucinelli", "Brunello Cucinelli" },
-                    { 7L, new DateTime(2021, 6, 10, 0, 23, 28, 587, DateTimeKind.Local).AddTicks(9828), "Jil Sander", "Jil Sander" },
-                    { 8L, new DateTime(2021, 6, 10, 0, 23, 28, 587, DateTimeKind.Local).AddTicks(9834), "Gucci", "Gucci" },
-                    { 9L, new DateTime(2021, 6, 10, 0, 23, 28, 587, DateTimeKind.Local).AddTicks(9838), "Ralph Lauren", "Ralph Lauren" },
-                    { 10L, new DateTime(2021, 6, 10, 0, 23, 28, 587, DateTimeKind.Local).AddTicks(9843), "Alexander McQueen", "Alexander McQueen" },
-                    { 11L, new DateTime(2021, 6, 10, 0, 23, 28, 587, DateTimeKind.Local).AddTicks(9848), "Prada", "Prada" },
-                    { 12L, new DateTime(2021, 6, 10, 0, 23, 28, 587, DateTimeKind.Local).AddTicks(9852), "Off-White", "Off-White" },
-                    { 13L, new DateTime(2021, 6, 10, 0, 23, 28, 587, DateTimeKind.Local).AddTicks(9857), "Versace", "Versace" },
-                    { 2L, new DateTime(2021, 6, 10, 0, 23, 28, 587, DateTimeKind.Local).AddTicks(9803), "Adidas", "Adidas" },
-                    { 1L, new DateTime(2021, 6, 10, 0, 23, 28, 587, DateTimeKind.Local).AddTicks(9629), "Nike", "Nike" }
+                    { 3L, new DateTime(2021, 6, 20, 21, 3, 13, 135, DateTimeKind.Local).AddTicks(5031), "Polo", "Polo" },
+                    { 4L, new DateTime(2021, 6, 20, 21, 3, 13, 135, DateTimeKind.Local).AddTicks(5037), "Balmain", "Balmain" },
+                    { 5L, new DateTime(2021, 6, 20, 21, 3, 13, 135, DateTimeKind.Local).AddTicks(5041), "Bottega Veneta", "Bottega Veneta" },
+                    { 6L, new DateTime(2021, 6, 20, 21, 3, 13, 135, DateTimeKind.Local).AddTicks(5046), "Brunello Cucinelli", "Brunello Cucinelli" },
+                    { 7L, new DateTime(2021, 6, 20, 21, 3, 13, 135, DateTimeKind.Local).AddTicks(5050), "Jil Sander", "Jil Sander" },
+                    { 8L, new DateTime(2021, 6, 20, 21, 3, 13, 135, DateTimeKind.Local).AddTicks(5055), "Gucci", "Gucci" },
+                    { 9L, new DateTime(2021, 6, 20, 21, 3, 13, 135, DateTimeKind.Local).AddTicks(5063), "Ralph Lauren", "Ralph Lauren" },
+                    { 10L, new DateTime(2021, 6, 20, 21, 3, 13, 135, DateTimeKind.Local).AddTicks(5068), "Alexander McQueen", "Alexander McQueen" },
+                    { 11L, new DateTime(2021, 6, 20, 21, 3, 13, 135, DateTimeKind.Local).AddTicks(5072), "Prada", "Prada" },
+                    { 12L, new DateTime(2021, 6, 20, 21, 3, 13, 135, DateTimeKind.Local).AddTicks(5079), "Off-White", "Off-White" },
+                    { 13L, new DateTime(2021, 6, 20, 21, 3, 13, 135, DateTimeKind.Local).AddTicks(5087), "Versace", "Versace" },
+                    { 2L, new DateTime(2021, 6, 20, 21, 3, 13, 135, DateTimeKind.Local).AddTicks(5023), "Adidas", "Adidas" },
+                    { 1L, new DateTime(2021, 6, 20, 21, 3, 13, 135, DateTimeKind.Local).AddTicks(4894), "Nike", "Nike" }
                 });
 
             migrationBuilder.InsertData(
@@ -466,45 +549,46 @@ namespace KS.DataAccess.Migrations
                 columns: new[] { "Id", "CreationDate", "Name", "Slug" },
                 values: new object[,]
                 {
-                    { 17L, new DateTime(2021, 6, 10, 0, 23, 28, 590, DateTimeKind.Local).AddTicks(5830), "Пиджак", "Пиджак" },
-                    { 18L, new DateTime(2021, 6, 10, 0, 23, 28, 590, DateTimeKind.Local).AddTicks(5835), "Футболка", "Футболка" },
-                    { 19L, new DateTime(2021, 6, 10, 0, 23, 28, 590, DateTimeKind.Local).AddTicks(5840), "Майка", "Майка" },
-                    { 25L, new DateTime(2021, 6, 10, 0, 23, 28, 590, DateTimeKind.Local).AddTicks(5871), "Ветровка", "Ветровка" },
-                    { 21L, new DateTime(2021, 6, 10, 0, 23, 28, 590, DateTimeKind.Local).AddTicks(5850), "Футболка с длинным рукавом", "Футболка с длинным рукавом" },
-                    { 22L, new DateTime(2021, 6, 10, 0, 23, 28, 590, DateTimeKind.Local).AddTicks(5855), "Тенниска", "Тенниска" },
-                    { 23L, new DateTime(2021, 6, 10, 0, 23, 28, 590, DateTimeKind.Local).AddTicks(5861), "Реглан", "Реглан" },
-                    { 24L, new DateTime(2021, 6, 10, 0, 23, 28, 590, DateTimeKind.Local).AddTicks(5866), "Платье", "Платье" },
-                    { 16L, new DateTime(2021, 6, 10, 0, 23, 28, 590, DateTimeKind.Local).AddTicks(5825), "Жакет", "Жакет" },
-                    { 20L, new DateTime(2021, 6, 10, 0, 23, 28, 590, DateTimeKind.Local).AddTicks(5845), "Поло", "Поло" },
-                    { 15L, new DateTime(2021, 6, 10, 0, 23, 28, 590, DateTimeKind.Local).AddTicks(5820), "Кардиган", "Кардиган" },
-                    { 11L, new DateTime(2021, 6, 10, 0, 23, 28, 590, DateTimeKind.Local).AddTicks(5799), "Свитер", "Свитер" },
-                    { 13L, new DateTime(2021, 6, 10, 0, 23, 28, 590, DateTimeKind.Local).AddTicks(5809), "Пуловер", "Пуловер" },
-                    { 1L, new DateTime(2021, 6, 10, 0, 23, 28, 590, DateTimeKind.Local).AddTicks(5728), "Блуза", "Блуза" },
-                    { 2L, new DateTime(2021, 6, 10, 0, 23, 28, 590, DateTimeKind.Local).AddTicks(5751), "Рубашка", "Рубашка" },
-                    { 14L, new DateTime(2021, 6, 10, 0, 23, 28, 590, DateTimeKind.Local).AddTicks(5815), "Кофта", "Кофта" },
-                    { 4L, new DateTime(2021, 6, 10, 0, 23, 28, 590, DateTimeKind.Local).AddTicks(5761), "Бриджи", "Бриджи" },
-                    { 5L, new DateTime(2021, 6, 10, 0, 23, 28, 590, DateTimeKind.Local).AddTicks(5766), "Лосины", "Лосины" },
-                    { 3L, new DateTime(2021, 6, 10, 0, 23, 28, 590, DateTimeKind.Local).AddTicks(5756), "Брюки", "Брюки" },
-                    { 7L, new DateTime(2021, 6, 10, 0, 23, 28, 590, DateTimeKind.Local).AddTicks(5777), "Шорты", "Шорты" },
-                    { 8L, new DateTime(2021, 6, 10, 0, 23, 28, 590, DateTimeKind.Local).AddTicks(5784), "Юбка", "Юбка" },
-                    { 10L, new DateTime(2021, 6, 10, 0, 23, 28, 590, DateTimeKind.Local).AddTicks(5794), "Джемпер", "Джемпер" },
-                    { 12L, new DateTime(2021, 6, 10, 0, 23, 28, 590, DateTimeKind.Local).AddTicks(5804), "Гольф", "Гольф" },
-                    { 6L, new DateTime(2021, 6, 10, 0, 23, 28, 590, DateTimeKind.Local).AddTicks(5771), "Джинсы", "Джинсы" },
-                    { 9L, new DateTime(2021, 6, 10, 0, 23, 28, 590, DateTimeKind.Local).AddTicks(5789), "Комбинезон", "Комбинезон" }
+                    { 17L, new DateTime(2021, 6, 20, 21, 3, 13, 139, DateTimeKind.Local).AddTicks(8283), "Пиджак", "Пиджак" },
+                    { 18L, new DateTime(2021, 6, 20, 21, 3, 13, 139, DateTimeKind.Local).AddTicks(8286), "Футболка", "Футболка" },
+                    { 19L, new DateTime(2021, 6, 20, 21, 3, 13, 139, DateTimeKind.Local).AddTicks(8290), "Майка", "Майка" },
+                    { 25L, new DateTime(2021, 6, 20, 21, 3, 13, 139, DateTimeKind.Local).AddTicks(8310), "Ветровка", "Ветровка" },
+                    { 21L, new DateTime(2021, 6, 20, 21, 3, 13, 139, DateTimeKind.Local).AddTicks(8297), "Футболка с длинным рукавом", "Футболка с длинным рукавом" },
+                    { 22L, new DateTime(2021, 6, 20, 21, 3, 13, 139, DateTimeKind.Local).AddTicks(8300), "Тенниска", "Тенниска" },
+                    { 23L, new DateTime(2021, 6, 20, 21, 3, 13, 139, DateTimeKind.Local).AddTicks(8303), "Реглан", "Реглан" },
+                    { 24L, new DateTime(2021, 6, 20, 21, 3, 13, 139, DateTimeKind.Local).AddTicks(8307), "Платье", "Платье" },
+                    { 16L, new DateTime(2021, 6, 20, 21, 3, 13, 139, DateTimeKind.Local).AddTicks(8279), "Жакет", "Жакет" },
+                    { 20L, new DateTime(2021, 6, 20, 21, 3, 13, 139, DateTimeKind.Local).AddTicks(8293), "Поло", "Поло" },
+                    { 15L, new DateTime(2021, 6, 20, 21, 3, 13, 139, DateTimeKind.Local).AddTicks(8276), "Кардиган", "Кардиган" },
+                    { 11L, new DateTime(2021, 6, 20, 21, 3, 13, 139, DateTimeKind.Local).AddTicks(8261), "Свитер", "Свитер" },
+                    { 13L, new DateTime(2021, 6, 20, 21, 3, 13, 139, DateTimeKind.Local).AddTicks(8269), "Пуловер", "Пуловер" },
+                    { 1L, new DateTime(2021, 6, 20, 21, 3, 13, 139, DateTimeKind.Local).AddTicks(8212), "Блуза", "Блуза" },
+                    { 14L, new DateTime(2021, 6, 20, 21, 3, 13, 139, DateTimeKind.Local).AddTicks(8273), "Кофта", "Кофта" },
+                    { 3L, new DateTime(2021, 6, 20, 21, 3, 13, 139, DateTimeKind.Local).AddTicks(8231), "Брюки", "Брюки" },
+                    { 4L, new DateTime(2021, 6, 20, 21, 3, 13, 139, DateTimeKind.Local).AddTicks(8235), "Бриджи", "Бриджи" },
+                    { 5L, new DateTime(2021, 6, 20, 21, 3, 13, 139, DateTimeKind.Local).AddTicks(8238), "Лосины", "Лосины" },
+                    { 2L, new DateTime(2021, 6, 20, 21, 3, 13, 139, DateTimeKind.Local).AddTicks(8227), "Рубашка", "Рубашка" },
+                    { 7L, new DateTime(2021, 6, 20, 21, 3, 13, 139, DateTimeKind.Local).AddTicks(8245), "Шорты", "Шорты" },
+                    { 8L, new DateTime(2021, 6, 20, 21, 3, 13, 139, DateTimeKind.Local).AddTicks(8250), "Юбка", "Юбка" },
+                    { 9L, new DateTime(2021, 6, 20, 21, 3, 13, 139, DateTimeKind.Local).AddTicks(8254), "Комбинезон", "Комбинезон" },
+                    { 12L, new DateTime(2021, 6, 20, 21, 3, 13, 139, DateTimeKind.Local).AddTicks(8266), "Гольф", "Гольф" },
+                    { 6L, new DateTime(2021, 6, 20, 21, 3, 13, 139, DateTimeKind.Local).AddTicks(8242), "Джинсы", "Джинсы" },
+                    { 10L, new DateTime(2021, 6, 20, 21, 3, 13, 139, DateTimeKind.Local).AddTicks(8257), "Джемпер", "Джемпер" }
                 });
 
             migrationBuilder.InsertData(
-                table: "TaxClasses",
-                columns: new[] { "Id", "CreationDate", "Interest", "Name" },
-                values: new object[] { 1L, new DateTime(2021, 6, 10, 0, 23, 28, 590, DateTimeKind.Local).AddTicks(9721), 0m, "0%" });
+                table: "Contacts",
+                columns: new[] { "Id", "Context", "CreationDate", "Number", "Place", "Title" },
+                values: new object[] { 1L, "<p>KataStore &ndash; крупнейший&nbsp;department store&nbsp;в Европе. На площади 70 тысяч квадратных метров расположились коллекции более двух тысяч брендов. Среди них &ndash; Dolce&amp;Gabbana, Valentino, Celine, Ralph Lauren, Alexander McQueen, Brioni, Loro Piana, Chopard, Rolex, Graff, Garrard, Patek Philippe. Своим клиентам KataStore предоставляет безупречный сервис и возможность совершать покупки по европейским ценам, не выезжая за пределы Москвы &ndash; с начала 2016 года цены в универмаге приравнены к миланским.</p>", new DateTime(2021, 6, 20, 21, 3, 13, 139, DateTimeKind.Local).AddTicks(4278), "<table border='0' cellpadding='0' cellspacing='0' style='width:500px'><tbody><tr><td>KataStore:<br /><a href='tel:+78005008000'>+7 800 500 80 00</a></td><td>Интернет-магазин:<br /><a href='tel:+7 800 500 73 21'>+7 800 500 73 21</a></td></tr><tr><td><a href='tel:+74959337300'>+7 (495) 933 73 00</a></td><td><a href='tel:+7 495 933 73 21'>+7 495 933 73 21</a></td></tr></tbody></table><p>&nbsp;</p>", "<table border='0' cellpadding='0' cellspacing='0' style='width:500px'><tbody><tr><td><p>г. Москва, ул.&nbsp;Петровка,&nbsp;д.&nbsp;2,</p><p>&nbsp;пункт выдачи заказов&nbsp;на 1 и 5 этажах</p></td><td><p>Ежедневно на 1 этаже с 10:00 до 24:00,</p><p>Ежедневно на 5 этаже с 11:00 до 23:00</p></td></tr></tbody></table><p>&nbsp;</p>", "<h1>Контакты</h1>" });
 
             migrationBuilder.InsertData(
                 table: "TaxClasses",
                 columns: new[] { "Id", "CreationDate", "Interest", "Name" },
                 values: new object[,]
                 {
-                    { 2L, new DateTime(2021, 6, 10, 0, 23, 28, 590, DateTimeKind.Local).AddTicks(9781), 10m, "10%" },
-                    { 3L, new DateTime(2021, 6, 10, 0, 23, 28, 590, DateTimeKind.Local).AddTicks(9788), 18m, "18%" }
+                    { 1L, new DateTime(2021, 6, 20, 21, 3, 13, 140, DateTimeKind.Local).AddTicks(1522), 0m, "0%" },
+                    { 2L, new DateTime(2021, 6, 20, 21, 3, 13, 140, DateTimeKind.Local).AddTicks(1582), 10m, "10%" },
+                    { 3L, new DateTime(2021, 6, 20, 21, 3, 13, 140, DateTimeKind.Local).AddTicks(1588), 18m, "18%" }
                 });
 
             migrationBuilder.InsertData(
@@ -512,8 +596,8 @@ namespace KS.DataAccess.Migrations
                 columns: new[] { "Id", "Address", "CreationDate", "Name", "Vendor" },
                 values: new object[,]
                 {
-                    { 1L, "г. Белебей, ул. Красноармейская 125", new DateTime(2021, 6, 10, 0, 23, 28, 591, DateTimeKind.Local).AddTicks(4294), "Основной", "452000" },
-                    { 2L, "г. Уфа, ул. Советская 25", new DateTime(2021, 6, 10, 0, 23, 28, 591, DateTimeKind.Local).AddTicks(4321), "Основной (запасной)", "450000" }
+                    { 1L, "г. Белебей, ул. Красноармейская 125", new DateTime(2021, 6, 20, 21, 3, 13, 140, DateTimeKind.Local).AddTicks(5231), "Основной", "452000" },
+                    { 2L, "г. Уфа, ул. Советская 25", new DateTime(2021, 6, 20, 21, 3, 13, 140, DateTimeKind.Local).AddTicks(5248), "Основной (запасной)", "450000" }
                 });
 
             migrationBuilder.InsertData(
@@ -571,6 +655,26 @@ namespace KS.DataAccess.Migrations
                 column: "ProductId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_OrderItems_OrderId",
+                table: "OrderItems",
+                column: "OrderId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_OrderItems_ProductId",
+                table: "OrderItems",
+                column: "ProductId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Orders_CustomerId",
+                table: "Orders",
+                column: "CustomerId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Orders_DeliveryId",
+                table: "Orders",
+                column: "DeliveryId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_ProductCategories_CategoryId",
                 table: "ProductCategories",
                 column: "CategoryId");
@@ -589,11 +693,6 @@ namespace KS.DataAccess.Migrations
                 name: "IX_Products_TaxClassId",
                 table: "Products",
                 column: "TaxClassId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Stocks_OrderId",
-                table: "Stocks",
-                column: "OrderId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Stocks_ProductId",
@@ -637,7 +736,16 @@ namespace KS.DataAccess.Migrations
                 name: "CartItems");
 
             migrationBuilder.DropTable(
+                name: "Contacts");
+
+            migrationBuilder.DropTable(
+                name: "FeedBacks");
+
+            migrationBuilder.DropTable(
                 name: "Images");
+
+            migrationBuilder.DropTable(
+                name: "OrderItems");
 
             migrationBuilder.DropTable(
                 name: "ProductCategories");
@@ -652,19 +760,22 @@ namespace KS.DataAccess.Migrations
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
-                name: "Categories");
+                name: "Orders");
 
             migrationBuilder.DropTable(
-                name: "Orders");
+                name: "Categories");
 
             migrationBuilder.DropTable(
                 name: "Warehouses");
 
             migrationBuilder.DropTable(
+                name: "Products");
+
+            migrationBuilder.DropTable(
                 name: "AspNetUsers");
 
             migrationBuilder.DropTable(
-                name: "Products");
+                name: "Deliveries");
 
             migrationBuilder.DropTable(
                 name: "Brands");

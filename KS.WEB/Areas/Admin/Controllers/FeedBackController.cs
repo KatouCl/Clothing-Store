@@ -29,7 +29,7 @@ namespace KS.WEB.Areas.Admin.Controllers
                     Id = x.Id,
                     Email = x.Email,
                     Name = x.Name,
-                    Comment = x.Comment[..20],
+                    Comment = x.Comment[..3],
                     CreationDate = x.CreationDate
                 });
 

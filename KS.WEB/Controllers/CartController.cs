@@ -86,7 +86,7 @@ namespace KS.WEB.Controllers
                     x.ProductId == item.ProductId && x.Id == item.StockId);
                 if (stock.Quantity < item.Quantity)
                 {
-                    TempData["SM"] = $"Количество товара '{item.ProductName}' превышает количество, которое есть на складе.";
+                    TempData["SM"] = $"Количество товара '{item.ProductName}' превышает количество, которое есть на складе {stock.Quantity} шт.";
                     return RedirectToAction("Index", "Cart");
                 }
             }
@@ -115,6 +115,42 @@ namespace KS.WEB.Controllers
         public IActionResult ClearCart()
         {
             HttpContext.Session.Clear();
+            return RedirectToAction("Index", "Cart");
+        }
+        public IActionResult UpdateIncrementToCart(int productId,long stockId)
+        {
+            var product = _productRepository.GetByIdAsync(productId).Result;
+            var updateProductToCart = new CartItemVm
+            {
+                Id = productId,
+                ProductId = productId,
+                ProductName = product.Name,
+                Price = product.Price,
+                ImageUrl = product.CoverImageUrl,
+                StockId = stockId
+                
+            };
+            
+            _cartService.UpdateIncrementToCart(HttpContext.Session, updateProductToCart);
+
+            return RedirectToAction("Index", "Cart");
+        }
+        public IActionResult UpdateDecrementToCart(int productId, long stockId)
+        {
+            var product = _productRepository.GetByIdAsync(productId).Result;
+            var updateProductToCart = new CartItemVm
+            {
+                Id = productId,
+                ProductId = productId,
+                ProductName = product.Name,
+                Price = product.Price,
+                ImageUrl = product.CoverImageUrl,
+                StockId = stockId
+                
+            };
+            
+            _cartService.UpdateDecrementToCart(HttpContext.Session, updateProductToCart);
+
             return RedirectToAction("Index", "Cart");
         }
 

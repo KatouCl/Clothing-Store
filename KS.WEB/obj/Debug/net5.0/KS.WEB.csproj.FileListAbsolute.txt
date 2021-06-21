@@ -294,7 +294,6 @@ M:\KataStore\KS.WEB\bin\Debug\net5.0\SQLitePCLRaw.nativelibrary.dll
 M:\KataStore\KS.WEB\bin\Debug\net5.0\SQLitePCLRaw.core.dll
 M:\KataStore\KS.WEB\bin\Debug\net5.0\SQLitePCLRaw.provider.dynamic_cdecl.dll
 M:\KataStore\KS.WEB\bin\Debug\net5.0\System.Collections.Immutable.dll
-M:\KataStore\KS.WEB\bin\Debug\net5.0\System.ComponentModel.Annotations.dll
 M:\KataStore\KS.WEB\bin\Debug\net5.0\System.Composition.AttributedModel.dll
 M:\KataStore\KS.WEB\bin\Debug\net5.0\System.Composition.Convention.dll
 M:\KataStore\KS.WEB\bin\Debug\net5.0\System.Composition.Hosting.dll
