@@ -52,13 +52,16 @@
                     <!-- Product Info -->
                     <div class="col-lg-6 product_col">
                         <div class="product_info">
-                            <div class="product_name">@Model.Name</div>
+                            <div class="product_name">@Model.Slug</div>
                             <div class="product_category">В <a asp-controller="Catalog" asp-action="Index">категориях</a></div>
                             <div class="product_price">
                                 ₽ @Model.Price.ToString("0")<span>.00</span>
-                                <p style="font-size: 22px;">
-                                    <del> ₽ @Model.OldPrice.ToString()</del>
-                                </p>
+                                @if (Model.OldPrice != null)
+                                {
+                                    <p style="font-size: 22px;">
+                                        <del> ₽ @Model.OldPrice.ToString()</del>
+                                    </p>
+                                }
                             </div>
                             <div class="product_text text-dark">
                                 @Html.Raw(Model.Description)

@@ -485,3 +485,4 @@ M:\KataStore\KS.WEB\obj\Debug\net5.0\Razor\Views\Help\FeedBack.cshtml.g.cs
 M:\KataStore\KS.WEB\obj\Debug\net5.0\Razor\Views\Help\SizeCharts.cshtml.g.cs
 M:\KataStore\KS.WEB\obj\Debug\net5.0\Razor\Areas\Admin\Views\Contact\Index.cshtml.g.cs
 M:\KataStore\KS.WEB\obj\Debug\net5.0\Razor\Areas\Admin\Views\Contact\Put.cshtml.g.cs
+M:\KataStore\KS.WEB\obj\Debug\net5.0\Razor\Areas\Admin\Views\Chart\OrdersItems.cshtml.g.cs

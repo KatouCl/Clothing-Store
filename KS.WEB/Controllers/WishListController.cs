@@ -68,9 +68,11 @@ namespace KS.WEB.Controllers
         }
         
         [HttpGet]
-        public int GetWishListQuantity()
+        public async Task<int> GetWishListQuantity()
         {
-            var wishListQuantity = _wishListRepository.GetAllQuery().Select(x => x.ProductId).Count();
+            var currentUser = await _userManager.GetUserAsync(HttpContext.User);
+            
+            var wishListQuantity = _wishListService.GetWishListDetails(currentUser.Id).Count;
             return wishListQuantity;
         }
     }

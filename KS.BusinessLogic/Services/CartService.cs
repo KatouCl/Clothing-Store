@@ -283,11 +283,11 @@ namespace KS.BusinessLogic.Services
             return sessionData;
         }
 
-        public int GetCartQuantity(ISession session)
+        public long GetCartQuantity(ISession session)
         {
             var sessionData = this.GetSessionCartData(session);
 
-            var quantity = sessionData.Products.Sum(x => x.Quantity);
+            var quantity = sessionData.Products.Count;
             return quantity;
         }
 

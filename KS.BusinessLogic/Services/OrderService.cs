@@ -30,7 +30,7 @@ namespace KS.BusinessLogic.Services
                 .Select(x => new OrderListVm
                 {
                     Id = x.Id,
-                    Customer = x.Customer.Id,
+                    Customer = x.Customer.Email,
                     Price = x.Price,
                     CreationDate = x.CreationDate,
                     QuantityProduct = _orderItemRepository.GetAllQuery().Where(w => w.Order.Id == x.Id).Sum(s => s.Quantity)
@@ -45,7 +45,7 @@ namespace KS.BusinessLogic.Services
                 .Select(x => new OrderListVm
                 {
                     Id = x.Id,
-                    Customer = x.Customer.Id,
+                    Customer = x.Customer.Email,
                     Price = x.Price,
                     CreationDate = x.CreationDate,
                     QuantityProduct = _orderItemRepository.GetAllQuery()

@@ -1,11 +1,12 @@
-﻿@model IEnumerable<KS.ViewModels.Order.OrderListVm>
+﻿@model System.Collections.Generic.List<KS.ViewModels.Order.OrderDetailsItemVm>
+
 
 @{
-    ViewBag.Title = "Заказы";
+    ViewBag.Title = "Все товары";
     Layout = "_AdminLayout";
 
-	decimal SumProduct = 0.0m;
-	int QuantityProduct = 0;
+    decimal SumProduct = 0.0m;
+    int QuantityProduct = 0;
 }
 
 <div class="container">
@@ -14,7 +15,7 @@
             <div class="tab">
                 <ul class="nav nav-tabs" role="tablist">
                     <li class="nav-item">
-                        <a class="nav-link active" href="#tab-1" data-bs-toggle="tab" role="tab" aria-selected="true">Заказы</a>
+                        <a class="nav-link active" href="#tab-1" data-bs-toggle="tab" role="tab" aria-selected="true">Проданные товары</a>
                     </li>
                     @* <li class="nav-item"> *@
                     @*     <a class="nav-link" href="#tab-2" data-bs-toggle="tab" role="tab" aria-selected="false">График</a> *@
@@ -26,7 +27,7 @@
                             <div class="col-md-12">
 
 
-                                <form asp-area="Admin" asp-controller="Chart" asp-action="Order" method="post">
+                                <form asp-area="Admin" asp-controller="Chart" asp-action="OrdersItems" method="post">
                                     <div class="row">
                                         <div class="mb-3 col-md-6">
                                             <label class="form-label">Начало переода</label>
@@ -56,35 +57,35 @@
                                         <table class="table table-striped" style="width:100%">
                                             <thead>
                                             <tr>
-                                                <th>Клиент</th>
+                                                <th>#</th>
+                                                <th>Товар</th>
                                                 <th>Количество</th>
+                                                <th>Цена</th>
                                                 <th>Сумма</th>
-                                                <th>Дата создания</th>
-                                                <th></th>
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            @foreach (var order in Model)
+                                            @foreach (var item in Model)
                                             {
-	                                            SumProduct += order.Price;
-	                                            QuantityProduct += order.QuantityProduct;
+                                                QuantityProduct += item.Quantity;
+	                                            SumProduct += item.TotalPrice;
                                                 <tr>
-                                                    <td>@order.Customer</td>
-                                                    <td>@order.QuantityProduct</td>
-                                                    <td>₽ @order.Price.ToString("0")</td>
-                                                    <td>@order.CreationDate.ToString("d")</td>
                                                     <td>
-                                                        <a asp-area="Admin" asp-controller="Order" asp-action="OrderDetails" asp-route-orderId="@order.Id">Подробнее</a>
+                                                        <img src="~/@item.CoverImageUrl" width="32" height="32" class="rounded-circle my-n1" alt="Product">
                                                     </td>
+                                                    <td>@item.ProductName</td>
+                                                    <td>@item.Quantity</td>
+                                                    <td>₽ @item.Price.ToString("0")</td>
+                                                    <td>₽ @item.TotalPrice.ToString("0")</td>
                                                 </tr>
                                             }
                                             @if (QuantityProduct != 0 && SumProduct != 0)
                                             {
-												<tr>
-													<td colspan="1"></td>
-													<td colspan="1">Общее количество товаров: @QuantityProduct</td>
-													<td colspan="3">Общая сумма товаров: ₽ @SumProduct.ToString()</td>
-												</tr>
+                                                <tr>
+                                                    <td colspan="1"></td>
+                                                    <td colspan="1">Общее количество товаров: @QuantityProduct</td>
+                                                    <td colspan="3">Общая сумма товаров: ₽ @SumProduct.ToString()</td>
+                                                </tr>
                                             }
                                             </tbody>
                                         </table>
@@ -92,7 +93,7 @@
                                 }
                                 else
                                 {
-                                    <div class="text-center">Пусто</div>
+                                    <div class="text-center">Товаров нет.</div>
                                 }
                             </div>
                         </div>

@@ -155,7 +155,7 @@ namespace KS.WEB.Controllers
         }
 
         [HttpGet]
-        public int GetCartQuantity()
+        public long GetCartQuantity()
         {
             var cartQuantity = _cartService.GetCartQuantity(HttpContext.Session);
             return cartQuantity;

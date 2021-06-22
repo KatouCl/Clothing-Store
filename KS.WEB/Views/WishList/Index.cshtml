@@ -1,7 +1,7 @@
 ﻿@model System.Collections.Generic.IList<KS.ViewModels.WishList.WishListVm>
 
 @{
-    ViewBag.Title = "Список желаний";
+    ViewBag.Title = "Избранные товары";
     Layout = "_Layout";
 }
 <head>
@@ -35,13 +35,13 @@
         <div class="home">
             <div class="home_container d-flex flex-column align-items-center justify-content-end">
                 <div class="home_content text-center">
-                    <div class="home_title">Список желаний</div>
+                    <div class="home_title">Избранные товары</div>
                     <div class="breadcrumbs d-flex flex-column align-items-center justify-content-center">
                         <ul class="d-flex flex-row align-items-start justify-content-start text-center">
                             <li>
                                 <a asp-area="" asp-controller="Home" asp-action="Index">Главная</a>
                             </li>
-                            <li>Мои желания</li>
+                            <li>Избранное</li>
                         </ul>
                     </div>
                 </div>

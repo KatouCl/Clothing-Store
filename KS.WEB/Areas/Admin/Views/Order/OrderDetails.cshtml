@@ -3,47 +3,59 @@
 @{
     ViewBag.Title = $"Товары заказа: {ViewBag.Orderid}";
     Layout = "_AdminLayout";
+    decimal SumProduct = 0.0m;
+    int QuantityProduct = 0;
 }
 
 <div class="container-fluid p-0">
 
-<div class="row">
-<div class="col-xl-12">
-<div class="card">
-    <div class="card-header pb-0">
-        <h5 class="card-title mb-0">@ViewBag.Title</h5>
-    </div>
-    <div class="card-body">
-        <table class="table table-striped" style="width:100%">
-            <thead>
-            <tr>
-                <th>#</th>
-                <th>Товар</th>
-                <th>Количество</th>
-                <th>Цена</th>
-                <th>Сумма</th>
-            </tr>
-            </thead>
-            <tbody>
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>
-                        <img src="~/@item.CoverImageUrl" width="32" height="32" class="rounded-circle my-n1" alt="Product">
-                    </td>
-                    <td>@item.ProductName</td>
-                    <td>@item.Quantity</td>
-                    <td>₽ @item.Price.ToString("0")</td>
-                    <td>₽ @item.TotalPrice.ToString("0")</td>
-                </tr>
-            }
-            </tbody>
-        </table>
-    </div>
-</div>
-</div>
+    <div class="row">
+        <div class="col-xl-12">
+            <div class="card">
+                <div class="card-header pb-0">
+                    <h5 class="card-title mb-0">@ViewBag.Title</h5>
+                </div>
+                <div class="card-body">
+                    <table class="table table-striped" style="width:100%">
+                        <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Товар</th>
+                            <th>Количество</th>
+                            <th>Цена</th>
+                            <th>Сумма</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach (var item in Model)
+                        {
+                            QuantityProduct += item.Quantity;
+                            SumProduct += item.TotalPrice;
+                            <tr>
+                                <td>
+                                    <img src="~/@item.CoverImageUrl" width="32" height="32" class="rounded-circle my-n1" alt="Product">
+                                </td>
+                                <td>@item.ProductName</td>
+                                <td>@item.Quantity</td>
+                                <td>₽ @item.Price.ToString("0")</td>
+                                <td>₽ @item.TotalPrice.ToString("0")</td>
+                            </tr>
+                        }
+                        @if (QuantityProduct != 0 && SumProduct != 0)
+                        {
+                            <tr>
+                                <td colspan="1"></td>
+                                <td colspan="1">Общее количество товаров: @QuantityProduct</td>
+                                <td colspan="3">Общая сумма товаров: ₽ @SumProduct.ToString()</td>
+                            </tr>
+                        }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
 
 
-</div>
+    </div>
 
 </div>

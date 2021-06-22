@@ -146,13 +146,13 @@
                                     </select>
                                     <span asp-validation-for="BrandId"></span>
                                 </div>
-                                <div class="mb-3-row mt-4">
-                                    <label class="form-label mt-3">НДС</label>
-                                    <select asp-for="TaxClassId" class="form-select flex-grow-1" asp-items="(await _taxClassRepository.GetTaxClass()).Select(x => new SelectListItem() {Text = x.Name, Value = x.Id.ToString()})">
-                                        <option value="">Выберите налоговый класс</option>
-                                    </select>
-                                    <span asp-validation-for="TaxClassId"></span>
-                                </div>
+                                @* <div class="mb-3-row mt-4"> *@
+                                @*     <label class="form-label mt-3">НДС</label> *@
+                                @*     <select asp-for="TaxClassId" class="form-select flex-grow-1" asp-items="(await _taxClassRepository.GetTaxClass()).Select(x => new SelectListItem() {Text = x.Name, Value = x.Id.ToString()})"> *@
+                                @*         <option value="">Выберите налоговый класс</option> *@
+                                @*     </select> *@
+                                @*     <span asp-validation-for="TaxClassId"></span> *@
+                                @* </div> *@
                                 <div class="mb-3-row mt-4">
                                     <label class="form-label mt-3">Гендер</label>
                                     <select asp-for="GenderType" class="form-select flex-grow-1" asp-items="@Html.GetEnumSelectList<GenderType>()">

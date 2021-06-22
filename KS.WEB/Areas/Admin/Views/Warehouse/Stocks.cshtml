@@ -4,6 +4,7 @@
     long warehouseId = ViewBag.warehouseId;
     ViewBag.Title = $"Склад {warehouseId.ToString()}";
     Layout = "_AdminLayout";
+    int QuantityProduct = 0;
 }
 
 @if (TempData["SM"] != null)
@@ -46,6 +47,7 @@
             <tbody>
             @foreach (var warehouse in Model)
             {
+                QuantityProduct += warehouse.Quantity?? 0;
                 <tr>
                     <form asp-area="Admin" asp-controller="WarehouseProduct" asp-action="UpdateQuantityProduct">
                         <td>
@@ -76,6 +78,13 @@
                             </a>
                         </td>
                     </form>
+                </tr>
+            }
+            @if (QuantityProduct != 0)
+            {
+                <tr>
+                    <td colspan="1"></td>
+                    <td colspan="1">Общее количество товаров на складе: @QuantityProduct</td>
                 </tr>
             }
             </tbody>

@@ -97,7 +97,7 @@
                                 Профиль
                             </a>
                             <a class="dropdown-item" asp-area="" asp-controller="Order" asp-action="Index">Заказы</a>
-                            <a class="dropdown-item" asp-area="" asp-controller="WishList" asp-action="Index">Список желаний</a>
+                            <a class="dropdown-item" asp-area="" asp-controller="WishList" asp-action="Index">Избранное</a>
                             @if (SignInManager.IsSignedIn(User) && User.IsInRole("Admin"))
                             {
                                 <a class="dropdown-item" asp-area="Admin" asp-controller="Home" asp-action="Index">Панель администратора</a>

@@ -3,6 +3,9 @@
 @{
     ViewBag.Title = "Детали заказа";
     Layout = "_Layout";
+    
+	decimal SumProduct = 0.0m;
+	int QuantityProduct = 0;
 }
 
 <head>
@@ -73,7 +76,9 @@
                                     {
                                         foreach (var product in Model)
                                         {
-                                            <!-- Cart Item -->
+                                            QuantityProduct += product.Quantity;
+                                            SumProduct += product.TotalPrice;
+                                                               <!-- Cart Item -->
                                             <li class="cart_item item_list d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-lg-end justify-content-start">
                                                 <div class="product d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-start mr-auto">
                                                     @*
@@ -104,6 +109,14 @@
                                                 <div class="product_price product_text">
                                                     <span> </span>₽ @product.TotalPrice.ToString("0")
                                                 </div>
+                                            </li>
+                                        }
+                                        @if (QuantityProduct != 0 && SumProduct != 0)
+                                        {
+                                            <li>
+                                                <div colspan="1"></div>
+                                                <div colspan="1">Общее количество товаров: @QuantityProduct</div>
+                                                <div colspan="3">Общая сумма товаров: ₽ @SumProduct.ToString()</div>
                                             </li>
                                         }
                                     }

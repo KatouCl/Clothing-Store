@@ -16,7 +16,7 @@ namespace KS.Interfaces.DataAccess.BusinessLogic.Services
         void UpdateDecrementToCart(ISession session, CartItemVm addProductToCart);
         Task<ProductCartVm> GetCartDetailsAsync(ISession session);
         void RemoveProductFromCart(ISession session, CartItemVm removeProductFromCart);
-        int GetCartQuantity(ISession session);
+        long GetCartQuantity(ISession session);
         Task<int> Checkout(ISession session, CheckoutVm checkout, ApplicationUser customer);
     }
 }
