@@ -57,10 +57,10 @@
                                     </div>
                                     <div>
                                         <!-- Comment -->
-                                        <textarea asp-for="Comment" type="text" id="checkout_email" class="checkout_input" required="required"></textarea>
+                                        <textarea asp-for="Comment" type="text" id="checkout_email" class="checkout_input" placeholder="Комментарий" required="required"></textarea>
                                         <span asp-validation-for="Comment" class="text-danger"></span>
                                     </div>
-                                    <button id="update-profile-button" type="submit" class="checkout_button trans_200">Отправить</button>
+                                    <button onclick="return alert('Спасибо, что написали нам.')" id="update-profile-button" type="submit" class="checkout_button trans_200">Отправить</button>
                                 </form>
                             </div>
                         </div>

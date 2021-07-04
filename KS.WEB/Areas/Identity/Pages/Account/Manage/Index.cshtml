@@ -2,12 +2,11 @@
 @using KS.WEB.Areas.Identity.Pages.Account.Manage
 @model IndexModel
 @{
-    ViewData["Title"] = "Профиль";
-    // ViewData["ActivePage"] = ManageNavPages.Index;
+    ViewBag.Title = "Профиль";
 }
 
 <head>
-    <title>@ViewData["Title"]</title>
+    <title>@ViewBag.Title</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="Little Closet template">
@@ -18,12 +17,10 @@
     <link rel="stylesheet" type="text/css" href="~/Shop/css/checkout_responsive.css">
 </head>
 
-@* <partial name="_StatusMessage" model="Model.StatusMessage"/> *@
+<partial name="_StatusMessage" model="Model.StatusMessage"/>
 <div class="super_container">
-
     <div class="super_container_inner">
         <div class="super_overlay"></div>
-
         <div class="home">
             <div class="home_container d-flex flex-column align-items-center justify-content-end">
                 <div class="home_content text-center">
@@ -87,6 +84,6 @@
 
 </div>
 
-@section Scripts {
-    <partial name="_ValidationScriptsPartial"/>
-}
+@* @section Scripts { *@
+@*     <partial name="_ValidationScriptsPartial"/> *@
+@* } *@

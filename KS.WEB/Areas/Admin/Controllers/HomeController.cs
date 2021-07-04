@@ -45,7 +45,7 @@ namespace KS.WEB.Areas.Admin.Controllers
         public async Task<IActionResult> Index()
         {
             var lastOrdersList = await _orderRepository.GetAllQuery()
-                .OrderBy(x => x.CreationDate)
+                .OrderByDescending(x => x.Id)
                 .Select(x => new LastOrdersVm
                 {
                     Id = x.Id,
@@ -56,7 +56,7 @@ namespace KS.WEB.Areas.Admin.Controllers
                 }).ToListAsync();
 
             var wishList = await _wishListRepository.GetAllQuery()
-                .OrderBy(x => x.CreationDate)
+                .OrderByDescending(x => x.Id)
                 .Select(x => new WishListVm
                 {
                     Id = x.Id,

@@ -35,7 +35,7 @@ namespace KS.WEB.Areas.Admin.Controllers
             
             ViewBag.firstTime = firstTime.ToString("yyyy-MM-dd")?? DateTime.Now.ToString("yyyy-MM-dd");
             ViewBag.lastTime = lastTime.ToString("yyyy-MM-dd")?? DateTime.Now.ToString("yyyy-MM-dd");
-            ViewBag.Price = orderList;
+            
             return View(orderList);
         }
         

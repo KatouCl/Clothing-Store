@@ -100,7 +100,7 @@ namespace KS.BusinessLogic.Services
 
             this.SaveSessionCartData(session, sessionData);
         }
-        
+
         public void UpdateDecrementToCart(ISession session, CartItemVm addProductToCart)
         {
             var sessionData = this.GetSessionCartData(session);
@@ -131,7 +131,7 @@ namespace KS.BusinessLogic.Services
 
             this.SaveSessionCartData(session, sessionData);
         }
-        
+
         public async Task<ProductCartVm> GetCartDetailsAsync(ISession session)
         {
             var sessionData = this.GetSessionCartData(session);
@@ -191,12 +191,12 @@ namespace KS.BusinessLogic.Services
                 );
 
             var ids = sessionData.Products.Select(x => x.Id);
-            var productIds = sessionData.Products.Select(x => x.ProductId);
             if (item.Count() != ids.Count())
             {
                 return 0;
             }
 
+            var productIds = sessionData.Products.Select(x => x.ProductId);
             var products = await _productRepository.GetAllQuery().Where(x => productIds.Contains(x.Id)).ToListAsync();
 
             var order = new Order();
@@ -209,31 +209,34 @@ namespace KS.BusinessLogic.Services
 
                 var orderItem = orderItems.FirstOrDefault(x => x.Product.Id == product.Id);
 
-                if (orderItem == default)
+                if (orderItem != default) continue;
                 {
-                    orderItem = new OrderItem
+                    if (product != null)
                     {
-                        Product = product,
-                        Order = order,
-                        Quantity = item.FirstOrDefault(x => x.ProductId == product.Id).Quantity,
-                        Price = item.FirstOrDefault(x => x.ProductId == product.Id).Price,
-                        TotalPrice = product.Price * item.FirstOrDefault(x => x.ProductId == product.Id).Quantity,
-                    };
+                        orderItem = new OrderItem
+                        {
+                            Product = product,
+                            Order = order,
+                            Quantity = item.FirstOrDefault(x => x.ProductId == product.Id).Quantity,
+                            Price = item.FirstOrDefault(x => x.ProductId == product.Id).Price,
+                            TotalPrice = product.Price * item.FirstOrDefault(x => x.ProductId == product.Id).Quantity,
+                        };
 
-                    var stQuant = item.FirstOrDefault(x => x.ProductId == product.Id).StockId;
+                        var stockQuantity = item.FirstOrDefault(x => x.ProductId == product.Id).StockId;
 
-                    var stock = _stockRepository.GetAll().FirstOrDefault(x =>
-                        x.ProductId == product.Id && x.Id == stQuant);
+                        var stock = _stockRepository.GetAll().FirstOrDefault(x =>
+                            x.ProductId == product.Id && x.Id == stockQuantity);
 
-                    if (!(stock.Quantity >= 1))
-                    {
-                        await _stockRepository.DeleteAsync(stock);
-                        return 0;
-                    }
-                    else
-                    {
-                        stock.Quantity = stock.Quantity - orderItem.Quantity;
-                        await _stockRepository.UpdateAsync(stock);
+                        if (!(stock.Quantity >= 1))
+                        {
+                            await _stockRepository.DeleteAsync(stock);
+                            return 0;
+                        }
+                        else
+                        {
+                            stock.Quantity = stock.Quantity - orderItem.Quantity;
+                            await _stockRepository.UpdateAsync(stock);
+                        }
                     }
 
                     orderItems.Add(orderItem);
@@ -251,6 +254,7 @@ namespace KS.BusinessLogic.Services
                 Phone = checkout.Phone,
                 Comment = checkout.Comment
             };
+
             order.OrderItems = orderItems;
             order.Delivery = delivery;
             order.Customer = customer;
@@ -271,14 +275,7 @@ namespace KS.BusinessLogic.Services
 
             CartDetailsSessionVm sessionData;
 
-            if (sessionDataString == default)
-            {
-                sessionData = new CartDetailsSessionVm();
-            }
-            else
-            {
-                sessionData = JsonConvert.DeserializeObject<CartDetailsSessionVm>(sessionDataString);
-            }
+            sessionData = sessionDataString == default ? new CartDetailsSessionVm() : JsonConvert.DeserializeObject<CartDetailsSessionVm>(sessionDataString);
 
             return sessionData;
         }

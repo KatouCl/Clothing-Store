@@ -37,7 +37,7 @@ namespace KS.WEB.Areas.Identity.Pages.Account.Manage
         public class InputModel
         {
             [Phone]
-            [Display(Name = "Phone number")]
+            [Display(Name = "Номер телефона")]
             public string PhoneNumber { get; set; }
             public string FirstName { get; set; }
             public string LastName { get; set; }

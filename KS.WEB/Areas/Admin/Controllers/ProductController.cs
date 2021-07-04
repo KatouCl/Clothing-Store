@@ -63,6 +63,7 @@ namespace KS.WEB.Areas.Admin.Controllers
         public IActionResult Index()
         {
             var productListing = _productRepository.GetAll()
+                .OrderByDescending(x => x.Id)
                 .Select(x => new ProductIndexViewModel
                 {
                     Id = x.Id,
